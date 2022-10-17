@@ -91,8 +91,8 @@
         </li>
 
         <li class="nav-item">
-          <a href="<?= base_url('scorecandidate') ?>"
-            class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
+          <a href="<?= base_url('reference') ?>"
+            class="nav-link <?= $this->uri->segment(1) == 'reference' ? 'active menu-is-opening menu-open' : '' ?>">
             <i class="nav-icon fas fa-user-check"></i>
             <p>
               Referensi

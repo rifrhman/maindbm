@@ -111,32 +111,33 @@ class Graduated extends CI_Controller
     }
   }
 
-  public function editStatusCandidateSend($basic_id)
+  public function update_status($id)
   {
-    $data['title'] = "Halaman Kandidat Lulus";
+    $data['title'] = "Pengiriman kandidat";
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
-    $data['candi'] = $this->db->get_where('send_candidate', ['basic_id' => $basic_id])->row_array();
+    $data['status'] = $this->db->get_where('send_candidate', ['id' => $id])->row_array();
 
     $validation = $this->form_validation;
 
-    $validation->set_rules('result_send', 'Result', 'required');
+    $validation->set_rules('result_send', 'Result', 'required|trim');
 
     if ($validation->run() == false) {
       $this->load->view('Temp_sourcing/header', $data);
       $this->load->view('Temp_sourcing/navbar', $data);
       $this->load->view('Temp_sourcing/sidebar', $data);
-      $this->load->view('grad_index', $data);
+      $this->load->view('edit_result', $data);
       $this->load->view('Temp_sourcing/footer');
     } else {
-      $res = $this->input->post('result_send');
+      $result_send = $this->input->post('result_send');
 
-      $this->db->set('result_send', $res);
-      $this->db->where('basic_id', $this->input->post('basic_id'));
+      $this->db->set('result_send', $result_send);
+      $this->db->where('id', $this->input->post('id'));
+
       $this->db->update('send_candidate');
       $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Horeee!</strong> Hasil terbaru berhasil di update.
+      <strong>Horeee!</strong> Status berhasil di update .
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">&times;</span>
       </button>
       </div>');
       redirect('graduated');
