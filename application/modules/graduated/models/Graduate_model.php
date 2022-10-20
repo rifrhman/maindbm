@@ -60,6 +60,17 @@ class Graduate_model extends CI_Model
     $query = "SELECT * FROM `candidate_secondary` WHERE `basic_id` = $id_candidate";
     return $this->db->query($query)->row_array();
   }
+
+  public function getAll($id_candidate)
+  {
+    $query = "SELECT * FROM `candidate_secondary` 
+    JOIN `candidate_basic` 
+    ON `candidate_secondary`.`basic_id` = `candidate_basic`.`id_candidate` 
+    WHERE `candidate_secondary`.`basic_id` = $id_candidate
+    ORDER BY `candidate_basic`.`id_candidate`";
+    return $this->db->query($query)->row_array();
+  }
+
   public function detailEducation($id_candidate)
   {
     $query = "SELECT `candidate_basic`.`id_candidate`, `education`.* FROM `candidate_basic` 

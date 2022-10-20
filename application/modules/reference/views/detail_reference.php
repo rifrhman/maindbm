@@ -20,13 +20,6 @@
           <div class="card card-primary">
             <div class="card-header">
               <h3 class="card-title font-weight-bold">Data Basic Kandidat</h3>
-              <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#basic">
-                  <i class="fas fa-fw fa-user-edit"></i> Edit Data
-                </button>
-              </div>
-
-
             </div>
 
             <form>
@@ -95,11 +88,6 @@
           <div class="card card-danger">
             <div class="card-header">
               <h3 class="card-title font-weight-bold">Data Secondary Kandidat</h3>
-              <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#secondary">
-                  <i class="fas fa-fw fa-user-edit"></i> Edit Data
-                </button>
-              </div>
             </div>
 
             <form>
@@ -193,9 +181,6 @@
           <div class="card card-info">
             <div class="card-header">
               <h3 class="card-title font-weight-bold">Berkas Kandidat</h3>
-              <div class="d-flex justify-content-end">
-
-              </div>
             </div>
             <div class="card-body">
               <div class="row">
@@ -424,7 +409,7 @@
           <!-- Form Element sizes -->
           <div class="card card-danger">
             <div class="card-header">
-              <h3 class="card-title font-weight-bold">Catatan Rekomendasi</h3>
+              <h3 class="card-title font-weight-bold">Note Resume</h3>
             </div>
             <div class="card-body">
               <form action="<?= base_url('graduated/detailgraduatecandidate/') . $list['id_candidate'] ?>"
@@ -432,11 +417,12 @@
                 <input type="hidden" name="id_candidate" value="<?= $list['id_candidate'] ?>" id="">
                 <div class="row">
                   <div class="col-lg-12 mb-3">
+                    <label for="test_one">Note Resume</label>
                     <input type="text" class="form-control" name="note_recommend" value="<?= $list['note_recommend'] ?>"
                       placeholder="Disarankan 'kandidat' bekerja sebagai ...">
                   </div>
                   <div class="col-lg">
-                    <button type="submit" class="btn btn-primary d-block">Submit</button>
+                    <button type="submit" class="btn btn-primary d-block">Submit Note</button>
                   </div>
                 </div>
               </form>
@@ -454,159 +440,4 @@
   </div>
 
 
-</div>
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="basic" data-backdrop="static" data-keyboard="false" tabindex="-1"
-  aria-labelledby="basicLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="basicLabel">Edit Berkas Basic</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="<?= base_url('graduated/editbasic/') . $list['id_candidate'] ?>" method="POST">
-        <div class="modal-body">
-          <div class="card-body">
-            <input type="hidden" name="id_candidate" id="id_candidate" value="<?= $list['id_candidate'] ?>">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Nama Lengkap</label>
-              <input type="text" class="form-control" name="fullname" value="<?= $list['fullname'] ?>">
-              <?= form_error('fullname', '<small class="text-danger">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="place_of_birth">Tempat Lahir</label>
-              <input type="text" class="form-control" name="place_of_birth" id="place_of_birth"
-                value="<?= $list['place_of_birth'] ?>">
-              <?= form_error('place_of_birth', '<small class="text-danger">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="date_of_birth">Tanggal Lahir</label>
-              <input type="date" class="form-control" name="date_of_birth" id="date_of_birth"
-                value="<?= $list['date_of_birth'] ?>">
-              <?= form_error('date_of_birth', '<small class="text-danger">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="phone_number">Nomor Handphone</label>
-              <input type="text" class="form-control" name="phone_number" id="phone_number"
-                value="<?= $list['phone_number'] ?>">
-              <?= form_error('phone_number', '<small class="text-danger">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Alamat</label>
-              <input type="text" class="form-control" name="domicile" id="domicile" value="<?= $list['domicile'] ?>">
-              <?= form_error('domicile', '<small class="text-danger">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="gender">Jenis Kelamin</label>
-              <select id="gender" name="gender" class="form-control">
-                <option selected="selected" disabled="disabled"><?= $list['gender'] ?></option>
-                <option value="L">Laki-Laki</option>
-                <option value="P">Perempuan</option>
-              </select>
-              <?= form_error('gender', '<small class="text-danger">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="last_education">Pendidikan Terakhir</label>
-              <input type="text" class="form-control" name="last_education" id="last_education"
-                value="<?= $list['last_education'] ?>">
-              <?= form_error('last_education', '<small class="text-danger">', '</small>') ?>
-            </div>
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save Edit</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="secondary" data-backdrop="static" data-keyboard="false" tabindex="-1"
-  aria-labelledby="secondaryLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="secondaryLabel">Edit Berkas Secondary</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="<?= base_url('graduated/editsecondary/') . $second['basic_id'] ?>" method="POST">
-        <div class="modal-body">
-          <div class="card-body">
-            <input type="hidden" name="basic_id" value="<?= $second['basic_id'] ?>">
-            <div class="form-group">
-              <label for="regis_num_candidate">Nomor Induk Kandidat</label>
-              <input type="text" class="form-control" name="regis_num_candidate"
-                value="<?= $second['regis_num_candidate'] ?>">
-              <?= form_error('regis_num_candidate', '<small class="text-danger pl-2">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="place_of_birth">Nomor Induk Kependudukan</label>
-              <input type="text" class="form-control" name="regis_num_resident" id="regis_num_resident"
-                value="<?= $second['regis_num_resident'] ?>">
-              <?= form_error('regis_num_resident', '<small class="text-danger pl-2">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="date_of_birth">Email</label>
-              <input type="text" class="form-control" name="email" id="email" value="<?= $second['email'] ?>">
-              <?= form_error('email', '<small class="text-danger pl-2">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="religion">Agama</label>
-              <select id="religion" name="religion" class="form-control">
-                <option selected="selected" disabled="disabled"><?= $second['religion'] ?></option>
-                <option value="Islam">Islam</option>
-                <option value="Kristen">Kristen</option>
-                <option value="Katholik">Katholik</option>
-                <option value="Hindu">Hindu</option>
-                <option value="Buddha">Buddha</option>
-                <option value="Konghucu">Konghucu</option>
-              </select>
-              <?= form_error('religion', '<small class="text-danger pl-2">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Tinggi</label>
-              <input type="text" class="form-control" name="tall" id="tall" value="<?= $second['tall'] ?>">
-              <?= form_error('tall', '<small class="text-danger pl-2">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Berat</label>
-              <input type="text" class="form-control" name="weight" id="weight" value="<?= $second['weight'] ?>">
-              <?= form_error('weight', '<small class="text-danger pl-2">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="marital_status">Marital Status</label>
-              <select id="inputState" name="marital_status" class="form-control">
-                <option selected="selected" disabled="disabled"><?= $second['marital_status'] ?></option>
-                <option value="SG">SG</option>
-                <option value="M0">M0</option>
-                <option value="M1">M1</option>
-                <option value="M2">M2</option>
-              </select>
-              <?= form_error('marital_status', '<small class="text-danger pl-2">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="postal_code">Kode Pos</label>
-              <input type="text" class="form-control" name="postal_code" id="postal_code"
-                value="<?= $second['postal_code'] ?>">
-              <?= form_error('postal_code', '<small class="text-danger pl-2">', '</small>') ?>
-            </div>
-
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save Edit</button>
-        </div>
-      </form>
-    </div>
-  </div>
 </div>

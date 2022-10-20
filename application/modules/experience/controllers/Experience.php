@@ -62,7 +62,7 @@ class Experience extends CI_Controller
       ];
 
       $this->db->insert('experience', $data);
-      $this->session->set_flashdata('msg', '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Horee!</strong> Data kandidat berhasil ditambahkan pengalaman.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>

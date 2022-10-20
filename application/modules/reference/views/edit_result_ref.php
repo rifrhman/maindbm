@@ -23,7 +23,7 @@
             </div>
             <!-- /.card-header -->
 
-            <form action="<?= base_url('graduated/update_status/') . $status['id']; ?>" method="POST">
+            <form action="<?= base_url('reference/update_status_ref/') . $status['id']; ?>" method="POST">
               <input type="hidden" name="id" id="id" value="<?= $status['id'] ?>">
               <div class="card-body">
                 <div class="row">
@@ -47,8 +47,8 @@
                       <select id="result_send" name="result_send" class="form-control is-warning">
                         <option selected="selected" value="" disabled="disabled"><?= $status['result_send'] ?>
                         </option>
-                        <option value="Lulus">Lulus</option>
-                        <option value="Tidak Lulus">Tidak Lulus</option>
+                        <option value="Lolos">Lolos</option>
+                        <option value="Tidak Lolos">Tidak Lolos</option>
                       </select>
                     </div>
 

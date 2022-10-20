@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Data Kandidat Referensi</h1>
+          <h1 class="font-weight-bold text-secondary text-uppercase">Data Kandidat Referensi</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -21,7 +21,7 @@
           <div class="card">
 
             <div class="card-body">
-              <table id="example" class="table table-bordered table-striped ">
+              <table id="example" class="table table-bordered table-dark table-striped ">
                 <thead class="text-center">
                   <tr>
 
@@ -42,57 +42,57 @@
                       <?= $can['fullname'] ?>
                     </td>
                     <td>
-                      <span>Nomor Induk Kandidat : </span>
+                      <span>Nomor Induk Kandidat </span>
                       <br>
-                      <span>Pendidikan Terakhir : </span>
+                      <span>Pendidikan Terakhir </span>
                       <br>
-                      <span>Tanggal Lahir : </span>
+                      <span>Tanggal Lahir </span>
                       <br>
-                      <span>Domisili : </span>
+                      <span>Domisili </span>
                       <br>
-                      <span>Test Terakhir : </span>
+                      <span>Test Terakhir </span>
                       <br>
                       <span>Status Test</span>
                       <br>
-                      <span>Psikogram : </span>
+                      <span>Psikogram </span>
                       <br>
-                      <span>Interview : </span>
+                      <span>Interview </span>
                       <br>
-                      <span>Pengalaman (bln) : </span>
+                      <span>Pengalaman (bln) </span>
                     </td>
                     <td>
-                      <span><?= $can['regis_num_candidate'] ?></span>
+                      <span>: <?= $can['regis_num_candidate'] ?></span>
                       <br>
-                      <span><?= $can['last_education'] ?></span>
+                      <span>: <?= $can['last_education'] ?></span>
                       <br>
-                      <span><?= date('d-M-Y', strtotime($can['date_of_birth']))  ?></span>
+                      <span>: <?= date('d-M-Y', strtotime($can['date_of_birth']))  ?></span>
                       <br>
-                      <span><?= $can['domicile'] ?></span>
+                      <span>: <?= $can['domicile'] ?></span>
                       <br>
                       <?php if (isset($can['test_one']) && isset($can['test_two'])) : ?>
-                      <?= date('d-M-Y', strtotime($can['test_two'])) ?>
+                      : <?= date('d-M-Y', strtotime($can['test_two'])) ?>
                       <?php elseif (isset($can['test_one']) && isset($can['test_two']) && isset($can['test_three'])) : ?>
-                      <?= date('d-M-Y', strtotime($can['test_three'])) ?>
+                      : <?= date('d-M-Y', strtotime($can['test_three'])) ?>
                       <?php else : ?>
-                      <?= date('d-M-Y', strtotime($can['test_one'])) ?>
+                      : <?= date('d-M-Y', strtotime($can['test_one'])) ?>
                       <?php endif; ?>
                       <br>
-                      <span><?= $can['status_test'] ?></span>
+                      <span>: <?= $can['status_test'] ?></span>
                       <br>
                       <?php if (isset($can['psikogram'])) : ?>
-                      <a href="<?= base_url('assets/uploads/psikogram/') . $can['psikogram'] ?>" target="_blank">Cek
+                      : <a href="<?= base_url('assets/uploads/psikogram/') . $can['psikogram'] ?>" target="_blank">Cek
                         Disini...</a>
                       </a>
                       <?php else : ?>
-                      <span class="text-danger">Belum di Upload</span>
+                      : <span class="text-danger">Belum di Upload</span>
                       <?php endif; ?>
                       <br>
                       <?php if (isset($can['interview'])) : ?>
-                      <a href="<?= base_url('assets/uploads/interview/') . $can['interview'] ?>" target="_blank">Cek
+                      : <a href="<?= base_url('assets/uploads/interview/') . $can['interview'] ?>" target="_blank">Cek
                         Disini...</a>
                       </a>
                       <?php else : ?>
-                      <span class="text-danger">Belum di Upload</span>
+                      : <span class="text-danger">Belum di Upload</span>
                       <?php endif; ?>
 
                       <br>
@@ -109,21 +109,23 @@
 
                       <?php if ($s['result_send'] == 'Sedang Dikirim') { ?>
 
-                      <a href="<?= base_url('graduated/update_status/') . $s['id'] ?>">
-                        <span class="text-dark"><?= $s['client'] ?></span>
+                      <a href="<?= base_url('reference/update_status_ref/') . $s['id'] ?>">
+                        <span class="text-light"><?= $s['client'] ?></span>
                         <span class="badge badge-pill badge-secondary"><?= $s['result_send'] ?></span>
                       </a>
                       <br>
                       <?php } ?>
                       <?php if ($s['result_send'] == 'Lolos') { ?>
 
-                      <span class="text-dark"><?= $s['client'] ?></span>
-                      <span class="badge badge-pill badge-success"><?= $s['result_send'] ?></span>
+                      <a href="<?= base_url('reference/contract_ref/') . $s['id'] ?>">
+                        <span class="text-light"><?= $s['client'] ?></span>
+                        <span class="badge badge-pill badge-success"><?= $s['result_send'] ?></span>
+                      </a>
                       <br>
                       <?php } ?>
                       <?php if ($s['result_send'] == 'Tidak Lolos') { ?>
 
-                      <span class="text-dark"><?= $s['client'] ?></span>
+                      <span class="text-light"><?= $s['client'] ?></span>
                       <span class="badge badge-pill badge-danger"><?= $s['result_send'] ?></span>
                       <br>
 
@@ -138,14 +140,14 @@
 
 
                     <td class="text-center">
-                      <a href="<?= base_url('graduated/detailgraduatecandidate/') . $can['id_candidate'] ?>"
+                      <a href="<?= base_url('reference/detailreferencecandidate/') . $can['id_candidate'] ?>"
                         class="badge badge-danger  mb-2"><i class="fas fa-fw fa-info"></i> Detail</a>
                       <br>
                       <a href="<?= base_url('pdfgen/resumesingle/') . $can['id_candidate'] ?>"
                         class="badge badge-warning  mb-2" target="_blank"><i class="fas fa-fw fa-file-pdf"></i>
                         Resume-User</a>
                       <br>
-                      <a href="<?= base_url('graduated/addsend_candidate/') . $can['id_candidate'] ?>"
+                      <a href="<?= base_url('reference/addsend_candidate_ref/') . $can['id_candidate'] ?>"
                         class="badge badge-info"><i class="fas fa-fw fa-paper-plane"></i>
                         Kirim Kandidat</a>
 

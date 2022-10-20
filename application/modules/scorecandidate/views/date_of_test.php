@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Penjadwalan Kandidat Tidak Hadir</h1>
+          <h1>Penjadwalan Kandidat</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -52,9 +52,9 @@
                     </div>
                     <div class="form-group col-lg-6">
                       <label for="status_test">Submit Data</label>
-                      <button type="submit" class="form-control btn btn-warning font-weight-bold"><i
+                      <button type="submit" class="form-control btn bg-gradient-primary font-weight-bold"><i
                           class="fas fa-calendar-alt"></i>
-                        Tambah Data Penilaian</button>
+                        Tambah Jadwal</button>
                     </div>
                   </div>
 

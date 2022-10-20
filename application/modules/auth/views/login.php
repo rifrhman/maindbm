@@ -17,17 +17,18 @@
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition bg-dark login-page">
 
   <div class="login-box">
     <!-- /.login-logo -->
-    <div class="card card-outline card-purple">
+    <div class="card card-outline card-primary">
       <div class="card-header text-center">
         <!-- <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a> -->
         <img src="<?= base_url('assets/img/logo.png') ?>" alt="logo" class="img-fluid">
       </div>
       <div class="card-body">
-        <p class="login-box-msg">Halaman Login</p>
+        <p class="login-box-msg text-dark text-uppercase font-weight-bold">MutualPlus Candidate System</p>
+        <p class="login-box-msg text-dark mt-0">Halaman Login</p>
 
         <?= $this->session->flashdata('msg'); ?>
 

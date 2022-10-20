@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Tambah Data Pengalaman Kandidat</h1>
+          <h1 class="font-weight-bold text-secondary text-uppercase">Tambah Data Pengalaman Kandidat</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -20,7 +20,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <table id="example" class="table table-bordered table-striped text-center">
+              <table id="example" class="table table-bordered table-dark table-striped text-center">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -42,7 +42,7 @@
                     <td><?= $can['status_test'] ?></td>
                     <td>
                       <a href="<?= base_url('experience/add_exp/') . $can['id_candidate']; ?>"
-                        class="btn btn-info btn-sm"><i class="fab fa-fw fa-black-tie"></i> Tambah Data
+                        class="btn bg-gradient-green btn-sm"><i class="fab fa-fw fa-black-tie"></i> Tambah Data
                         Pengalaman</a>
                     </td>
                   </tr>

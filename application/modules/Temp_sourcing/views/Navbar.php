@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-dark navbar-light">
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     <li class="nav-item">
@@ -9,9 +9,6 @@
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
-
-
-
 
     <li class="nav-item">
       <a class="nav-link btn btn-danger btn-sm text-light" data-toggle="modal" data-target="#logoutmodal">
@@ -28,14 +25,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="logoutmodalLabel">Keluar aplikasi ?</h5>
+        <h5 class="modal-title" id="logoutmodalLabel">Logout ?</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <p class="text-danger text-center">
-          Terima kasih telah menggunakan aplikasi database MutualPlus.
+          Terima kasih telah menggunakan aplikasi data kandidat MutualPlus.
         </p>
       </div>
       <div class="modal-footer">

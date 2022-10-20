@@ -1,9 +1,8 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-warning elevation-4">
-  <a href="<?= $this->uri->segment(1); ?>" class="brand-link">
-    <img src="<?= base_url('assets/'); ?>img/logo2.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-      style="opacity: .8">
-    <span class="brand-text font-weight-light font-weight-bold">M+ DBM</span>
+<aside class="main-sidebar sidebar-light-warning elevation-4">
+  <a href="" class="brand-link">
+    <img src="<?= base_url('assets/'); ?>img/logo2.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" ">
+    <span class=" brand-text font-weight-light font-weight-bold">MutualPlus</span>
   </a>
 
   <!-- Sidebar -->
@@ -24,8 +23,8 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-
-        <li class="nav-header font-weight-bold bg-purple mb-2" style="border-radius: 5px;">SOURCING MENU</li>
+        <?php if ($this->session->userdata('level_id') == 2) : ?>
+        <li class="nav-header font-weight-bold bg-indigo mb-2" style="border-radius: 5px;">SOURCING MENU</li>
         <li class="nav-item">
           <a href="<?= base_url('sourcing') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'sourcing' ||  $this->uri->segment(1) == '' ? 'active' : '' ?>">
@@ -47,9 +46,9 @@
         <li class="nav-item">
           <a href="#"
             class="nav-link <?= $this->uri->segment(1) == 'education' || $this->uri->segment(1) == 'experience' || $this->uri->segment(1) == 'uploadcandidate' ? 'active menu-is-opening menu-open' : '' ?>">
-            <i class="nav-icon fas fa-list"></i>
+            <i class="nav-icon fas fa-folder-open"></i>
             <p>
-              Data Kandidat Lainnya
+              Data Lainnya
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -78,8 +77,10 @@
             </li>
           </ul>
         </li>
+        <?php endif; ?>
+        <?php if ($this->session->userdata('level_id') == 3 || $this->session->userdata('level_id') == 2) : ?>
 
-        <li class="nav-header font-weight-bold bg-purple mb-2" style="border-radius: 5px;">RECRUITMENT MENU</li>
+        <li class="nav-header font-weight-bold bg-indigo mb-2" style="border-radius: 5px;">RECRUITMENT MENU</li>
         <li class="nav-item">
           <a href="<?= base_url('graduated') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'graduated' ? 'active menu-is-opening menu-open' : '' ?>">
@@ -100,15 +101,23 @@
           </a>
         </li>
 
+        <?php else : ?>
+
+        <?php endif; ?>
+
+        <?php if ($this->session->userdata('level_id') != 4) : ?>
+        <?php else : ?>
+        <li class="nav-header font-weight-bold bg-indigo mb-2" style="border-radius: 5px;">HEAD RECRUITMENT MENU</li>
         <li class="nav-item">
-          <a href="<?= base_url('scorecandidate') ?>"
-            class="nav-link <?= $this->uri->segment(1) == '' ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-hand-holding-usd"></i>
+          <a href="<?= base_url('head') ?>" class="nav-link <?= $this->uri->segment(1) == 'head' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-briefcase"></i>
             <p>
-              Kontrak Form
+              Kontrak Karyawan
             </p>
           </a>
         </li>
+        <?php endif; ?>
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

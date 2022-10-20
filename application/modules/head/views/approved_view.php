@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Status Test</h1>
+          <h1>Approved Kandidat</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -17,38 +17,37 @@
         <div class="col-md">
           <div class="card card-secondary">
             <div class="card-header">
-              <h3 class="card-title font-weight-bold">Edit Status</h3>
+              <h3 class="card-title font-weight-bold">Form Approved</h3>
               <div class="card-tools">
               </div>
             </div>
             <!-- /.card-header -->
 
-            <form action="<?= base_url('scorecandidate/editStatus/') . $basic['basic_id']; ?>" method="POST">
-              <input type="hidden" name="basic_id" id="basic_id" value="<?= $basic['basic_id'] ?>">
+            <form action="<?= base_url('head/approved/') . $send['basic_id']; ?>" method="POST">
+              <input type="hidden" name="basic_id" id="basic_id" value="<?= $send['basic_id'] ?>">
               <div class="card-body">
                 <div class="row">
                   <div class="form-row col-lg-12">
                     <div class="form-group col-lg">
-                      <label for="status_test">Status Test</label>
-                      <select id="status_test" name="status_test" class="form-control is-warning">
-                        <option selected="selected" value="" disabled="disabled"><?= $basic['status_test'] ?>
-                        </option>
-                        <option value="Lulus">Lulus</option>
-                        <option value="Referensi">Referensi</option>
-                        <option value="Tidak Lulus">Tidak Lulus</option>
-                        <option value="Tidak Hadir">Tidak Hadir</option>
-                      </select>
+                      <div class="alert alert-danger text-center font-weight-bold" role="alert">
+                        Apakah anda yakin approve data ? <br> Jika iya data akan dikirim ke admin.
+                        Dan data ini akan hilang dari table.
+                      </div>
                     </div>
-
-
                   </div>
                   <div class="form-row col-lg-12">
 
-                    <div class="form-group col-lg-6">
-                      <label for="status_test">Submit Data</label>
+                    <div class="form-group col-lg">
+
+
+                    </div>
+                  </div>
+                  <div class="form-row col-lg-12">
+                    <div class="form-group col-lg">
                       <button type="submit" class="form-control btn btn-warning font-weight-bold"><i
-                          class="fas fa-pen"></i>
-                        Edit Status Test</button>
+                          class="fas fa-paper-plane"></i>
+                        <input type="hidden" name="confirm" value="Approved">
+                        Approve</button>
                     </div>
                   </div>
 

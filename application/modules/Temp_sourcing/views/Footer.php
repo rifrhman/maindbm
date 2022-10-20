@@ -1,6 +1,8 @@
-<footer class="main-footer">
-  <strong>Copyright &copy; <?= date('Y'); ?> </strong>
-  All rights reserved.
+<footer class="main-footer navbar-dark">
+  <div class="float-right d-none d-sm-block">
+    <b>Version</b> 1.0
+  </div>
+  <strong>Copyright &copy; <?= date('F-Y'); ?> </strong> MutualPlus Candidate System.
 
 </footer>
 
@@ -76,7 +78,7 @@ $(function() {
     "responsive": true,
     "lengthChange": false,
     "autoWidth": false,
-    "buttons": ["csv", "excel", "pdf", "print"]
+    "buttons": ["excel", "pdf", "print"]
   }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   $('#example2').DataTable({
     "paging": true,

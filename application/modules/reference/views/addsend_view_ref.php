@@ -23,7 +23,7 @@
             </div>
             <!-- /.card-header -->
 
-            <form action="<?= base_url('graduated/addsend_candidate/') . $basic['id_candidate']; ?>" method="POST">
+            <form action="<?= base_url('reference/addsend_candidate_ref/') . $basic['id_candidate']; ?>" method="POST">
               <input type="hidden" name="<?= $basic['id_candidate'] ?>" value="<?= $basic['id_candidate'] ?>" id="">
               <div class="card-body">
                 <div class="row">
@@ -60,6 +60,7 @@
                     </div>
                   </div>
                   <div class="form-row col-lg-12">
+
                     <div class="form-group col-lg-6">
                       <label for="major">Dibuat oleh</label>
                       <input type="text" name="created_by" class="form-control" id="created_by"

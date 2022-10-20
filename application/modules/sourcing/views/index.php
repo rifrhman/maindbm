@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Data Kandidat</h1>
+          <h1 class="font-weight-bold text-secondary text-uppercase">Data Kandidat</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -22,7 +22,7 @@
             <div class="card-header">
               <div class="row col-lg-12 d-block">
                 <div class="col-lg-6 mb-2">
-                  <a href="<?= base_url('sourcing/addNewCandidate') ?>" class="btn btn-primary"><i
+                  <a href="<?= base_url('sourcing/addNewCandidate') ?>" class="btn bg-gradient-primary"><i
                       class="fas fa-plus-circle"></i> Tambah Data Kandidat</a>
                 </div>
                 <div class="col-lg-12 d-flex justify-content-end">
@@ -35,7 +35,7 @@
                         <label class="custom-file-label" for="exampleInputFile">Import Excel Kandidat</label>
                       </div>
                       <div class="input-group-append">
-                        <button type="submit" class="btn btn-danger">Upload</button>
+                        <button type="submit" id="submit" class="btn bg-gradient-maroon">Upload</button>
                       </div>
                     </div>
                   </div>
@@ -46,7 +46,7 @@
             </div>
 
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped text-center">
+              <table id="example1" class="table table-bordered table-striped table-dark text-center">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -81,7 +81,7 @@
                     <?php endif; ?>
                     <td>
                       <a href="<?= base_url('sourcing/detailcandidate/') . $can['id_candidate'] ?>"
-                        class="badge badge-info"><i class="fas fa-fw fa-info"></i> Detail</a>
+                        class="badge bg-lime"><i class="fas fa-fw fa-info"></i> Detail</a>
                     </td>
                   </tr>
                   <?php endforeach; ?>
@@ -102,3 +102,12 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+document.getElementById("submit").onclick = function(e) {
+  if (document.getElementById("custom-file-input").value == "") {
+    e.preventDefault();
+    alert("Tolong Masukan File Kandidat");
+  }
+}
+</script>

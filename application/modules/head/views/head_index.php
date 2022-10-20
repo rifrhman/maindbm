@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="font-weight-bold text-secondary text-uppercase">Tambah Data Pendidikan Kandidat</h1>
+          <h1 class="font-weight-bold text-secondary text-uppercase">Approve Kandidat</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -19,6 +19,10 @@
       <div class="row">
         <div class="col-12">
           <div class="card">
+            <div class="card-header">
+              <!-- <span class="badge badge-danger"><?= $count_stat; ?> Kandidat</span>
+              Belum dinilai -->
+            </div>
 
             <div class="card-body">
               <table id="example" class="table table-bordered table-dark table-striped text-center">
@@ -26,26 +30,45 @@
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Alamat</th>
-                    <th>Pendidikan</th>
-                    <th>Status Test</th>
+                    <th>Client</th>
+                    <th>Penempatan</th>
+                    <th>Tanggal Mulai - Tanggal Akhir</th>
+                    <th>Diajukan Oleh</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
+
+
+
                   <?php $no = 1;
                   foreach ($candidate as $can) : ?>
+
                   <tr>
+                    <?php if ($can['confirm'] == 'Approved') : ?>
+                    <?php else : ?>
                     <td><?= $no++; ?></td>
                     <td><?= $can['fullname'] ?></td>
-                    <td><?= $can['domicile'] ?></td>
-                    <td><?= $can['last_education'] ?></td>
-                    <td><?= $can['status_test'] ?></td>
+                    <td><?= $can['client'] ?></td>
+                    <td><?= $can['placement'] ?></td>
+                    <?php if ($can['start_date'] && $can['end_date'] != null) : ?>
+                    <td><?= date('d-M-Y', strtotime($can['start_date'])) ?> -
+                      <?= date('d-M-Y', strtotime($can['end_date'])) ?></td>
+                    <?php else : ?>
+                    <td></td>
+                    <?php endif; ?>
+
+                    <td><?= $can['created_by'] ?></td>
                     <td>
-                      <a href="<?= base_url('education/add_education/') . $can['id_candidate']; ?>"
-                        class="btn bg-gradient-info btn-sm"><i class="fas fa-fw fa-user-graduate"></i> Tambah Data
-                        Pendidikan</a>
+                      <a href="<?= base_url('head/detailcandidate/') . $can['id_candidate']; ?>"
+                        class="badge badge-primary btn-sm"><i class="fas fa-fw fa-info-circle"></i> Detail</a><br>
+
+                      <a href="<?= base_url('head/approved/') . $can['id_candidate'] ?>"
+                        class="badge badge-primary btn-sm"><i class="fas fa-fw fa-info-circle"></i>
+                        Approve</a><br>
+
                     </td>
+                    <?php endif; ?>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>

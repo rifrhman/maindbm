@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Penilaian Kandidat</h1>
+          <h1 class="font-weight-bold text-secondary text-uppercase">Penilaian Kandidat</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -25,7 +25,7 @@
             </div>
 
             <div class="card-body">
-              <table id="example" class="table table-bordered table-striped text-center">
+              <table id="example" class="table table-bordered table-dark table-striped text-center">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -78,11 +78,13 @@
                     <?php endif; ?>
                     <td>
                       <a href="<?= base_url('scorecandidate/score_candidate/') . $can['id_candidate']; ?>"
-                        class="badge badge-info btn-sm"><i class="fas fa-fw fa-pen"></i> Nilai</a><br>
+                        class="badge bg-gradient-danger text-light"><i class="fas fa-fw fa-pen"></i> Nilai</a><br>
                       <a href="<?= base_url('scorecandidate/update_test/') . $can['id_candidate']; ?>"
-                        class="badge badge-info btn-sm"><i class="fas fa-fw fa-calendar-alt"></i> Update Jadwal</a>
+                        class="badge bg-gradient-info text-light"><i class="fas fa-fw fa-calendar-alt"></i> Update
+                        Jadwal</a>
                       <a href="<?= base_url('scorecandidate/editStatus/') . $can['id_candidate']; ?>"
-                        class="badge badge-info btn-sm"><i class="fas fa-fw fa-user-edit"></i> Edit Status</a>
+                        class="badge bg-gradient-warning text-dark"><i class="fas fa-fw fa-user-edit"></i> Edit
+                        Status</a>
                     </td>
                   </tr>
                   <?php endforeach; ?>

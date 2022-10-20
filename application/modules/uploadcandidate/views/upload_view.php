@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Penilaian Kandidat</h1>
+          <h1 class="font-weight-bold text-secondary text-uppercase">Upload Kandidat</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -21,7 +21,7 @@
           <div class="card">
 
             <div class="card-body">
-              <table id="example" class="table table-bordered table-striped table-responsive-lg text-center">
+              <table id="example" class="table table-bordered table-striped table-dark table-responsive-lg text-center">
                 <thead>
                   <tr>
                     <th>No</th>

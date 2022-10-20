@@ -82,7 +82,7 @@ class ScoreCandidate extends CI_Controller
       } else {
         $this->db->insert('candidate_secondary', $data);
 
-        $this->session->set_flashdata('msg', '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+        $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Horee!</strong> Data kandidat berhasil dilakukan penilaian.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -123,7 +123,7 @@ class ScoreCandidate extends CI_Controller
         $this->db->where('id_candidate', $this->input->post('id_candidate'));
         $this->db->update('candidate_basic');
         $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Success!</strong> Jadwal terbaru berhasil di update.
+        <strong>Horee!</strong> Jadwal terbaru berhasil di update.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -167,7 +167,7 @@ class ScoreCandidate extends CI_Controller
       $this->db->where('basic_id', $this->input->post('basic_id'));
       $this->db->update('candidate_secondary');
       $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Success!</strong> Status terbaru berhasil di update.
+      <strong>Horee!</strong> Status terbaru berhasil di update.
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
       </button>

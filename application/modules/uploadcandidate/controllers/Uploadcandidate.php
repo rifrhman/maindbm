@@ -75,7 +75,7 @@ class Uploadcandidate extends CI_Controller
       $this->db->where('id_candidate', $this->input->post('id_candidate'));
       $this->db->update('candidate_basic');
       $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Success!</strong> Foto berhadil ditambah.
+          <strong>Horee!</strong> Foto berhadil ditambah.
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -129,7 +129,7 @@ class Uploadcandidate extends CI_Controller
       $this->db->where('id_candidate', $this->input->post('id_candidate'));
       $this->db->update('candidate_basic');
       $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Success!</strong> Upload PDF psikogram berhasil ditambah.
+          <strong>Horee!</strong> Upload PDF psikogram berhasil ditambah.
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -183,7 +183,7 @@ class Uploadcandidate extends CI_Controller
       $this->db->where('id_candidate', $this->input->post('id_candidate'));
       $this->db->update('candidate_basic');
       $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Success!</strong> Upload Interview berhasil ditambah.
+          <strong>Horee!</strong> Upload Interview berhasil ditambah.
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
