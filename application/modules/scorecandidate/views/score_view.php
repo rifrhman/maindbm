@@ -25,7 +25,7 @@
             </div>
 
             <div class="card-body">
-              <table id="example" class="table table-bordered table-dark table-striped text-center">
+              <table id="examscore" class="table table-bordered table-dark table-striped text-center">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -38,8 +38,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $no = 1;
-                  foreach ($candidate as $can) : ?>
+                  <!-- <?php $no = 1;
+                        foreach ($candidate as $can) : ?>
                   <tr>
                     <td><?= $no++; ?></td>
                     <td><?= $can['fullname'] ?></td>
@@ -87,7 +87,7 @@
                         Status</a>
                     </td>
                   </tr>
-                  <?php endforeach; ?>
+                  <?php endforeach; ?> -->
                 </tbody>
 
               </table>

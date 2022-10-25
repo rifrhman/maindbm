@@ -42,7 +42,7 @@
 
                     <div class="form-group col-md-4">
                       <label for="year_in">Tahun Masuk</label>
-                      <input type="text" name="year_in" class="form-control" id="year_in" placeholder="2018 ..">
+                      <input type="date" name="year_in" class="form-control" id="year_in" placeholder="2018 ..">
                       <?= form_error('year_in', '<small class="text-danger">', '</small>') ?>
                     </div>
                   </div>

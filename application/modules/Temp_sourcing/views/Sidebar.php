@@ -9,11 +9,11 @@
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <div class="image">
+      <!-- <div class="image">
         <img src="<?= base_url('assets/uploads/image/candidate-image/user.png'); ?>" class="img-circle elevation-2"
           alt="User Image">
-      </div>
-      <div class="info">
+      </div> -->
+      <div class="image">
         <a href="" class="d-block"><?= $users['username'] ?></a>
       </div>
     </div>

@@ -91,6 +91,21 @@
                   </div>
                   <div class="form-row col-lg-12">
                     <div class="form-group col-lg-6">
+                      <label for="status_test">Sertifikat <small>*Optional</small></label>
+                      <input type="text" name="certificate" class="form-control" id="certificate"
+                        placeholder="Sertifikat...">
+                      <?= form_error('certificate', '<small class="text-danger pl-2">', '</small>') ?>
+
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label for="status_test">Masa Berlaku Sertifikat <small>*Optional</small></label>
+                      <input type="text" name="validity_period" class="form-control" id="validity_period"
+                        placeholder="Masa Berlaku...">
+                      <?= form_error('validity_period', '<small class="text-danger pl-2">', '</small>') ?>
+                    </div>
+                  </div>
+                  <div class="form-row col-lg-12">
+                    <div class="form-group col-lg-6">
                       <label for="status_test">Status Test</label>
                       <select id="status_test" name="status_test" class="form-control is-warning">
                         <option selected="selected" disabled="disabled">Choose...</option>

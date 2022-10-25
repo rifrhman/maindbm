@@ -4,9 +4,17 @@
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1>Detail Kandidat</h1>
+        <div class="col-sm">
+          <h1>Detail Karyawan Join</h1>
         </div>
+
+        <button type="button" class="btn btn-dark mr-3" data-toggle="modal" data-target="#info">
+          <i class="fas fa-fw fa-user-edit"></i> Tambah Info Karyawan
+        </button>
+        <button type="button" class="btn btn-dark justify-content-end" data-toggle="modal" data-target="#basic">
+          <i class="fas fa-money-check-alt"></i> Tambah Bank dan Data
+        </button>
+
       </div>
     </div><!-- /.container-fluid -->
   </section>
@@ -19,11 +27,11 @@
         <div class="col-md-6">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title font-weight-bold">Data Basic Kandidat</h3>
+              <h3 class="card-title font-weight-bold">Data Basic Join Karyawan</h3>
               <div class="d-flex justify-content-end">
-                <!-- <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#basic">
-                  <i class="fas fa-fw fa-user-edit"></i> Edit Data
-                </button> -->
+                <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#basic">
+                  <i class="fas fa-fw fa-pen"></i> Edit Data
+                </button>
               </div>
 
 
@@ -94,11 +102,11 @@
         <div class="col-md-6">
           <div class="card card-danger">
             <div class="card-header">
-              <h3 class="card-title font-weight-bold">Data Secondary Kandidat</h3>
+              <h3 class="card-title font-weight-bold">Data Secondary Join Karyawan</h3>
               <div class="d-flex justify-content-end">
-                <!-- <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#secondary">
-                  <i class="fas fa-fw fa-user-edit"></i> Edit Data
-                </button> -->
+                <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#secondary">
+                  <i class="fas fa-fw fa-pen"></i> Edit Data
+                </button>
               </div>
             </div>
 
@@ -161,43 +169,17 @@
 
 
 
-        <div class="col-md-6">
-          <!-- Form Element sizes -->
-          <div class="card card-warning">
-            <div class="card-header">
-              <h3 class="card-title font-weight-bold">Jadwal Test</h3>
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-4">
-                  <label for="test_one">Test Pertama</label>
-                  <input type="text" class="form-control" value="<?= $list['test_one'] ?>" readonly>
-                </div>
-                <div class="col-4">
-                  <label for="test_two">Test Kedua</label>
-                  <input type="text" class="form-control" value="<?= $list['test_two'] ?>" readonly>
-                </div>
-                <div class="col-4">
-                  <label for="test_three">Test Ketiga</label>
-                  <input type="text" class="form-control" value="<?= $list['test_three'] ?>" readonly>
-                </div>
-              </div>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
 
-        <div class="col-md-6">
+        <div class="col-md">
           <!-- Form Element sizes -->
           <div class="card card-info">
             <div class="card-header">
-              <h3 class="card-title font-weight-bold">Berkas Kandidat</h3>
+              <h3 class="card-title font-weight-bold">Berkas Karyawan</h3>
               <div class="d-flex justify-content-end">
 
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body text-center">
               <div class="row">
                 <div class="col-4">
                   <label for="test_two">Psikogram Satu</label>
@@ -368,7 +350,7 @@
             </div>
           </div>
           <?php else : ?>
-          <div class="card card-info">
+          <div class="card card-danger">
             <div class="card-header">
               <h3 class="card-title font-weight-bold">Pengalaman</h3>
               <div class="card-tools">
@@ -446,7 +428,7 @@
 
         <div class="col-lg">
           <!-- Form Element sizes -->
-          <div class="card card-danger">
+          <!-- <div class="card card-danger">
             <div class="card-header">
               <h3 class="card-title font-weight-bold">Catatan Rekomendasi</h3>
             </div>
@@ -464,9 +446,9 @@
                   </div>
                 </div>
               </form>
-            </div>
-            <!-- /.card-body -->
-          </div>
+            </div> -->
+          <!-- /.card-body -->
+          <!-- </div> -->
           <!-- /.card -->
         </div>
 
@@ -493,7 +475,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('graduated/editbasic/') . $list['id_candidate'] ?>" method="POST">
+      <form action="<?= base_url('contract/editbasic/') . $list['id_candidate'] ?>" method="POST">
         <div class="modal-body">
           <div class="card-body">
             <input type="hidden" name="id_candidate" id="id_candidate" value="<?= $list['id_candidate'] ?>">
@@ -528,7 +510,8 @@
             <div class="form-group">
               <label for="gender">Jenis Kelamin</label>
               <select id="gender" name="gender" class="form-control">
-                <option selected="selected" disabled="disabled"><?= $list['gender'] ?></option>
+                <option selected="selected" value="<?= $list['gender'] ?>"><?= $list['gender'] ?>
+                </option>
                 <option value="L">Laki-Laki</option>
                 <option value="P">Perempuan</option>
               </select>
@@ -562,7 +545,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('graduated/editsecondary/') . $second['basic_id'] ?>" method="POST">
+      <form action="<?= base_url('contract/editsecondary/') . $second['basic_id'] ?>" method="POST">
         <div class="modal-body">
           <div class="card-body">
             <input type="hidden" name="basic_id" value="<?= $second['basic_id'] ?>">
@@ -586,7 +569,7 @@
             <div class="form-group">
               <label for="religion">Agama</label>
               <select id="religion" name="religion" class="form-control">
-                <option selected="selected" disabled="disabled"><?= $second['religion'] ?></option>
+                <option selected="selected" value="<?= $second['religion'] ?>"><?= $second['religion'] ?></option>
                 <option value="Islam">Islam</option>
                 <option value="Kristen">Kristen</option>
                 <option value="Katholik">Katholik</option>
@@ -609,7 +592,8 @@
             <div class="form-group">
               <label for="marital_status">Marital Status</label>
               <select id="inputState" name="marital_status" class="form-control">
-                <option selected="selected" disabled="disabled"><?= $second['marital_status'] ?></option>
+                <option selected="selected" value="<?= $second['marital_status'] ?>"><?= $second['marital_status'] ?>
+                </option>
                 <option value="SG">SG</option>
                 <option value="M0">M0</option>
                 <option value="M1">M1</option>
@@ -625,6 +609,77 @@
             </div>
 
           </div>
+        </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Edit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="info" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="infoLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="infoLabel">Edit Berkas info</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url('contract/editbasic/') . $list['id_candidate'] ?>" method="POST">
+        <div class="modal-body">
+          <div class="card-body">
+            <input type="hidden" name="id_candidate" id="id_candidate" value="<?= $list['id_candidate'] ?>">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nama Lengkap</label>
+              <input type="text" class="form-control" name="fullname" value="<?= $list['fullname'] ?>">
+              <?= form_error('fullname', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="form-group">
+              <label for="place_of_birth">Tempat Lahir</label>
+              <input type="text" class="form-control" name="place_of_birth" id="place_of_birth"
+                value="<?= $list['place_of_birth'] ?>">
+              <?= form_error('place_of_birth', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="form-group">
+              <label for="date_of_birth">Tanggal Lahir</label>
+              <input type="date" class="form-control" name="date_of_birth" id="date_of_birth"
+                value="<?= $list['date_of_birth'] ?>">
+              <?= form_error('date_of_birth', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="form-group">
+              <label for="phone_number">Nomor Handphone</label>
+              <input type="text" class="form-control" name="phone_number" id="phone_number"
+                value="<?= $list['phone_number'] ?>">
+              <?= form_error('phone_number', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Alamat</label>
+              <input type="text" class="form-control" name="domicile" id="domicile" value="<?= $list['domicile'] ?>">
+              <?= form_error('domicile', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="form-group">
+              <label for="gender">Jenis Kelamin</label>
+              <select id="gender" name="gender" class="form-control">
+                <option selected="selected" value="<?= $list['gender'] ?>"><?= $list['gender'] ?>
+                </option>
+                <option value="L">Laki-Laki</option>
+                <option value="P">Perempuan</option>
+              </select>
+              <?= form_error('gender', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="form-group">
+              <label for="last_education">Pendidikan Terakhir</label>
+              <input type="text" class="form-control" name="last_education" id="last_education"
+                value="<?= $list['last_education'] ?>">
+              <?= form_error('last_education', '<small class="text-danger">', '</small>') ?>
+            </div>
+          </div>
+
         </div>
         <div class="modal-footer">
           <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -80,6 +80,25 @@ $(function() {
     "responsive": true,
   });
 });
+
+$(document).ready(function() {
+  $("#contract").DataTable({
+    "processing": true,
+    "serverSide": true,
+    "order": [],
+    "responsive": true,
+    "lengthChange": true,
+    "autoWidth": false,
+    "ajax": {
+      "url": "<?= base_url('contract/getDataScore') ?>",
+      "type": "POST"
+    },
+    "columnDefs": [{
+      "target": [-1],
+      "orderable": false
+    }],
+  })
+})
 </script>
 
 

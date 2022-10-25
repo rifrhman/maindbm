@@ -164,4 +164,36 @@ class Sourcing extends CI_Controller
     $this->load->view('detail_candidate', $data);
     $this->load->view('Temp_sourcing/footer');
   }
+
+  public function getDataSour()
+  {
+    header('Content-Type: application/json');
+    $results = $this->sour->getDataTable();
+
+    $data = [];
+    $no = $_POST['start'];
+    foreach ($results as $result) {
+      $row = array();
+      $row[] = ++$no;
+      $row[] = $result->fullname;
+      $row[] = $result->domicile;
+      $row[] = $result->last_education;
+      $row[] = date('d-M-Y', strtotime($result->test_one));
+      $row[] = $result->test_two;
+      $row[] = $result->test_three;
+      $row[] = '<a href="' . base_url('sourcing/detailcandidate/') . $result->id_candidate . '"
+      class="badge bg-lime"><i class="fas fa-fw fa-info"></i> Detail</a>';
+      $data[] = $row;
+    }
+
+
+    $output = array(
+      'draw' => $_POST['draw'],
+      'recordsTotal' => $this->sour->count_all_data(),
+      'recordsFiltered' => $this->sour->count_filtered_data(),
+      'data' => $data
+    );
+
+    $this->output->set_content_type('application/json')->set_output(json_encode($output));
+  }
 }

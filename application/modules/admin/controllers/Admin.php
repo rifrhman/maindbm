@@ -13,16 +13,19 @@ class Admin extends CI_Controller
     if ($this->session->userdata('level_id') != 1) {
       show_404();
     }
+
+    $this->load->model('admin_model', 'amod');
   }
 
   public function index()
   {
     $data['title'] = "Dashboard";
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
-    $this->load->view('Temp/header', $data);
-    $this->load->view('Temp/navbar', $data);
-    $this->load->view('Temp/sidebar', $data);
+    $data['countjoin'] = $this->amod->countJoinEmp();
+    $this->load->view('Temp_admin/header', $data);
+    $this->load->view('Temp_admin/navbar', $data);
+    $this->load->view('Temp_admin/sidebar', $data);
     $this->load->view('dashboard', $data);
-    $this->load->view('Temp/footer');
+    $this->load->view('Temp_admin/footer');
   }
 }

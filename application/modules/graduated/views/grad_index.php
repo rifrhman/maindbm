@@ -80,11 +80,22 @@
                       <span>: <?= $can['status_test'] ?></span>
                       <br>
                       <?php if (isset($can['psikogram'])) : ?>
-                      : <a href="<?= base_url('assets/uploads/psikogram/') . $can['psikogram'] ?>" target="_blank">Cek
-                        Disini...</a>
-                      </a>
+                      : <a href="<?= base_url('assets/uploads/psikogram/') . $can['psikogram'] ?>" target="_blank"
+                        class="badge badge-info">Psikogram 1</a>,
                       <?php else : ?>
                       : <span class="text-danger">Belum di Upload</span>
+                      <?php endif; ?>
+                      <?php if (isset($can['psikogram_two'])) : ?>
+                      <a href="<?= base_url('assets/uploads/psikogram/') . $can['psikogram_two'] ?>" target="_blank"
+                        class="badge badge-primary">Psikogram 2</a>,
+                      <?php else : ?>
+                      <span class="text-danger">Belum di Upload</span>
+                      <?php endif; ?>
+                      <?php if (isset($can['psikogram_three'])) : ?>
+                      <a href="<?= base_url('assets/uploads/psikogram/') . $can['psikogram_three'] ?>" target="_blank"
+                        class="badge bg-olive">Psikogram 3</a>,
+                      <?php else : ?>
+                      <span class="text-danger">Belum di Upload</span>
                       <?php endif; ?>
                       <br>
                       <?php if (isset($can['interview'])) : ?>
@@ -147,6 +158,12 @@
                       <a href="<?= base_url('graduated/addsend_candidate/') . $can['id_candidate'] ?>"
                         class="badge badge-info mb-2"><i class="fas fa-fw fa-paper-plane"></i>
                         Kirim Kandidat</a>
+                      <br>
+                      <a href="<?= base_url('graduated/add_psikogram_many/') . $can['id_candidate'] ?>"
+                        class="badge badge-primary mb-2">
+                        <i class="fas fa-fw fa-upload"></i>
+                        Tambah Psikogram
+                      </a>
 
                     </td>
                   </tr>

@@ -128,6 +128,7 @@
                   <input type="text" class="form-control" id="postal_code" value="<?= $second['postal_code'] ?>"
                     readonly>
                 </div>
+
                 <div class="form-group">
                   <label for="exampleInputPassword1">Status Test Kandidat</label>
                   <input type="text" class="form-control" id="status_test" value="<?= $second['status_test'] ?>"
@@ -182,7 +183,7 @@
             </div>
             <div class="card-body">
               <div class="row">
-                <div class="col-4">
+                <div class="col-6">
                   <label for="test_one">Foto Kandidat</label>
                   <?php if (isset($list['image'])) : ?>
                   <a class="btn btn-primary btn-sm form-control"
@@ -193,7 +194,7 @@
                   <p class="text-danger font-weight-bold">Belum di Upload</p>
                   <?php endif; ?>
                 </div>
-                <div class="col-4">
+                <!-- <div class="col-4">
                   <label for="test_two">Psikogram</label>
                   <?php if (isset($list['psikogram'])) : ?>
                   <a class="btn btn-success btn-sm form-control"
@@ -203,8 +204,8 @@
                   <?php else : ?>
                   <p class="text-danger font-weight-bold">Belum di Upload</p>
                   <?php endif; ?>
-                </div>
-                <div class="col-4">
+                </div> -->
+                <div class="col-6">
                   <label for="test_three">Form Interview</label>
                   <?php if (isset($list['interview'])) : ?>
                   <a class="btn btn-danger btn-sm form-control"
@@ -221,6 +222,38 @@
           </div>
           <!-- /.card -->
         </div>
+
+
+        <div class="col-md-12">
+          <?php if (isset($second['certificated']) || isset($second['validity_period'])) : ?>
+          <div class="card card-secondary">
+            <div class="card-header">
+              <h3 class="card-title font-weight-bold">Sertifikasi <small>*Optional</small></h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Sertifikat</label>
+                    <input type="text" class="form-control" id="postal_code" name="certificated"
+                      value="<?= $second['certificate'] ?>" readonly>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Masa Berlaku Sertifikat</label>
+                    <input type="text" class="form-control" id="postal_code" name="validity_period"
+                      value="<?= $second['validity_period'] ?>" readonly>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php else : ?>
+          <?php endif; ?>
+        </div>
+
+
 
 
         <div class="col-lg-12">
@@ -361,7 +394,8 @@
                     </div>
                     <div class="form-group col-md-4">
                       <label for="major">Tahun Masuk</label>
-                      <input type="text" class="form-control" id="year_in" value="<?= $ex['year_in'] ?>" readonly>
+                      <input type="text" class="form-control" id="year_in"
+                        value="<?= date('d F Y', strtotime($ex['year_in'])) ?>" readonly>
                     </div>
 
                   </div>

@@ -46,7 +46,7 @@
             </div>
 
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped table-dark text-center">
+              <table id="exam" class="table table-bordered table-striped table-dark text-center">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -61,30 +61,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $no = 1;
-                  foreach ($candidate as $can) : ?>
-                  <tr>
-                    <td><?= $no++; ?></td>
-                    <td><?= $can['fullname'] ?></td>
-                    <td><?= $can['domicile'] ?></td>
-                    <td><?= $can['last_education'] ?></td>
-                    <td><?= date('d-M-Y', strtotime($can['test_one'])) ?></td>
-                    <?php if ($can['test_two'] == null) : ?>
-                    <td><?= $can['test_two'] ?></td>
-                    <?php else : ?>
-                    <td><?= date('d-M-Y', strtotime($can['test_two'])) ?></td>
-                    <?php endif; ?>
-                    <?php if ($can['test_three'] == null) : ?>
-                    <td><?= $can['test_three'] ?></td>
-                    <?php else : ?>
-                    <td><?= date('d-M-Y', strtotime($can['test_three'])) ?></td>
-                    <?php endif; ?>
-                    <td>
-                      <a href="<?= base_url('sourcing/detailcandidate/') . $can['id_candidate'] ?>"
-                        class="badge bg-lime"><i class="fas fa-fw fa-info"></i> Detail</a>
-                    </td>
-                  </tr>
-                  <?php endforeach; ?>
+
                 </tbody>
 
               </table>

@@ -97,6 +97,53 @@ $(document).ready(function() {
     "autoWidth": false,
   });
 });
+
+$('input[type="text"]').keyup(function(evt) {
+  var txt = $(this).val();
+
+
+  // Regex taken from php.js (http://phpjs.org/functions/ucwords:569)
+  $(this).val(txt.replace(/^(.)|\s(.)/g, function($1) {
+    return $1.toUpperCase();
+  }));
+});
+
+$(document).ready(function() {
+  $('#exam').DataTable({
+    "processing": true,
+    "serverSide": true,
+    "order": [],
+    "responsive": true,
+    "lengthChange": true,
+    "autoWidth": false,
+    "ajax": {
+      "url": "<?= base_url('sourcing/getDataSour') ?>",
+      "type": "POST"
+    },
+    "columnDefs": [{
+      "target": [-1],
+      "orderable": false
+    }],
+    "buttons": ["excel", "pdf", "print"]
+  }).buttons().container().appendTo('#exam_wrapper .col-md-6:eq(0)');
+});
+
+$('#examscore').DataTable({
+  "processing": true,
+  "serverSide": true,
+  "order": [],
+  "responsive": true,
+  "lengthChange": true,
+  "autoWidth": false,
+  "ajax": {
+    "url": "<?= base_url('scoreCandidate/getDataScore') ?>",
+    "type": "POST"
+  },
+  "columnDefs": [{
+    "target": [-1],
+    "orderable": false
+  }],
+});
 </script>
 
 

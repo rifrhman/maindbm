@@ -13,6 +13,7 @@ class ScoreCandidate extends CI_Controller
     if ($this->session->userdata('level_id') != 2) {
       show_404();
     }
+    $this->load->model('score_model', 'score');
   }
   public function index()
   {
@@ -39,14 +40,16 @@ class ScoreCandidate extends CI_Controller
 
     $validation = $this->form_validation;
 
-    $validation->set_rules('regis_num_candidate', 'Candidate Number', 'required|trim');
-    $validation->set_rules('regis_num_resident', 'Resident Number', 'required|trim');
-    $validation->set_rules('email', 'Email', 'required|trim');
-    $validation->set_rules('marital_status', 'Marital Status', 'required');
-    $validation->set_rules('tall', 'Tall', 'required|trim');
-    $validation->set_rules('weight', 'Weight', 'required');
-    $validation->set_rules('postal_code', 'Gender', 'required');
-    $validation->set_rules('religion', 'Religion', 'required');
+    $validation->set_rules('regis_num_candidate', 'Candidate Number');
+    $validation->set_rules('regis_num_resident', 'Resident Number');
+    $validation->set_rules('email', 'Email');
+    $validation->set_rules('marital_status', 'Marital Status');
+    $validation->set_rules('tall', 'Tall');
+    $validation->set_rules('weight', 'Weight');
+    $validation->set_rules('postal_code', 'Gender');
+    $validation->set_rules('religion', 'Religion');
+    $validation->set_rules('certificate', 'Certificate');
+    $validation->set_rules('validity_period', 'Validity Period');
     $validation->set_rules('status_test', 'Status Test', 'required');
 
     if ($validation->run() == false) {
@@ -67,6 +70,8 @@ class ScoreCandidate extends CI_Controller
         'postal_code' => $this->input->post('postal_code'),
         'weight' => $this->input->post('weight'),
         'religion' => $this->input->post('religion'),
+        'certificate' => $this->input->post('certificate'),
+        'validity_period' => $this->input->post('validity_period'),
         'basic_id' => $id_candidate
       ];
 
@@ -174,5 +179,51 @@ class ScoreCandidate extends CI_Controller
       </div>');
       redirect('scorecandidate');
     }
+  }
+
+  public function getDataScore()
+  {
+    // header('Content-Type: application/json');
+
+    $results = $this->score->getDataTable();
+
+    $data = [];
+    $no = $_POST['start'];
+    foreach ($results as $result) {
+      $row = array();
+      $row[] = ++$no;
+      $row[] = $result->fullname;
+      $row[] = $result->domicile;
+      $row[] = $result->last_education;
+      $row[] = $result->test_one != null && $result->test_two != null ?
+        date('d-M-Y', strtotime($result->test_two)) : ($result->test_one != null
+          && $result->test_two != null &&
+          $result->test_three != null ? $result->test_three : $result->test_one);
+      $row[] =
+        $result->status_test == 'Lulus' ?
+        '<span class="badge badge-pill badge-success">Lulus</span>' : ($result->status_test == 'Tidak Lulus' ?
+          '<span class="badge badge-pill badge-danger">Tidak Lulus</span>' : ($result->status_test == 'Referensi' ?
+            '<span class="badge badge-pill badge-info">Referensi</span>' : ($result->status_test == 'Tidak Hadir' ?
+              '<span class="badge badge-pill badge-warning">Tidak Hadir</span>' : '')));
+      $row[] = '
+      <a href="' . base_url('scorecandidate/score_candidate/') . $result->id_candidate . '"
+class="badge bg-gradient-danger text-light"><i class="fas fa-fw fa-pen"></i> Nilai</a><br>
+<a href="' . base_url('scorecandidate/update_test/') . $result->id_candidate . '"
+                        class="badge bg-gradient-info text-light"><i class="fas fa-fw fa-calendar-alt"></i> Update
+                        Jadwal</a>
+                        <a href="' . base_url('scorecandidate/editStatus/') . $result->id_candidate . '"
+                        class="badge bg-gradient-warning text-dark"><i class="fas fa-fw fa-user-edit"></i> Edit
+                        Status</a>';
+      $data[] = $row;
+    }
+
+    $output = array(
+      'draw' => $_POST['draw'],
+      'recordsTotal' => $this->score->count_all_data(),
+      'recordsFiltered' => $this->score->count_filtered_data(),
+      'data' => $data
+    );
+
+    $this->output->set_output(json_encode($output));
   }
 }

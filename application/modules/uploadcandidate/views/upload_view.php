@@ -28,7 +28,7 @@
                     <th>Nama</th>
                     <th>Foto Kandidat</th>
                     <th>Jadwal Test Terakhir</th>
-                    <th>Psikogram</th>
+
                     <th>Interview</th>
                     <th>Action</th>
                   </tr>
@@ -54,16 +54,7 @@
                     <?php else : ?>
                     <td><?= $can['test_one'] ?></td>
                     <?php endif; ?>
-                    <td>
-                      <?php if (isset($can['psikogram'])) : ?>
-                      <a class="btn btn-primary btn-sm"
-                        href="<?= base_url('assets/uploads/psikogram/') . $can['psikogram'] ?>" target="_blank">
-                        <i class="fas fa-fw fa-file-upload"></i>
-                      </a>
-                      <?php else : ?>
-                      <p class="text-danger font-weight-bold">Belum di Upload</p>
-                      <?php endif; ?>
-                    </td>
+
                     <td>
                       <?php if (isset($can['interview'])) : ?>
                       <a class="btn btn-primary btn-sm"
@@ -78,8 +69,7 @@
                     <td>
                       <a href="<?= base_url('uploadcandidate/add_image/') . $can['id_candidate']; ?>"
                         class="badge badge-warning btn-sm"><i class="fas fa-fw fa-camera-retro"></i> Foto</a>
-                      <a href="<?= base_url('uploadcandidate/add_psikogram/') . $can['id_candidate']; ?>"
-                        class="badge badge-info btn-sm"><i class="fas fa-fw fa-file-upload"></i> Psikogram</a>
+
                       <a href="<?= base_url('uploadcandidate/add_interview/') . $can['id_candidate']; ?>"
                         class="badge badge-danger btn-sm"><i class="fas fa-fw fa-file-pdf"></i> Interview</a>
                     </td>

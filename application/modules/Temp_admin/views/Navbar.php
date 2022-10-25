@@ -10,13 +10,6 @@
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
 
-
-
-    <li class="nav-item">
-      <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-        <i class="fas fa-expand-arrows-alt"></i>
-      </a>
-    </li>
     <li class="nav-item">
       <a class="nav-link btn btn-danger btn-sm text-light" data-toggle="modal" data-target="#logoutmodal">
         <i class="fas fa-fw fa-sign-out-alt"></i> Logout
