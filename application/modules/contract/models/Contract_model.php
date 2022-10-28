@@ -6,7 +6,7 @@ class Contract_model extends CI_Model
 
   public function countJoinEmpNull()
   {
-    $query = "SELECT * FROM `send_candidate` WHERE `confirm` = 'Approved'";
+    $query = "SELECT * FROM `send_candidate` WHERE `confirm` = 'Approved' AND `confirm_admin` IS NULL";
     return $this->db->query($query)->num_rows();
   }
 
@@ -20,7 +20,7 @@ class Contract_model extends CI_Model
     $this->db->select('*');
     $this->db->from('candidate_basic');
     $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
-    $this->db->where('send_candidate.confirm IS NOT NULL');
+    $this->db->where('send_candidate.confirm IS NOT NULL AND send_candidate.confirm_admin IS NULL');
     $this->db->order_by('candidate_basic.id_candidate', 'DESC');
 
     $i = 0;
@@ -121,5 +121,43 @@ class Contract_model extends CI_Model
     WHERE `candidate_basic`.`id_candidate` = $id_candidate
     ";
     return $this->db->query($query)->result_array();
+  }
+
+  public function getAllBasicAdmin($id_candidate)
+  {
+    $query = "SELECT `candidate_basic`.*, `basic_admin`.* FROM `candidate_basic` 
+    JOIN `basic_admin` ON `candidate_basic`.id_candidate = `basic_admin`.`basic_id`
+    WHERE `basic_admin`.`id_canidate` = $id_candidate";
+    return $this->db->query($query)->row_array();
+  }
+
+  public function adminQuery($id_candidate)
+  {
+    $query = "SELECT * FROM `basic_admin` WHERE `basic_id` = $id_candidate";
+    return $this->db->query($query)->row_array();
+  }
+  public function adminBank($id_candidate)
+  {
+    $query = "SELECT * FROM `secondary_admin` WHERE `basic_id` = $id_candidate";
+    return $this->db->query($query)->row_array();
+  }
+  public function emergencyContact($id_candidate)
+  {
+    $query = "SELECT * FROM `emergency_contact` WHERE `basic_id` = $id_candidate";
+    return $this->db->query($query)->row_array();
+  }
+  public function detailEmergency($id_candidate)
+  {
+    $query = "SELECT `candidate_basic`.`id_candidate`, `emergency_contact`.* FROM `candidate_basic` 
+    LEFT JOIN `emergency_contact` 
+    ON `candidate_basic`.`id_candidate` = `emergency_contact`.`basic_id`
+    WHERE `candidate_basic`.`id_candidate` = $id_candidate
+    ";
+    return $this->db->query($query)->result_array();
+  }
+  public function pkwtEmployee($id_candidate)
+  {
+    $query = "SELECT * FROM `pkwt_employee` WHERE `basic_id` = $id_candidate";
+    return $this->db->query($query)->row_array();
   }
 }

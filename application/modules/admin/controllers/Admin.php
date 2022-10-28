@@ -22,6 +22,7 @@ class Admin extends CI_Controller
     $data['title'] = "Dashboard";
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
     $data['countjoin'] = $this->amod->countJoinEmp();
+    $data['countemp'] = $this->amod->countEmpActive();
     $this->load->view('Temp_admin/header', $data);
     $this->load->view('Temp_admin/navbar', $data);
     $this->load->view('Temp_admin/sidebar', $data);

@@ -68,6 +68,11 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
     $data['second'] = $this->con->detailSecond($id_candidate);
     $data['educate'] = $this->con->detailEducation($id_candidate);
     $data['exp'] = $this->con->detailExp($id_candidate);
+    $data['basicadmin'] = $this->con->adminQuery($id_candidate);
+    $data['secondadmin'] = $this->con->adminBank($id_candidate);
+    $data['emergency'] = $this->con->emergencyContact($id_candidate);
+    $data['detailEmergency'] = $this->con->detailEmergency($id_candidate);
+    $data['pkwt'] = $this->con->pkwtEmployee($id_candidate);
 
 
     $this->load->view('Temp_admin/header', $data);
@@ -191,6 +196,304 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
       </button>
       </div>');
       redirect('contract/detail_contract/' . $id_candidate);
+    }
+  }
+
+  public function addMoreDataEmp($id_candidate)
+  {
+    $data['title'] = "Detail Kandidat";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    // $data['basic'] = $this->db->get('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
+    $data['list'] = $this->con->detailAll($id_candidate);
+    $data['second'] = $this->con->detailSecond($id_candidate);
+    $data['educate'] = $this->con->detailEducation($id_candidate);
+    $data['exp'] = $this->con->detailExp($id_candidate);
+    $data['basicadmin'] = $this->con->adminQuery($id_candidate);
+
+    $validation = $this->form_validation;
+
+    $validation->set_rules('id_emp', 'Id Karyawan', 'required|trim');
+    $validation->set_rules('id_privy', 'Id Privy', 'required|trim');
+    $validation->set_rules('cc', 'cc', 'required|trim');
+    $validation->set_rules('branch_company', 'Branch Company', 'required|trim');
+    $validation->set_rules('payroll_one', 'payroll_one', 'required|trim');
+    $validation->set_rules('payroll_two', 'payroll_two', 'required|trim');
+    $validation->set_rules('blood_type', 'blood_type', 'required|trim');
+    $validation->set_rules('address_ktp', 'address_ktp', 'required|trim');
+    $validation->set_rules('postal_code_ktp', 'postal_code_ktp', 'required|trim');
+    $validation->set_rules('no_kk', 'no_kk', 'required|trim');
+    $validation->set_rules('status_company', 'status_company', 'required|trim');
+    $validation->set_rules('surrogate_status', 'surrogate_status', 'required|trim');
+    $validation->set_rules('type_recruitment', 'type_recruitment', 'required|trim');
+
+    if ($validation->run() == false) {
+      $this->load->view('Temp_sourcing/header', $data);
+      $this->load->view('Temp_sourcing/navbar', $data);
+      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('detail_contract_view', $data);
+      $this->load->view('Temp_sourcing/footer');
+    } else {
+      $data = [
+        "id_emp" => $this->input->post('id_emp'),
+        "id_privy" => $this->input->post('id_privy'),
+        "cc" => $this->input->post('cc'),
+        "branch_company" => $this->input->post('branch_company'),
+        "payroll_one" => $this->input->post('payroll_one'),
+        "payroll_two" => $this->input->post('payroll_two'),
+        "blood_type" => $this->input->post('blood_type'),
+        "address_ktp" => $this->input->post('address_ktp'),
+        "postal_code_ktp" => $this->input->post('postal_code_ktp'),
+        "no_kk" => $this->input->post('no_kk'),
+        "status_company" => $this->input->post('status_company'),
+        "surrogate_status" => $this->input->post('surrogate_status'),
+        "type_recruitment" => $this->input->post('type_recruitment'),
+        "basic_id" => $this->input->post('basic_id')
+      ];
+
+      $que = "SELECT * FROM basic_admin WHERE basic_id IS NOT NULL";
+      if ($que) {
+
+        $id_emp = $this->input->post('id_emp');
+        $id_privy = $this->input->post('id_privy');
+        $cc = $this->input->post('cc');
+        $branch_company = $this->input->post('branch_company');
+        $payroll_one = $this->input->post('payroll_one');
+        $payroll_two = $this->input->post('payroll_two');
+        $blood_type = $this->input->post('blood_type');
+        $address_ktp = $this->input->post('address_ktp');
+        $postal_code_ktp = $this->input->post('postal_code_ktp');
+        $no_kk = $this->input->post('no_kk');
+        $status_company = $this->input->post('status_company');
+        $surrogate_status = $this->input->post('surrogate_status');
+        $type_recruitment = $this->input->post('type_recruitment');
+
+        $this->db->set('id_emp', $id_emp);
+        $this->db->set('id_privy', $id_privy);
+        $this->db->set('cc', $cc);
+        $this->db->set('branch_company', $branch_company);
+        $this->db->set('payroll_one', $payroll_one);
+        $this->db->set('payroll_two', $payroll_two);
+        $this->db->set('blood_type', $blood_type);
+        $this->db->set('address_ktp', $address_ktp);
+        $this->db->set('postal_code_ktp', $postal_code_ktp);
+        $this->db->set('no_kk', $no_kk);
+        $this->db->set('status_company', $status_company);
+        $this->db->set('surrogate_status', $surrogate_status);
+        $this->db->set('type_recruitment', $type_recruitment);
+        $this->db->where('basic_id', $this->input->post('basic_id'));
+        $this->db->update('basic_admin');
+
+        $this->session->set_flashdata('msg', '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <strong>Selamat!</strong> Data Tambahan Sudah berhasil Di Edit.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>');
+        redirect('contract/detail_contract/' . $id_candidate);
+      } else {
+        $this->db->insert('basic_admin', $data);
+        $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Horee!</strong> Data Tambahan Karyawan berhasil Ditambah.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>');
+        redirect('contract/detail_contract/' . $id_candidate);
+      }
+    }
+  }
+
+  public function addBankData($id_candidate)
+  {
+    $data['title'] = "Detail Kandidat";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    // $data['basic'] = $this->db->get('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
+    $data['list'] = $this->con->detailAll($id_candidate);
+    $data['second'] = $this->con->detailSecond($id_candidate);
+    $data['educate'] = $this->con->detailEducation($id_candidate);
+    $data['exp'] = $this->con->detailExp($id_candidate);
+    $data['basicadmin'] = $this->con->adminQuery($id_candidate);
+    $data['secondadmin'] = $this->con->adminBank($id_candidate);
+
+    $validation = $this->form_validation;
+
+    $validation->set_rules('allowance_premium', 'Allowance Premium', 'required|trim');
+    $validation->set_rules('allowance_others', 'Allowance Others', 'required|trim');
+    $validation->set_rules('placement_city', 'Placement City', 'required|trim');
+    $validation->set_rules('placement_district', 'Placement District', 'required|trim');
+    $validation->set_rules('type_bank', 'BANK', 'required|trim');
+    $validation->set_rules('account_number', 'Number Account', 'required|trim');
+    $validation->set_rules('name_of_bank', 'Name Of Bank', 'required|trim');
+    $validation->set_rules('bpjs_tk', 'BPJS TK', 'required|trim');
+    $validation->set_rules('bpjs_ks', 'BPJS KS', 'required|trim');
+    $validation->set_rules('npwp', 'NPWP', 'required|trim');
+
+
+    if ($validation->run() == false) {
+      $this->load->view('Temp_sourcing/header', $data);
+      $this->load->view('Temp_sourcing/navbar', $data);
+      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('detail_contract_view', $data);
+      $this->load->view('Temp_sourcing/footer');
+    } else {
+      $data = [
+        "allowance_premium" => $this->input->post('allowance_premium'),
+        "allowance_others" => $this->input->post('allowance_others'),
+        "placement_city" => $this->input->post('placement_city'),
+        "placement_district" => $this->input->post('placement_district'),
+        "type_bank" => $this->input->post('type_bank'),
+        "account_number" => $this->input->post('account_number'),
+        "name_of_bank" => $this->input->post('name_of_bank'),
+        "bpjs_tk" => $this->input->post('bpjs_tk'),
+        "bpjs_ks" => $this->input->post('bpjs_ks'),
+        "npwp" => $this->input->post('npwp'),
+        "basic_id" => $this->input->post('basic_id')
+      ];
+
+      $que = "SELECT * FROM `secondary_admin` WHERE `basic_id` IS NOT NULL";
+      if ($que) {
+        $allowance_premium = $this->input->post('allowance_premium');
+        $allowance_others = $this->input->post('allowance_others');
+        $placement_city = $this->input->post('placement_city');
+        $placement_district = $this->input->post('placement_district');
+        $type_bank = $this->input->post('type_bank');
+        $account_number = $this->input->post('account_number');
+        $name_of_bank = $this->input->post('name_of_bank');
+        $bpjs_tk = $this->input->post('bpjs_tk');
+        $bpjs_ks = $this->input->post('bpjs_ks');
+        $npwp = $this->input->post('npwp');
+
+
+        $this->db->set('allowance_premium', $allowance_premium);
+        $this->db->set('allowance_others', $allowance_others);
+        $this->db->set('placement_city', $placement_city);
+        $this->db->set('placement_district', $placement_district);
+        $this->db->set('type_bank', $type_bank);
+        $this->db->set('account_number', $account_number);
+        $this->db->set('name_of_bank', $name_of_bank);
+        $this->db->set('bpjs_tk', $bpjs_tk);
+        $this->db->set('bpjs_ks', $bpjs_ks);
+        $this->db->set('npwp', $npwp);
+        $this->db->where('basic_id', $this->input->post('basic_id'));
+        $this->db->update('secondary_admin');
+
+        $this->session->set_flashdata('msg', '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <strong>Selamat!</strong> Data Bank Sudah Berhasil Di Edit.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>');
+        redirect('contract/detail_contract/' . $id_candidate);
+      } else {
+        $this->db->insert('secondary_admin', $data);
+        $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Horee!</strong>Data Bank Karyawan berhasil dibuat.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>');
+        redirect('contract/detail_contract/' . $id_candidate);
+      }
+    }
+  }
+
+  public function addDataEmergency($id_candidate)
+  {
+    $data['title'] = "Detail Kandidat";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    $data['basic'] = $this->db->get_where('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
+    $data['emer'] = $this->db->get('emergency_contact')->result_array();
+
+    $validation = $this->form_validation;
+
+    $validation->set_rules('name_emergency', 'Emergency Name', 'required|trim');
+    $validation->set_rules('phone_emergency', 'Emergency Phone Number', 'required|trim');
+    $validation->set_rules('relation_emergency', 'Relation Emergency', 'required|trim');
+
+    if ($validation->run() == false) {
+      $this->load->view('Temp_sourcing/header', $data);
+      $this->load->view('Temp_sourcing/navbar', $data);
+      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('detail_contract_view', $data);
+      $this->load->view('Temp_sourcing/footer');
+    } else {
+
+      $data = [
+        'name_emergency' => $this->input->post('name_emergency'),
+        'phone_emergency' => $this->input->post('phone_emergency'),
+        'relation_emergency' => $this->input->post('relation_emergency'),
+        'basic_id' => $id_candidate
+      ];
+
+      $this->db->insert('emergency_contact', $data);
+      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Horee!</strong> Data Emergency berhasil ditambah.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      </div>');
+      redirect('contract/detail_contract/' . $id_candidate);
+    }
+  }
+
+  public function addPkwtEmployee($id_candidate)
+  {
+    $data['title'] = "Detail Kandidat";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    $data['basic'] = $this->db->get_where('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
+    $data['pkwt'] = $this->db->get('pkwt_employee')->result_array();
+
+    $validation = $this->form_validation;
+
+    $validation->set_rules('pkwt_number', 'No PKWT', 'required|trim');
+    $validation->set_rules('date_pkwt', 'Date PKWT', 'required|trim');
+    $validation->set_rules('start_of_contract', 'StartOf PKWT', 'required|trim');
+    $validation->set_rules('end_of_contract', 'EndOf PKWT', 'required|trim');
+    $validation->set_rules('desc_pkwt', 'Desc PKWT', 'required|trim');
+
+    if ($validation->run() == false) {
+      $this->load->view('Temp_sourcing/header', $data);
+      $this->load->view('Temp_sourcing/navbar', $data);
+      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('detail_contract_view', $data);
+      $this->load->view('Temp_sourcing/footer');
+    } else {
+
+      $data = [
+        'pkwt_number' => $this->input->post('pkwt_number'),
+        'date_pkwt' => $this->input->post('date_pkwt'),
+        'start_of_contract' => $this->input->post('start_of_contract'),
+        'end_of_contract' => $this->input->post('end_of_contract'),
+        'desc_pkwt' => $this->input->post('desc_pkwt'),
+        'basic_id' => $id_candidate
+      ];
+
+      $id = $this->db->insert('pkwt_employee', $data);
+
+      if ($id) {
+        $confirm_admin = $this->input->post('confirm_admin');
+
+        $this->db->set('confirm_admin', $confirm_admin);
+        $this->db->where('basic_id', $id_candidate);
+        $new_data = $this->db->update('send_candidate');
+        if ($new_data) {
+          $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Horee!</strong> Data PKWT berhasil ditambah.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          </div>');
+          redirect('contract/detail_contract/' . $id_candidate);
+        } else {
+          $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Horee!</strong> Data PKWT gagal ditambah.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          </div>');
+          redirect('contract/detail_contract/' . $id_candidate);
+        }
+      }
     }
   }
 }

@@ -19,13 +19,31 @@
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box">
-            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-user-check"></i></span>
+            <span class="info-box-icon bg-gradient-olive elevation-1"><i class="fas fa-user-check"></i></span>
 
-            <a href="">
+            <a href="<?= base_url('contract') ?>">
               <div class="info-box-content">
                 <span class="info-box-text text-dark font-weight-bold">Join Kontrak</span>
                 <span class="info-box-number">
                   <?= $countjoin; ?>
+                </span>
+              </div>
+            </a>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- ./col -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-purple elevation-1"><i class="fas fa-database"></i></span>
+
+
+            <a href="<?= base_url('') ?>">
+              <div class="info-box-content">
+                <span class="info-box-text text-dark font-weight-bold">Data Karyawan</span>
+                <span class="info-box-number">
+                  <?= $countemp; ?>
                 </span>
               </div>
             </a>
@@ -66,25 +84,12 @@
           <!-- /.info-box -->
         </div>
         <!-- ./col -->
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">CPU Traffic</span>
-              <span class="info-box-number">
-                10
-                <small>%</small>
-              </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- ./col -->
       </div>
       <!-- /.row -->
       <!-- Main row -->
+
+
+
 
       <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->

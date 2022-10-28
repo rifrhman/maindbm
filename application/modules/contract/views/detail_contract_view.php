@@ -7,12 +7,15 @@
         <div class="col-sm">
           <h1>Detail Karyawan Join</h1>
         </div>
-
-        <button type="button" class="btn btn-dark mr-3" data-toggle="modal" data-target="#info">
-          <i class="fas fa-fw fa-user-edit"></i> Tambah Info Karyawan
+        <button type="button" class="btn btn-dark mr-2 btn-sm" data-toggle="modal" data-target="#info">
+          <i class="fas fa-fw fa-user-edit"></i> Tambah/Edit Info Karyawan
         </button>
-        <button type="button" class="btn btn-dark justify-content-end" data-toggle="modal" data-target="#basic">
-          <i class="fas fa-money-check-alt"></i> Tambah Bank dan Data
+        <button type="button" class="btn btn-dark mr-2 btn-sm" data-toggle="modal" data-target="#allow">
+          <i class="fas fa-money-check-alt"></i> Tambah/Edit Bank dan Data
+        </button>
+        <button type="button" class="btn btn-dark justify-content-end btn-sm" data-toggle="modal"
+          data-target="#emergency">
+          <i class="fas fa-fw fa-exclamation-triangle"></i> Tambah Kontak Darurat
         </button>
 
       </div>
@@ -33,8 +36,6 @@
                   <i class="fas fa-fw fa-pen"></i> Edit Data
                 </button>
               </div>
-
-
             </div>
 
             <form>
@@ -57,8 +58,8 @@
                 </div>
                 <div class="form-group">
                   <label for="date_of_birth">Tanggal Lahir</label>
-                  <input type="text" class="form-control" id="date_of_birth" value="<?= $list['date_of_birth'] ?>"
-                    readonly>
+                  <input type="text" class="form-control" id="date_of_birth"
+                    value="<?= date('d F Y', strtotime($list['date_of_birth'])) ?>" readonly>
                 </div>
                 <div class="form-group">
                   <label for="phone_number">Nomor Handphone</label>
@@ -167,6 +168,335 @@
         <?php endif; ?>
 
 
+        <div class="col-lg-12">
+          <div class="card card-purple">
+            <div class="card-header">
+              <h3 class="card-title font-weight-bold">Data Baru Join Karyawan</h3>
+              <div class="d-flex justify-content-end">
+              </div>
+            </div>
+
+            <form>
+              <div class="card-body">
+                <div class="row mb-3">
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <?php if (isset($basicadmin['id_emp']) == null) : ?>
+                    <label for="exampleInputEmail1">Id Karyawan</label>
+                    <input type="text" class="form-control" name="id_emp" value="" readonly>
+                    <?= form_error('id_emp', '<small class="text-danger">', '</small>') ?>
+                    <?php elseif (isset($basicadmin['id_emp']) != null) : ?>
+                    <label for="exampleInputEmail1">Id Karyawan</label>
+                    <input type="text" class="form-control" name="id_emp" value="<?= $basicadmin['id_emp'] ?>" readonly>
+                    <?= form_error('id_emp', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($basicadmin['id_privy']) == null) : ?>
+                    <label for="exampleInputEmail1">Id Privy</label>
+                    <input type="text" class="form-control" name="id_privy" value="" readonly>
+                    <?= form_error('id_privy', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Id Privy</label>
+                    <input type="text" class="form-control" name="id_privy" value="<?= $basicadmin['id_privy'] ?>"
+                      readonly>
+                    <?= form_error('id_privy', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <?php if (isset($basicadmin['cc']) == null) : ?>
+                    <label for="exampleInputEmail1">CC</label>
+                    <input type="text" class="form-control" name="cc" value="" readonly>
+                    <?= form_error('cc', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">CC</label>
+                    <input type="text" class="form-control" name="cc" value="<?= $basicadmin['cc'] ?>" readonly>
+                    <?= form_error('cc', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($basicadmin['branch_company']) == null) : ?>
+                    <label for="exampleInputEmail1">Kanrep</label>
+                    <input type="text" class="form-control" name="branch_company" value="" readonly>
+                    <?= form_error('branch_company', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Kanrep</label>
+                    <input type="text" class="form-control" name="branch_company"
+                      value="<?= $basicadmin['branch_company'] ?>" readonly>
+                    <?= form_error('branch_company', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <?php if (isset($basicadmin['payroll_one']) == null) : ?>
+                    <label for="exampleInputEmail1">Payroll 1</label>
+                    <input type="text" class="form-control" name="payroll_one" value="" readonly>
+                    <?= form_error('payroll_one', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Payroll 1</label>
+                    <input type="text" class="form-control" name="payroll_one" value="<?= $basicadmin['payroll_one'] ?>"
+                      readonly>
+                    <?= form_error('payroll_one', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($basicadmin['payroll_two']) == null) : ?>
+                    <label for="exampleInputEmail1">Payroll 2</label>
+                    <input type="text" class="form-control" name="payroll_two" readonly value="">
+                    <?= form_error('payroll_two', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Payroll 2</label>
+                    <input type="text" class="form-control" name="payroll_two" value="<?= $basicadmin['payroll_two'] ?>"
+                      readonly>
+                    <?= form_error('payroll_two', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <?php if (isset($basicadmin['address_ktp']) == null) : ?>
+                    <label for="exampleInputEmail1">Alamat KTP</label>
+                    <input type="text" class="form-control" name="address_ktp" value="" readonly>
+                    <?= form_error('address_ktp', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Alamat KTP</label>
+                    <input type="text" class="form-control" name="address_ktp" value="<?= $basicadmin['address_ktp'] ?>"
+                      readonly>
+                    <?= form_error('address_ktp', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($basicadmin['postal_code_ktp']) == null) : ?>
+                    <label for="exampleInputEmail1">Kode Pos KTP</label>
+                    <input type="text" class="form-control" name="postal_code_ktp" value="" readonly>
+                    <?= form_error('postal_code_ktp', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Kode Pos KTP</label>
+                    <input type="text" class="form-control" name="postal_code_ktp"
+                      value="<?= $basicadmin['postal_code_ktp'] ?>" readonly>
+                    <?= form_error('postal_code_ktp', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($basicadmin['no_kk']) == null) : ?>
+                    <label for="exampleInputEmail1">No Kartu Keluarga</label>
+                    <input type="text" class="form-control" name="no_kk" value="" readonly>
+                    <?= form_error('no_kk', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">No Kartu Keluarga</label>
+                    <input type="text" class="form-control" name="no_kk" value="<?= $basicadmin['no_kk'] ?>" readonly>
+                    <?= form_error('no_kk', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($basicadmin['blood_type']) == null) : ?>
+                    <label for="exampleInputEmail1">Golongan Darah</label>
+                    <input type="text" class="form-control" name="blood_type" value="" readonly>
+                    <?= form_error('blood_type', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Golongan Darah</label>
+                    <input type="text" class="form-control" name="blood_type" value="<?= $basicadmin['blood_type'] ?>"
+                      readonly>
+                    <?= form_error('blood_type', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <?php if (isset($basicadmin['status_company']) == null) : ?>
+                    <label for="exampleInputEmail1">Status (M+ / MTA)</label>
+                    <input type="text" class="form-control" name="status_company" value="" readonly>
+                    <?= form_error('status_company', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Status (M+ / MTA)</label>
+                    <input type="text" class="form-control" name="status_company"
+                      value="<?= $basicadmin['status_company'] ?>" readonly>
+                    <?= form_error('status_company', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($basicadmin['surrogate_status']) == null) : ?>
+                    <label for="exampleInputEmail1">Status Pengganti</label>
+                    <input type="text" class="form-control" name="surrogate_status" value="" readonly>
+                    <?= form_error('surrogate_status', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Status Pengganti</label>
+                    <input type="text" class="form-control" name="surrogate_status"
+                      value="<?= $basicadmin['surrogate_status'] ?>" readonly>
+                    <?= form_error('surrogate_status', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($basicadmin['type_recruitment']) == null) : ?>
+                    <label for="exampleInputEmail1">Jenis Rekrutment</label>
+                    <input type="text" class="form-control" name="type_recruitment" value="" readonly>
+                    <?= form_error('type_recruitment', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Jenis Rekrutment</label>
+                    <input type="text" class="form-control" name="type_recruitment"
+                      value="<?= $basicadmin['type_recruitment'] ?>" readonly>
+                    <?= form_error('type_recruitment', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+
+        <div class="col-lg-12">
+          <div class="card card-warning">
+            <div class="card-header">
+              <h3 class="card-title font-weight-bold">Data BANK Join Karyawan</h3>
+              <div class="d-flex justify-content-end">
+              </div>
+            </div>
+
+            <form>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col form-group">
+                    <?php if (isset($secondadmin['allowance_premium']) == null) { ?>
+                    <label for="exampleInputEmail1">Tunjangan Premium</label>
+                    <input type="text" class="form-control" name="allowance_premium" value="" readonly>
+                    <?= form_error('allowance_premium', '<small class="text-danger">', '</small>') ?>
+                    <?php } else { ?>
+                    <label for="exampleInputEmail1">Tunjangan Premium</label>
+                    <input type="text" class="form-control" name="allowance_premium"
+                      value="<?= $secondadmin['allowance_premium'] ?>" readonly>
+                    <?= form_error('allowance_premium', '<small class="text-danger">', '</small>') ?>
+                    <?php } ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($secondadmin['allowance_others']) == null) : ?>
+                    <label for="exampleInputEmail1">Tunjangan Lain</label>
+                    <input type="text" class="form-control" name="allowance_others" value="" readonly>
+                    <?= form_error('allowance_others', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Tunjangan Lain</label>
+                    <input type="text" class="form-control" name="allowance_others"
+                      value="<?= $secondadmin['allowance_others'] ?>" readonly>
+                    <?= form_error('allowance_others', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col form-group">
+                    <?php if (isset($secondadmin['placement_city']) == null) : ?>
+                    <label for="exampleInputEmail1">Kota Penempatan</label>
+                    <input type="text" class="form-control" name="placement_city" value="" readonly>
+                    <?= form_error('placement_city', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Kota Penempatan</label>
+                    <input type="text" class="form-control" name="placement_city"
+                      value="<?= $secondadmin['placement_city'] ?>" readonly>
+                    <?= form_error('placement_city', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($secondadmin['placement_district']) == null) : ?>
+                    <label for="exampleInputEmail1">Kabupaten Penempatan</label>
+                    <input type="text" class="form-control" name="placement_district" value="" readonly>
+                    <?= form_error('placement_district', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Kabupaten Penempatan</label>
+                    <input type="text" class="form-control" name="placement_district"
+                      value="<?= $secondadmin['placement_district'] ?>" readonly>
+                    <?= form_error('placement_district', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col form-group">
+                    <?php if (isset($secondadmin['type_bank']) == null) : ?>
+                    <label for="exampleInputEmail1">BANK</label>
+                    <input type="text" class="form-control" name="type_bank" value="" readonly>
+                    <?= form_error('type_bank', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">BANK</label>
+                    <input type="text" class="form-control" name="type_bank" value="<?= $secondadmin['type_bank'] ?>"
+                      readonly>
+                    <?= form_error('type_bank', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($secondadmin['account_number']) == null) : ?>
+                    <label for="exampleInputEmail1">No. Rekening</label>
+                    <input type="text" class="form-control" name="account_number" value="" readonly>
+                    <?= form_error('account_number', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">No. Rekening</label>
+                    <input type="text" class="form-control" name="account_number"
+                      value="<?= $secondadmin['account_number'] ?>" readonly>
+                    <?= form_error('account_number', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <?php if (isset($secondadmin['name_of_bank']) == null) : ?>
+                  <label for="exampleInputEmail1">Bank Atas Nama</label>
+                  <input type="text" class="form-control" name="name_of_bank" value="" readonly>
+                  <?= form_error('name_of_bank', '<small class="text-danger">', '</small>') ?>
+                  <?php else : ?>
+                  <label for="exampleInputEmail1">Bank Atas Nama</label>
+                  <input type="text" class="form-control" name="name_of_bank"
+                    value="<?= $secondadmin['name_of_bank'] ?>" readonly>
+                  <?= form_error('name_of_bank', '<small class="text-danger">', '</small>') ?>
+                  <?php endif; ?>
+                </div>
+
+                <div class="row">
+                  <div class="col form-group">
+                    <?php if (isset($secondadmin['bpjs_tk']) == null) : ?>
+                    <label for="exampleInputEmail1">BPJS Ketenagakerjaan</label>
+                    <input type="text" class="form-control" name="bpjs_tk" value="" readonly>
+                    <?= form_error('bpjs_tk', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">BPJS Ketenagakerjaan</label>
+                    <input type="text" class="form-control" name="bpjs_tk" value="<?= $secondadmin['bpjs_tk'] ?>"
+                      readonly>
+                    <?= form_error('bpjs_tk', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($secondadmin['bpjs_ks']) == null) : ?>
+                    <label for="exampleInputEmail1">BPJS Kesehatan</label>
+                    <input type="text" class="form-control" name="bpjs_ks" value="" readonly>
+                    <?= form_error('bpjs_ks', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">BPJS Kesehatan</label>
+                    <input type="text" class="form-control" name="bpjs_ks" value="<?= $secondadmin['bpjs_ks'] ?>"
+                      readonly>
+                    <?= form_error('bpjs_ks', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <?php if (isset($secondadmin['npwp']) == null) : ?>
+                  <label for="exampleInputEmail1">NPWP</label>
+                  <input type="text" class="form-control" name="npwp" value="" readonly>
+                  <?= form_error('npwp', '<small class="text-danger">', '</small>') ?>
+                  <?php else : ?>
+                  <label for="exampleInputEmail1">NPWP</label>
+                  <input type="text" class="form-control" name="npwp" value="<?= $secondadmin['npwp'] ?>" readonly>
+                  <?= form_error('npwp', '<small class="text-danger">', '</small>') ?>
+                  <?php endif; ?>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
 
 
 
@@ -350,9 +680,9 @@
             </div>
           </div>
           <?php else : ?>
-          <div class="card card-danger">
+          <div class="card card-orange">
             <div class="card-header">
-              <h3 class="card-title font-weight-bold">Pengalaman</h3>
+              <h3 class="card-title font-weight-bold text-light">Pengalaman</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
@@ -423,6 +753,64 @@
           </div>
           <?php endif; ?>
 
+
+
+        </div>
+
+        <div class="col-lg-12">
+          <div class="card card-secondary">
+            <div class="card-header">
+              <h3 class="card-title font-weight-bold">Kontak Darurat Karyawan</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+
+              </div>
+            </div>
+
+            <div class="card-body">
+              <div class="card card-default">
+                <div class="card-header">
+                  <h3 class="card-title font-weight-bold">List Kontak Darurat</h3>
+                </div>
+                <div class="card-body">
+                  <?php foreach ($detailEmergency as $detail) : ?>
+                  <div class="row col-lg-12">
+
+                    <div class="form-group col-md-3">
+                      <label for="degree">Nama Kontak Darurat</label>
+                      <input type="text" class="form-control" id="company" value="<?= $detail['name_emergency'] ?>"
+                        readonly>
+                    </div>
+
+                    <div class="form-group col-md-5">
+                      <label for="institute">No. Handphone Kontak Darurat</label>
+                      <input type="text" class="form-control" id="position" value="<?= $detail['phone_emergency'] ?>"
+                        readonly>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="major">Hubungan Kontak Darurat</label>
+                      <input type="text" class="form-control" id="year_in" value="<?= $detail['relation_emergency'] ?>"
+                        readonly>
+                    </div>
+
+                  </div>
+
+
+                  <?php endforeach; ?>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-12 mb-3 d-flex justify-content-end">
+          <button type="button" class="btn bg-gradient-maroon " data-toggle="modal" data-target="#pkwt">
+            <i class="fas fa-fw fa-plus-square"></i> Tambah Data PKWT
+          </button>
         </div>
 
 
@@ -451,6 +839,8 @@
           <!-- </div> -->
           <!-- /.card -->
         </div>
+
+
 
 
 
@@ -625,65 +1015,446 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="infoLabel">Edit Berkas info</h5>
+        <h5 class="modal-title" id="infoLabel">Berkas info</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('contract/editbasic/') . $list['id_candidate'] ?>" method="POST">
+      <form action="<?= base_url('contract/addMoreDataEmp/') . $list['id_candidate'] ?>" method="POST">
         <div class="modal-body">
           <div class="card-body">
-            <input type="hidden" name="id_candidate" id="id_candidate" value="<?= $list['id_candidate'] ?>">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Nama Lengkap</label>
-              <input type="text" class="form-control" name="fullname" value="<?= $list['fullname'] ?>">
-              <?= form_error('fullname', '<small class="text-danger">', '</small>') ?>
+            <input type="hidden" name="basic_id" id="basic_id" value="<?= $list['id_candidate'] ?>">
+            <div class="row">
+              <div class="col form-group">
+                <?php if (isset($basicadmin['id_emp']) == null) : ?>
+                <label for="exampleInputEmail1">Id Karyawan</label>
+                <input type="text" class="form-control" name="id_emp" value="">
+                <?= form_error('id_emp', '<small class="text-danger">', '</small>') ?>
+                <?php elseif (isset($basicadmin['id_emp']) != null) : ?>
+                <label for="exampleInputEmail1">Id Karyawan</label>
+                <input type="text" class="form-control" name="id_emp" value="<?= $basicadmin['id_emp'] ?>">
+                <?= form_error('id_emp', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+              <div class="col form-group">
+                <?php if (isset($basicadmin['id_privy']) == null) : ?>
+                <label for="exampleInputEmail1">Id Privy</label>
+                <input type="text" class="form-control" name="id_privy" value="">
+                <?= form_error('id_privy', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">Id Privy</label>
+                <input type="text" class="form-control" name="id_privy" value="<?= $basicadmin['id_privy'] ?>">
+                <?= form_error('id_privy', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
             </div>
             <div class="form-group">
-              <label for="place_of_birth">Tempat Lahir</label>
-              <input type="text" class="form-control" name="place_of_birth" id="place_of_birth"
-                value="<?= $list['place_of_birth'] ?>">
-              <?= form_error('place_of_birth', '<small class="text-danger">', '</small>') ?>
+              <?php if (isset($basicadmin['cc']) == null) : ?>
+              <label for="exampleInputEmail1">CC</label>
+              <input type="text" class="form-control" name="cc" value="">
+              <?= form_error('cc', '<small class="text-danger">', '</small>') ?>
+              <?php else : ?>
+              <label for="exampleInputEmail1">CC</label>
+              <input type="text" class="form-control" name="cc" value="<?= $basicadmin['cc'] ?>">
+              <?= form_error('cc', '<small class="text-danger">', '</small>') ?>
+              <?php endif; ?>
             </div>
             <div class="form-group">
-              <label for="date_of_birth">Tanggal Lahir</label>
-              <input type="date" class="form-control" name="date_of_birth" id="date_of_birth"
-                value="<?= $list['date_of_birth'] ?>">
-              <?= form_error('date_of_birth', '<small class="text-danger">', '</small>') ?>
+              <?php if (isset($basicadmin['branch_company']) == null) : ?>
+              <label for="exampleInputEmail1">Kanrep</label>
+              <input type="text" class="form-control" name="branch_company" value="">
+              <?= form_error('branch_company', '<small class="text-danger">', '</small>') ?>
+              <?php else : ?>
+              <label for="exampleInputEmail1">Kanrep</label>
+              <input type="text" class="form-control" name="branch_company"
+                value="<?= $basicadmin['branch_company'] ?>">
+              <?= form_error('branch_company', '<small class="text-danger">', '</small>') ?>
+              <?php endif; ?>
+            </div>
+            <div class="row">
+              <div class="col form-group">
+                <?php if (isset($basicadmin['payroll_one']) == null) : ?>
+                <label for="exampleInputEmail1">Payroll 1</label>
+                <input type="text" class="form-control" name="payroll_one" value="">
+                <?= form_error('payroll_one', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">Payroll 1</label>
+                <input type="text" class="form-control" name="payroll_one" value="<?= $basicadmin['payroll_one'] ?>">
+                <?= form_error('payroll_one', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+              <div class="col form-group">
+                <?php if (isset($basicadmin['payroll_two']) == null) : ?>
+                <label for="exampleInputEmail1">Payroll 2</label>
+                <input type="text" class="form-control" name="payroll_two" value="">
+                <?= form_error('payroll_two', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">Payroll 2</label>
+                <input type="text" class="form-control" name="payroll_two" value="<?= $basicadmin['payroll_two'] ?>">
+                <?= form_error('payroll_two', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col form-group">
+                <?php if (isset($basicadmin['address_ktp']) == null) : ?>
+                <label for="exampleInputEmail1">Alamat KTP</label>
+                <input type="text" class="form-control" name="address_ktp" value="">
+                <?= form_error('address_ktp', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">Alamat KTP</label>
+                <input type="text" class="form-control" name="address_ktp" value="<?= $basicadmin['address_ktp'] ?>">
+                <?= form_error('address_ktp', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+              <div class="col form-group">
+                <?php if (isset($basicadmin['postal_code_ktp']) == null) : ?>
+                <label for="exampleInputEmail1">Kode Pos KTP</label>
+                <input type="text" class="form-control" name="postal_code_ktp" value="">
+                <?= form_error('postal_code_ktp', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">Kode Pos KTP</label>
+                <input type="text" class="form-control" name="postal_code_ktp"
+                  value="<?= $basicadmin['postal_code_ktp'] ?>">
+                <?= form_error('postal_code_ktp', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col form-group">
+                <?php if (isset($basicadmin['no_kk']) == null) : ?>
+                <label for="exampleInputEmail1">No Kartu Keluarga</label>
+                <input type="text" class="form-control" name="no_kk" value="">
+                <?= form_error('no_kk', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">No Kartu Keluarga</label>
+                <input type="text" class="form-control" name="no_kk" value="<?= $basicadmin['no_kk'] ?>">
+                <?= form_error('no_kk', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+              <div class="col form-group">
+                <?php if (isset($basicadmin['blood_type']) == null) : ?>
+                <label for="exampleInputEmail1">Golongan Darah</label>
+                <input type="text" class="form-control" name="blood_type" value="">
+                <?= form_error('blood_type', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">Golongan Darah</label>
+                <input type="text" class="form-control" name="blood_type" value="<?= $basicadmin['blood_type'] ?>">
+                <?= form_error('blood_type', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col form-group">
+                <?php if (isset($basicadmin['status_company']) == null) : ?>
+                <label for="exampleInputEmail1">Status (M+ / MTA)</label>
+                <input type="text" class="form-control" name="status_company" value="">
+                <?= form_error('status_company', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">Status (M+ / MTA)</label>
+                <input type="text" class="form-control" name="status_company"
+                  value="<?= $basicadmin['status_company'] ?>">
+                <?= form_error('status_company', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+              <div class="col form-group">
+                <?php if (isset($basicadmin['surrogate_status']) == null) : ?>
+                <label for="exampleInputEmail1">Status Pengganti</label>
+                <input type="text" class="form-control" name="surrogate_status" value="">
+                <?= form_error('surrogate_status', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">Status Pengganti</label>
+                <input type="text" class="form-control" name="surrogate_status"
+                  value="<?= $basicadmin['surrogate_status'] ?>">
+                <?= form_error('surrogate_status', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
             </div>
             <div class="form-group">
-              <label for="phone_number">Nomor Handphone</label>
-              <input type="text" class="form-control" name="phone_number" id="phone_number"
-                value="<?= $list['phone_number'] ?>">
-              <?= form_error('phone_number', '<small class="text-danger">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Alamat</label>
-              <input type="text" class="form-control" name="domicile" id="domicile" value="<?= $list['domicile'] ?>">
-              <?= form_error('domicile', '<small class="text-danger">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="gender">Jenis Kelamin</label>
-              <select id="gender" name="gender" class="form-control">
-                <option selected="selected" value="<?= $list['gender'] ?>"><?= $list['gender'] ?>
-                </option>
-                <option value="L">Laki-Laki</option>
-                <option value="P">Perempuan</option>
-              </select>
-              <?= form_error('gender', '<small class="text-danger">', '</small>') ?>
-            </div>
-            <div class="form-group">
-              <label for="last_education">Pendidikan Terakhir</label>
-              <input type="text" class="form-control" name="last_education" id="last_education"
-                value="<?= $list['last_education'] ?>">
-              <?= form_error('last_education', '<small class="text-danger">', '</small>') ?>
+              <?php if (isset($basicadmin['type_recruitment']) == null) : ?>
+              <label for="exampleInputEmail1">Jenis Rekrutment</label>
+              <input type="text" class="form-control" name="type_recruitment" value="">
+              <?= form_error('type_recruitment', '<small class="text-danger">', '</small>') ?>
+              <?php else : ?>
+              <label for="exampleInputEmail1">Jenis Rekrutment</label>
+              <input type="text" class="form-control" name="type_recruitment"
+                value="<?= $basicadmin['type_recruitment'] ?>">
+              <?= form_error('type_recruitment', '<small class="text-danger">', '</small>') ?>
+              <?php endif; ?>
             </div>
           </div>
 
         </div>
         <div class="modal-footer">
           <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save Edit</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="allow" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="allowLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="allowLabel">Berkas Bank Dan Lainnya</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url('contract/addBankData/') . $list['id_candidate'] ?>" method="POST">
+        <div class="modal-body">
+          <div class="card-body">
+            <input type="hidden" name="basic_id" id="basic_id" value="<?= $list['id_candidate'] ?>">
+            <div class="row">
+              <div class="col form-group">
+                <?php if (isset($secondadmin['allowance_premium']) == null) { ?>
+                <label for="exampleInputEmail1">Tunjangan Premium</label>
+                <input type="text" class="form-control" name="allowance_premium" value="">
+                <?= form_error('allowance_premium', '<small class="text-danger">', '</small>') ?>
+                <?php } else { ?>
+                <label for="exampleInputEmail1">Tunjangan Premium</label>
+                <input type="text" class="form-control" name="allowance_premium"
+                  value="<?= $secondadmin['allowance_premium'] ?>">
+                <?= form_error('allowance_premium', '<small class="text-danger">', '</small>') ?>
+                <?php } ?>
+              </div>
+              <div class="col form-group">
+                <?php if (isset($secondadmin['allowance_others']) == null) : ?>
+                <label for="exampleInputEmail1">Tunjangan Lain</label>
+                <input type="text" class="form-control" name="allowance_others" value="">
+                <?= form_error('allowance_others', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">Tunjangan Lain</label>
+                <input type="text" class="form-control" name="allowance_others"
+                  value="<?= $secondadmin['allowance_others'] ?>">
+                <?= form_error('allowance_others', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col form-group">
+                <?php if (isset($secondadmin['placement_city']) == null) : ?>
+                <label for="exampleInputEmail1">Kota Penempatan</label>
+                <input type="text" class="form-control" name="placement_city" value="">
+                <?= form_error('placement_city', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">Kota Penempatan</label>
+                <input type="text" class="form-control" name="placement_city"
+                  value="<?= $secondadmin['placement_city'] ?>">
+                <?= form_error('placement_city', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+              <div class="col form-group">
+                <?php if (isset($secondadmin['placement_district']) == null) : ?>
+                <label for="exampleInputEmail1">Kabupaten Penempatan</label>
+                <input type="text" class="form-control" name="placement_district" value="">
+                <?= form_error('placement_district', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">Kabupaten Penempatan</label>
+                <input type="text" class="form-control" name="placement_district"
+                  value="<?= $secondadmin['placement_district'] ?>">
+                <?= form_error('placement_district', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col form-group">
+                <?php if (isset($secondadmin['type_bank']) == null) : ?>
+                <label for="exampleInputEmail1">BANK</label>
+                <input type="text" class="form-control" name="type_bank" value="">
+                <?= form_error('type_bank', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">BANK</label>
+                <input type="text" class="form-control" name="type_bank" value="<?= $secondadmin['type_bank'] ?>">
+                <?= form_error('type_bank', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+              <div class="col form-group">
+                <?php if (isset($secondadmin['account_number']) == null) : ?>
+                <label for="exampleInputEmail1">No. Rekening</label>
+                <input type="text" class="form-control" name="account_number" value="">
+                <?= form_error('account_number', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">No. Rekening</label>
+                <input type="text" class="form-control" name="account_number"
+                  value="<?= $secondadmin['account_number'] ?>">
+                <?= form_error('account_number', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <?php if (isset($secondadmin['name_of_bank']) == null) : ?>
+              <label for="exampleInputEmail1">Bank Atas Nama</label>
+              <input type="text" class="form-control" name="name_of_bank" value="">
+              <?= form_error('name_of_bank', '<small class="text-danger">', '</small>') ?>
+              <?php else : ?>
+              <label for="exampleInputEmail1">Bank Atas Nama</label>
+              <input type="text" class="form-control" name="name_of_bank" value="<?= $secondadmin['name_of_bank'] ?>">
+              <?= form_error('name_of_bank', '<small class="text-danger">', '</small>') ?>
+              <?php endif; ?>
+            </div>
+
+            <div class="row">
+              <div class="col form-group">
+                <?php if (isset($secondadmin['bpjs_tk']) == null) : ?>
+                <label for="exampleInputEmail1">BPJS Ketenagakerjaan</label>
+                <input type="text" class="form-control" name="bpjs_tk" value="">
+                <?= form_error('bpjs_tk', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">BPJS Ketenagakerjaan</label>
+                <input type="text" class="form-control" name="bpjs_tk" value="<?= $secondadmin['bpjs_tk'] ?>">
+                <?= form_error('bpjs_tk', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+              <div class="col form-group">
+                <?php if (isset($secondadmin['bpjs_ks']) == null) : ?>
+                <label for="exampleInputEmail1">BPJS Kesehatan</label>
+                <input type="text" class="form-control" name="bpjs_ks" value="">
+                <?= form_error('bpjs_ks', '<small class="text-danger">', '</small>') ?>
+                <?php else : ?>
+                <label for="exampleInputEmail1">BPJS Kesehatan</label>
+                <input type="text" class="form-control" name="bpjs_ks" value="<?= $secondadmin['bpjs_ks'] ?>">
+                <?= form_error('bpjs_ks', '<small class="text-danger">', '</small>') ?>
+                <?php endif; ?>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <?php if (isset($secondadmin['npwp']) == null) : ?>
+              <label for="exampleInputEmail1">NPWP</label>
+              <input type="text" class="form-control" name="npwp" value="">
+              <?= form_error('npwp', '<small class="text-danger">', '</small>') ?>
+              <?php else : ?>
+              <label for="exampleInputEmail1">NPWP</label>
+              <input type="text" class="form-control" name="npwp" value="<?= $secondadmin['npwp'] ?>">
+              <?= form_error('npwp', '<small class="text-danger">', '</small>') ?>
+              <?php endif; ?>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="emergency" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="emergencyLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="emergencyLabel">Form Kontak Darurat Karyawan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url('contract/addDataEmergency/') . $list['id_candidate'] ?>" method="POST">
+        <div class="modal-body">
+          <div class="card-body">
+            <input type="hidden" name="basic_id" id="basic_id" value="<?= $list['id_candidate'] ?>">
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nama Kontak Darurat</label>
+              <input type="text" class="form-control" name="name_emergency" value="">
+              <?= form_error('name_emergency', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">No. Handphone Darurat</label>
+              <input type="text" class="form-control" name="phone_emergency" value="">
+              <?= form_error('phone_emergency', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Hubungan Kontak Darurat</label>
+              <input type="text" class="form-control" name="relation_emergency" value="">
+              <?= form_error('relation_emergency', '<small class="text-danger">', '</small>') ?>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="pkwt" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="pkwtLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pkwtLabel">Form PKWT <?= $list['fullname'] ?></h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url('contract/addPkwtEmployee/') . $list['id_candidate'] ?>" method="POST">
+        <div class="modal-body">
+          <div class="card-body">
+            <input type="hidden" name="basic_id" id="basic_id" value="<?= $list['id_candidate'] ?>">
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nomor PKWT</label>
+              <input type="text" class="form-control" name="pkwt_number" value="">
+              <?= form_error('pkwt_number', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Tanggal PKWT</label>
+              <input type="date" class="form-control" name="date_pkwt" value="">
+              <?= form_error('date_pkwt', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="row">
+              <div class="col form-group">
+                <label for="exampleInputEmail1">Tanggal Kontrak Awal PKWT</label>
+                <input type="date" class="form-control" name="start_of_contract" value="">
+                <?= form_error('start_of_contract', '<small class="text-danger">', '</small>') ?>
+              </div>
+              <div class="col form-group">
+                <label for="exampleInputEmail1">Tanggal Kontrak Akhir PKWT</label>
+                <input type="date" class="form-control" name="end_of_contract" value="">
+                <?= form_error('end_of_contract', '<small class="text-danger">', '</small>') ?>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="desc_pkwt">Keterangan PKWT</label>
+              <textarea class="form-control" id="desc_pkwt" rows="3" name="desc_pkwt"></textarea>
+              <?= form_error('desc_pkwt', '<small class="text-danger">', '</small>') ?>
+            </div>
+
+            <div class="form-group mb-0">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" name="confirm_admin" value="Approved" class="custom-control-input"
+                  id="exampleCheck1">
+                <label class="custom-control-label" for="exampleCheck1">Approved Karyawan Join</label>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save</button>
         </div>
       </form>
     </div>
