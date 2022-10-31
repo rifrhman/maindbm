@@ -5,9 +5,9 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm">
-          <h1>Detail Karyawan Join</h1>
+          <h1>Detail Karyawan</h1>
         </div>
-        <button type="button" class="btn btn-dark mr-2 btn-sm" data-toggle="modal" data-target="#info">
+        <button type="button" class="btn btn-dark mr-2 btn-sm" data-toggle="modal" data-target="#infoemp">
           <i class="fas fa-fw fa-user-edit"></i> Tambah/Edit Info Karyawan
         </button>
         <button type="button" class="btn btn-dark mr-2 btn-sm" data-toggle="modal" data-target="#allow">
@@ -807,9 +807,71 @@
           </div>
         </div>
 
+        <div class="col-lg-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title font-weight-bold">Data PKWT/Addendum Karyawan <?= $list['fullname'] ?></h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+
+              </div>
+            </div>
+
+            <div class="card-body">
+              <div class="card card-default">
+                <div class="card-header">
+                  <h3 class="card-title font-weight-bold">Detail PKWT/Addendum</h3>
+                </div>
+                <?php foreach ($pkwt_add as $pkw) : ?>
+                <div class="card-body">
+                  <div class="row col-lg-12">
+
+                    <div class="form-group col-md-6">
+                      <label for="degree">Nomor PKWT/Addendum</label>
+                      <input type="text" class="form-control" id="company" value="<?= $pkw['pkwt_number'] ?>" readonly>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="institute">Tanggal Pembuatan PKWT</label>
+                      <input type="text" class="form-control" id="position" value="<?= $pkw['date_pkwt'] ?>" readonly>
+                    </div>
+
+                  </div>
+
+                  <div class="row col-lg-12">
+                    <div class="form-group col-md-6">
+                      <label for="major">Tanggal Awal PKWT</label>
+                      <input type="text" class="form-control" id="year_in" value="<?= $pkw['start_of_contract'] ?>"
+                        readonly>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="major">Tanggal AKhir PKWT</label>
+                      <input type="text" class="form-control" id="year_in" value="<?= $pkw['end_of_contract'] ?>"
+                        readonly>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="major">Keterangan PKWT</label>
+                    <textarea class="form-control" rows="3" name="desc_pkwt" readonly><?= $pkw['desc_pkwt'] ?>
+                      </textarea>
+                  </div>
+
+
+                </div>
+                <?php endforeach; ?>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
         <div class="col-lg-12 mb-3 d-flex justify-content-end">
-          <button type="button" class="btn bg-gradient-maroon " data-toggle="modal" data-target="#pkwt">
-            <i class="fas fa-fw fa-plus-square"></i> Tambah Data PKWT
+          <button type="button" class="btn bg-gradient-green " data-toggle="modal" data-target="#pkwt">
+            <i class="fas fa-fw fa-plus-square"></i> Tambah Data Addendum
           </button>
         </div>
 
@@ -865,7 +927,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('contract/editbasic/') . $list['id_candidate'] ?>" method="POST">
+      <form action="<?= base_url('employee/editbasic/') . $list['id_candidate'] ?>" method="POST">
         <div class="modal-body">
           <div class="card-body">
             <input type="hidden" name="id_candidate" id="id_candidate" value="<?= $list['id_candidate'] ?>">
@@ -935,7 +997,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('contract/editsecondary/') . $second['basic_id'] ?>" method="POST">
+      <form action="<?= base_url('employee/editsecondary/') . $second['basic_id'] ?>" method="POST">
         <div class="modal-body">
           <div class="card-body">
             <input type="hidden" name="basic_id" value="<?= $second['basic_id'] ?>">
@@ -1010,17 +1072,17 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="info" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="infoLabel"
-  aria-hidden="true">
+<div class="modal fade" id="infoemp" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="infoempLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="infoLabel">Berkas info</h5>
+        <h5 class="modal-title" id="infoempLabel">Berkas info</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('contract/addMoreDataEmp/') . $list['id_candidate'] ?>" method="POST">
+      <form action="<?= base_url('employee/addMoreDataEmp/') . $list['id_candidate'] ?>" method="POST">
         <div class="modal-body">
           <div class="card-body">
             <input type="hidden" name="basic_id" id="basic_id" value="<?= $list['id_candidate'] ?>">
@@ -1030,7 +1092,7 @@
                 <label for="exampleInputEmail1">Id Karyawan</label>
                 <input type="text" class="form-control" name="id_emp" value="">
                 <?= form_error('id_emp', '<small class="text-danger">', '</small>') ?>
-                <?php elseif (isset($basicadmin['id_emp']) != null) : ?>
+                <?php else : ?>
                 <label for="exampleInputEmail1">Id Karyawan</label>
                 <input type="text" class="form-control" name="id_emp" value="<?= $basicadmin['id_emp'] ?>">
                 <?= form_error('id_emp', '<small class="text-danger">', '</small>') ?>
@@ -1362,7 +1424,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('contract/addDataEmergency/') . $list['id_candidate'] ?>" method="POST">
+      <form action="<?= base_url('employee/addDataEmergency/') . $list['id_candidate'] ?>" method="POST">
         <div class="modal-body">
           <div class="card-body">
             <input type="hidden" name="basic_id" id="basic_id" value="<?= $list['id_candidate'] ?>">
@@ -1402,13 +1464,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="pkwtLabel">Form PKWT <?= $list['fullname'] ?></h5>
+        <h5 class="modal-title" id="pkwtLabel">Form Addendum <?= $list['fullname'] ?></h5>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('contract/addPkwtEmployee/') . $list['id_candidate'] ?>" method="POST">
+      <form action="<?= base_url('employee/addPkwtEmployee/') . $list['id_candidate'] ?>" method="POST">
         <div class="modal-body">
           <div class="card-body">
             <input type="hidden" name="basic_id" id="basic_id" value="<?= $list['id_candidate'] ?>">
@@ -1443,9 +1505,9 @@
 
             <div class="form-group mb-0">
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" name="confirm_admin" sele value="Approved" class="custom-control-input"
+                <input type="checkbox" name="confirm_admin" value="Approved" class="custom-control-input"
                   id="exampleCheck1" checked>
-                <label class="custom-control-label" for="exampleCheck1">Approved Karyawan Join</label>
+                <label class="custom-control-label" for="exampleCheck1">Approved Addendum</label>
               </div>
             </div>
 

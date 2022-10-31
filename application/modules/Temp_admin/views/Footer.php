@@ -99,6 +99,25 @@ $(document).ready(function() {
     }],
   })
 })
+
+$(document).ready(function() {
+  $("#employee").DataTable({
+    "processing": true,
+    "serverSide": true,
+    "order": [],
+    "responsive": true,
+    "lengthChange": true,
+    "autoWidth": false,
+    "ajax": {
+      "url": "<?= base_url('employee/getDataScore') ?>",
+      "type": "POST"
+    },
+    "columnDefs": [{
+      "target": [-1],
+      "orderable": false
+    }],
+  })
+})
 </script>
 
 

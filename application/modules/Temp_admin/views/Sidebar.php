@@ -42,6 +42,16 @@
             </p>
           </a>
         </li>
+        <li class="nav-header">DATA KARYAWAN</li>
+        <li class="nav-item">
+          <a href="<?= base_url('employee') ?>"
+            class="nav-link <?= $this->uri->segment(1) == 'employee' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-fw fa-user-tie"></i>
+            <p>
+              Karyawan Aktif
+            </p>
+          </a>
+        </li>
 
 
       </ul>
