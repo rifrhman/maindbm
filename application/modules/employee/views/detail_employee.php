@@ -808,7 +808,7 @@
         </div>
 
         <div class="col-lg-12">
-          <div class="card card-primary">
+          <div class="card card-primary collapsed-card">
             <div class="card-header">
               <h3 class="card-title font-weight-bold">Data PKWT/Addendum Karyawan <?= $list['fullname'] ?></h3>
               <div class="card-tools">
@@ -1501,6 +1501,19 @@
               <label for="desc_pkwt">Keterangan PKWT</label>
               <textarea class="form-control" id="desc_pkwt" rows="3" name="desc_pkwt"></textarea>
               <?= form_error('desc_pkwt', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="form-group">
+              <label for="status_pkwt">Status Berkas</label>
+              <select id="inputState" name="status_pkwt" class="form-control">
+                <option selected="selected" value="Belum Dibalas">
+                </option>
+                <option value="Belum Dibalas">Belum Dibalas</option>
+                <option value="Belum Dibuat">Belum Dibuat</option>
+                <option value="Belum Kembali">Belum Kembali</option>
+                <option value="Selesai">Selesai</option>
+
+              </select>
+              <?= form_error('status_pkwt', '<small class="text-danger pl-2">', '</small>') ?>
             </div>
 
             <div class="form-group mb-0">

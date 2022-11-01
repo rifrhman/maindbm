@@ -163,11 +163,11 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
 
 
     if ($validation->run() == false) {
-      $this->load->view('Temp_sourcing/header', $data);
-      $this->load->view('Temp_sourcing/navbar', $data);
-      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('Temp_admin/header', $data);
+      $this->load->view('Temp_admin/navbar', $data);
+      $this->load->view('Temp_admin/sidebar', $data);
       $this->load->view('detail_contract_view', $data);
-      $this->load->view('Temp_sourcing/footer');
+      $this->load->view('Temp_admin/footer');
     } else {
       $regis_num_candidate = $this->input->post('regis_num_candidate');
       $regis_num_resident = $this->input->post('regis_num_resident');
@@ -227,11 +227,11 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
     $validation->set_rules('type_recruitment', 'type_recruitment', 'required|trim');
 
     if ($validation->run() == false) {
-      $this->load->view('Temp_sourcing/header', $data);
-      $this->load->view('Temp_sourcing/navbar', $data);
-      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('Temp_admin/header', $data);
+      $this->load->view('Temp_admin/navbar', $data);
+      $this->load->view('Temp_admin/sidebar', $data);
       $this->load->view('detail_contract_view', $data);
-      $this->load->view('Temp_sourcing/footer');
+      $this->load->view('Temp_admin/footer');
     } else {
       $data = [
         "id_emp" => $this->input->post('id_emp'),
@@ -330,11 +330,11 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
 
 
     if ($validation->run() == false) {
-      $this->load->view('Temp_sourcing/header', $data);
-      $this->load->view('Temp_sourcing/navbar', $data);
-      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('Temp_admin/header', $data);
+      $this->load->view('Temp_admin/navbar', $data);
+      $this->load->view('Temp_admin/sidebar', $data);
       $this->load->view('detail_contract_view', $data);
-      $this->load->view('Temp_sourcing/footer');
+      $this->load->view('Temp_admin/footer');
     } else {
       $data = [
         "allowance_premium" => $this->input->post('allowance_premium'),
@@ -411,11 +411,11 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
     $validation->set_rules('relation_emergency', 'Relation Emergency', 'required|trim');
 
     if ($validation->run() == false) {
-      $this->load->view('Temp_sourcing/header', $data);
-      $this->load->view('Temp_sourcing/navbar', $data);
-      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('Temp_admin/header', $data);
+      $this->load->view('Temp_admin/navbar', $data);
+      $this->load->view('Temp_admin/sidebar', $data);
       $this->load->view('detail_contract_view', $data);
-      $this->load->view('Temp_sourcing/footer');
+      $this->load->view('Temp_admin/footer');
     } else {
 
       $data = [
@@ -452,11 +452,11 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
     $validation->set_rules('desc_pkwt', 'Desc PKWT', 'required|trim');
 
     if ($validation->run() == false) {
-      $this->load->view('Temp_sourcing/header', $data);
-      $this->load->view('Temp_sourcing/navbar', $data);
-      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('Temp_admin/header', $data);
+      $this->load->view('Temp_admin/navbar', $data);
+      $this->load->view('Temp_admin/sidebar', $data);
       $this->load->view('detail_contract_view', $data);
-      $this->load->view('Temp_sourcing/footer');
+      $this->load->view('Temp_admin/footer');
     } else {
 
       $data = [

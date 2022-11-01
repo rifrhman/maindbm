@@ -30,6 +30,7 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Klien</th>
+                    <th>CC</th>
                     <th>Jabatan</th>
                     <th>Tgl Awal - Tgl Akhir</th>
                     <th>Action</th>

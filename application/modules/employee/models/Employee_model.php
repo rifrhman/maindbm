@@ -14,7 +14,8 @@ class Employee_model extends CI_Model
     $this->db->select('*');
     $this->db->from('candidate_basic');
     $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
-    $this->db->join('pkwt_employee', 'pkwt_employee.basic_id = candidate_basic.id_candidate', 'left');
+    $this->db->join('basic_admin', 'basic_admin.basic_id = candidate_basic.id_candidate', 'left');
+    $this->db->join('pkwt_employee', 'pkwt_employee.basic_id = candidate_basic.id_candidate');
     $this->db->where('send_candidate.confirm IS NOT NULL AND send_candidate.confirm_admin IS NOT NULL');
     // $this->db->group_by('pkwt_employee.end_of_contract');
     $this->db->group_by('candidate_basic.fullname');
@@ -23,8 +24,8 @@ class Employee_model extends CI_Model
   }
 
   // var $table = 'candidate_basic';
-  var $column_order = array(null, 'fullname', 'client', 'start_date', 'end_date');
-  var $column_search = array('fullname', 'client', 'start_date', 'end_date');
+  var $column_order = array(null, 'fullname', 'client',  'start_date', 'end_date');
+  var $column_search = array('fullname', 'client',  'start_date', 'end_date');
   var $order = array('id_candidate' => 'desc');
 
   private function _get_data_query()
@@ -172,5 +173,10 @@ class Employee_model extends CI_Model
   {
     $query = "SELECT * FROM `pkwt_employee` WHERE `basic_id` = $id_candidate";
     return $this->db->query($query)->result_array();
+  }
+  public function statPkwt()
+  {
+    $query = "SELECT * FROM `pkwt_employee` WHERE `id` = `id`";
+    return $this->db->query($query)->row_array();
   }
 }

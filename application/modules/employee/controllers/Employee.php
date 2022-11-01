@@ -42,12 +42,13 @@ class Employee extends CI_Controller
       $row[] = ++$no;
       $row[] = $result->fullname;
       $row[] = $result->client;
+      $row[] = $result->cc;
       $row[] = $result->position;
       $row[] = date('d-M-Y', strtotime($result->start_of_contract)) . ' - ' . date('d-M-Y', strtotime($result->end_of_contract));
       $row[] = '
       <a href="' . base_url('employee/detail_contract/') . $result->id_candidate . '"
 class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info-circle"></i> Info</a>
-<a href="' . base_url('employee/detail_contract/') . $result->id_candidate . '"
+<a href="' . base_url('employee/detail_pkwt/') . $result->id_candidate . '"
 class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-open"></i> PKWT</a><br>';
       $data[] = $row;
     }
@@ -77,6 +78,7 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
     $data['detailEmergency'] = $this->emp->detailEmergency($id_candidate);
     $data['pkwt'] = $this->emp->pkwtEmployee($id_candidate);
     $data['pkwt_add'] = $this->emp->addendum($id_candidate);
+    $data['statPkwt'] = $this->emp->statPkwt();
 
 
 
@@ -84,6 +86,29 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
     $this->load->view('Temp_admin/navbar', $data);
     $this->load->view('Temp_admin/sidebar', $data);
     $this->load->view('detail_employee', $data);
+    $this->load->view('Temp_admin/footer');
+  }
+
+  public function detail_pkwt($id_candidate)
+  {
+    $data['title'] = "Detail Karyawan";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    $data['basic'] = $this->db->get('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
+    $data['list'] = $this->emp->detailAll($id_candidate);
+    $data['second'] = $this->emp->detailSecond($id_candidate);
+    $data['educate'] = $this->emp->detailEducation($id_candidate);
+    $data['exp'] = $this->emp->detailExp($id_candidate);
+    $data['basicadmin'] = $this->emp->adminQuery($id_candidate);
+    $data['secondadmin'] = $this->emp->adminBank($id_candidate);
+    $data['emergency'] = $this->emp->emergencyContact($id_candidate);
+    $data['detailEmergency'] = $this->emp->detailEmergency($id_candidate);
+    $data['pkwt'] = $this->emp->pkwtEmployee($id_candidate);
+    $data['pkwt_add'] = $this->emp->addendum($id_candidate);
+
+    $this->load->view('Temp_admin/header', $data);
+    $this->load->view('Temp_admin/navbar', $data);
+    $this->load->view('Temp_admin/sidebar', $data);
+    $this->load->view('detail_pkwt', $data);
     $this->load->view('Temp_admin/footer');
   }
   public function editbasic($id_candidate)
@@ -166,11 +191,11 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
 
 
     if ($validation->run() == false) {
-      $this->load->view('Temp_sourcing/header', $data);
-      $this->load->view('Temp_sourcing/navbar', $data);
-      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('Temp_admin/header', $data);
+      $this->load->view('Temp_admin/navbar', $data);
+      $this->load->view('Temp_admin/sidebar', $data);
       $this->load->view('detail_employee', $data);
-      $this->load->view('Temp_sourcing/footer');
+      $this->load->view('Temp_admin/footer');
     } else {
       $regis_num_candidate = $this->input->post('regis_num_candidate');
       $regis_num_resident = $this->input->post('regis_num_resident');
@@ -230,11 +255,11 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
     $validation->set_rules('type_recruitment', 'type_recruitment', 'required|trim');
 
     if ($validation->run() == false) {
-      $this->load->view('Temp_sourcing/header', $data);
-      $this->load->view('Temp_sourcing/navbar', $data);
-      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('Temp_admin/header', $data);
+      $this->load->view('Temp_admin/navbar', $data);
+      $this->load->view('Temp_admin/sidebar', $data);
       $this->load->view('detail_employee', $data);
-      $this->load->view('Temp_sourcing/footer');
+      $this->load->view('Temp_admin/footer');
     } else {
       $data = [
         "id_emp" => $this->input->post('id_emp'),
@@ -320,11 +345,11 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
     $validation->set_rules('relation_emergency', 'Relation Emergency', 'required|trim');
 
     if ($validation->run() == false) {
-      $this->load->view('Temp_sourcing/header', $data);
-      $this->load->view('Temp_sourcing/navbar', $data);
-      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('Temp_admin/header', $data);
+      $this->load->view('Temp_admin/navbar', $data);
+      $this->load->view('Temp_admin/sidebar', $data);
       $this->load->view('detail_employee', $data);
-      $this->load->view('Temp_sourcing/footer');
+      $this->load->view('Temp_admin/footer');
     } else {
 
       $data = [
@@ -359,13 +384,14 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
     $validation->set_rules('start_of_contract', 'StartOf PKWT', 'required|trim');
     $validation->set_rules('end_of_contract', 'EndOf PKWT', 'required|trim');
     $validation->set_rules('desc_pkwt', 'Desc PKWT', 'required|trim');
+    $validation->set_rules('status_pkwt', 'Status PKWT', 'required|trim');
 
     if ($validation->run() == false) {
-      $this->load->view('Temp_sourcing/header', $data);
-      $this->load->view('Temp_sourcing/navbar', $data);
-      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('Temp_admin/header', $data);
+      $this->load->view('Temp_admin/navbar', $data);
+      $this->load->view('Temp_admin/sidebar', $data);
       $this->load->view('detail_employee', $data);
-      $this->load->view('Temp_sourcing/footer');
+      $this->load->view('Temp_admin/footer');
     } else {
 
       $data = [
@@ -374,6 +400,7 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
         'start_of_contract' => $this->input->post('start_of_contract'),
         'end_of_contract' => $this->input->post('end_of_contract'),
         'desc_pkwt' => $this->input->post('desc_pkwt'),
+        'status_pkwt' => $this->input->post('status_pkwt'),
         'basic_id' => $id_candidate
       ];
 
@@ -402,6 +429,43 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
           redirect('employee/detail_contract/' . $id_candidate);
         }
       }
+    }
+  }
+
+  public function update_status_file($id)
+  {
+    $data['title'] = "Update PKWT Status";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    // $data['basic'] = $this->db->get_where('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
+    $data['pkwt'] = $this->db->get('pkwt_employee')->row_array();
+    $data['status'] = $this->db->get('pkwt_employee')->row_array();
+
+
+    $validation = $this->form_validation;
+
+    $validation->set_rules('status_pkwt', 'Status PKWT', 'required');
+
+    if ($validation->run() == false) {
+      $this->load->view('Temp_admin/header', $data);
+      $this->load->view('Temp_admin/navbar', $data);
+      $this->load->view('Temp_admin/sidebar', $data);
+      $this->load->view('detail_pkwt', $data);
+      $this->load->view('Temp_admin/footer');
+    } else {
+
+      $status_pkwt = $this->input->post('status_pkwt');
+
+      $this->db->set('status_pkwt', $status_pkwt);
+      $this->db->where('id', $this->input->post('id'));
+
+      $this->db->update('pkwt_employee');
+      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Horeee!</strong> Status berhasil di update .
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>');
+      redirect('employee');
     }
   }
 }

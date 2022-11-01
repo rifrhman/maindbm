@@ -39,7 +39,7 @@
             <span class="info-box-icon bg-purple elevation-1"><i class="fas fa-database"></i></span>
 
 
-            <a href="<?= base_url('') ?>">
+            <a href="<?= base_url('employee') ?>">
               <div class="info-box-content">
                 <span class="info-box-text text-dark font-weight-bold">Data Karyawan</span>
                 <span class="info-box-number">

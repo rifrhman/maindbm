@@ -13,7 +13,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
+<script src="<?= base_url('assets/plugins/jquery/jquery.min.js'); ?>"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?= base_url('assets/'); ?>plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -21,7 +21,7 @@
 $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="<?= base_url('assets/') ?>plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -116,6 +116,28 @@ $(document).ready(function() {
       "target": [-1],
       "orderable": false
     }],
+  })
+})
+
+$(document).ready(function() {
+  $("#pkwt").DataTable({
+    "processing": true,
+    "serverSide": true,
+    "order": [],
+    "responsive": true,
+    "lengthChange": true,
+    "autoWidth": false,
+    "ajax": {
+      "url": "<?= base_url('pkwt/getDataScore') ?>",
+      "type": "POST"
+    },
+    "columnDefs": [{
+      "target": [-1],
+      "orderable": false
+    }],
+    "dom": 'lBfrtip',
+    "buttons": ['excel', 'csv', 'pdf', 'print'],
+    "lengthMenu": [10, 25, 50, 100, 1000, 10000],
   })
 })
 </script>
