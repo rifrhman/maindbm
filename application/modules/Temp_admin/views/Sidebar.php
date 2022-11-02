@@ -60,6 +60,15 @@
             </p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="<?= base_url('remainder') ?>"
+            class="nav-link <?= $this->uri->segment(1) == 'remainder' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-fw fa-exclamation-triangle"></i>
+            <p>
+              Remainder
+            </p>
+          </a>
+        </li>
 
 
       </ul>

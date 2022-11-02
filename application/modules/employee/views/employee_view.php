@@ -7,11 +7,12 @@
         <div class="col-sm-6">
           <h1 class="font-weight-bold text-secondary text-uppercase">Karyawan Aktif</h1>
         </div>
+
       </div>
     </div><!-- /.container-fluid -->
   </section>
 
-  <?= $this->session->flashdata('msg'); ?>
+  <div class="flash-data" data-flashdata="<?= $this->session->flashdata('msg') ?>"></div>
 
   <!-- Main content -->
   <section class="content">
@@ -21,6 +22,21 @@
           <div class="card">
             <div class="card-header">
               <span class="badge badge-danger"><?= $countNull; ?> Karyawan Aktif</span>
+              <form method="GET" action="<?= base_url('employee') ?>">
+                <div class="row mt-4 justify-content-end">
+                  <div class="col-3">
+                    <input type="date" class="form-control" name="dateFirst">
+                  </div>
+                  <div class="col-3">
+
+                    <input type="date" class="form-control" name="dateSecond">
+                  </div>
+                  <div class="col-3">
+
+                    <button class="btn bg-gradient-purple" type="submit"><i class="fas fa-fw fa-search"></i></button>
+                  </div>
+                </div>
+              </form>
             </div>
 
             <div class="card-body">
@@ -33,6 +49,7 @@
                     <th>CC</th>
                     <th>Jabatan</th>
                     <th>Tgl Awal - Tgl Akhir</th>
+                    <th>Sisa Hari</th>
                     <th>Action</th>
                   </tr>
                 </thead>

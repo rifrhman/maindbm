@@ -127,12 +127,7 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
       $this->db->set('last_education', $last_education);
       $this->db->where('id_candidate', $this->input->post('id_candidate'));
       $this->db->update('candidate_basic');
-      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Horee!</strong> Edit Data Basic berhasil.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      </div>');
+      $this->session->set_flashdata('msg', 'Edit Data Basic berhasil');
       redirect('contract/detail_contract/' . $id_candidate);
     }
   }
@@ -189,12 +184,7 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
       $this->db->set('postal_code', $postal_code);
       $this->db->where('basic_id', $this->input->post('basic_id'));
       $this->db->update('candidate_secondary');
-      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Horee!</strong> Edit Data Secondary berhasil.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      </div>');
+      $this->session->set_flashdata('msg', 'Edit Data Secondary berhasil');
       redirect('contract/detail_contract/' . $id_candidate);
     }
   }
@@ -283,21 +273,11 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
         $this->db->where('basic_id', $this->input->post('basic_id'));
         $this->db->update('basic_admin');
 
-        $this->session->set_flashdata('msg', '<div class="alert alert-primary alert-dismissible fade show" role="alert">
-        <strong>Selamat!</strong> Data Tambahan Sudah berhasil Di Edit.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </div>');
+        $this->session->set_flashdata('msg', 'Data Tambahan Sudah berhasil Di Edit');
         redirect('contract/detail_contract/' . $id_candidate);
       } else {
         $this->db->insert('basic_admin', $data);
-        $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Horee!</strong> Data Tambahan Karyawan berhasil Ditambah.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </div>');
+        $this->session->set_flashdata('msg', 'Data Tambahan Karyawan berhasil Ditambah');
         redirect('contract/detail_contract/' . $id_candidate);
       }
     }
@@ -377,21 +357,11 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
         $this->db->where('basic_id', $this->input->post('basic_id'));
         $this->db->update('secondary_admin');
 
-        $this->session->set_flashdata('msg', '<div class="alert alert-primary alert-dismissible fade show" role="alert">
-        <strong>Selamat!</strong> Data Bank Sudah Berhasil Di Edit.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </div>');
+        $this->session->set_flashdata('msg', 'Data Bank Sudah Berhasil Di Edit');
         redirect('contract/detail_contract/' . $id_candidate);
       } else {
         $this->db->insert('secondary_admin', $data);
-        $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Horee!</strong>Data Bank Karyawan berhasil dibuat.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </div>');
+        $this->session->set_flashdata('msg', 'Data Bank Karyawan berhasil dibuat');
         redirect('contract/detail_contract/' . $id_candidate);
       }
     }
@@ -426,12 +396,7 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
       ];
 
       $this->db->insert('emergency_contact', $data);
-      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Horee!</strong> Data Emergency berhasil ditambah.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-      </button>
-      </div>');
+      $this->session->set_flashdata('msg', 'Data Emergency berhasil ditambah');
       redirect('contract/detail_contract/' . $id_candidate);
     }
   }
@@ -477,20 +442,10 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
         $this->db->where('basic_id', $id_candidate);
         $new_data = $this->db->update('send_candidate');
         if ($new_data) {
-          $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Horee!</strong> Data PKWT berhasil ditambah.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button>
-          </div>');
+          $this->session->set_flashdata('msg', 'Data PKWT berhasil ditambah');
           redirect('contract/detail_contract/' . $id_candidate);
         } else {
-          $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <strong>Horee!</strong> Data PKWT gagal ditambah.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button>
-          </div>');
+          $this->session->set_flashdata('msg', 'Data PKWT gagal ditambah');
           redirect('contract/detail_contract/' . $id_candidate);
         }
       }

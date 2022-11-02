@@ -22,7 +22,7 @@
     </div><!-- /.container-fluid -->
   </section>
 
-  <?= $this->session->flashdata('msg'); ?>
+  <div class="flash-data" data-flashdata="<?= $this->session->flashdata('msg') ?>"></div>
 
   <div class="content">
     <div class="container-fluid">
@@ -870,36 +870,9 @@
         </div>
 
         <div class="col-lg-12 mb-3 d-flex justify-content-end">
-          <button type="button" class="btn bg-gradient-green " data-toggle="modal" data-target="#pkwt">
+          <button type="button" class="btn bg-gradient-green " data-toggle="modal" data-target="#ppkwt">
             <i class="fas fa-fw fa-plus-square"></i> Tambah Data Addendum
           </button>
-        </div>
-
-
-        <div class="col-lg">
-          <!-- Form Element sizes -->
-          <!-- <div class="card card-danger">
-            <div class="card-header">
-              <h3 class="card-title font-weight-bold">Catatan Rekomendasi</h3>
-            </div>
-            <div class="card-body">
-              <form action="<?= base_url('graduated/detailgraduatecandidate/') . $list['id_candidate'] ?>"
-                method="POST">
-                <input type="hidden" name="id_candidate" value="<?= $list['id_candidate'] ?>" id="">
-                <div class="row">
-                  <div class="col-lg-12 mb-3">
-                    <input type="text" class="form-control" name="note_recommend" value="<?= $list['note_recommend'] ?>"
-                      placeholder="Disarankan 'kandidat' bekerja sebagai ...">
-                  </div>
-                  <div class="col-lg">
-                    <button type="submit" class="btn btn-primary d-block">Submit</button>
-                  </div>
-                </div>
-              </form>
-            </div> -->
-          <!-- /.card-body -->
-          <!-- </div> -->
-          <!-- /.card -->
         </div>
 
 
@@ -1459,12 +1432,12 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="pkwt" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="pkwtLabel"
-  aria-hidden="true">
+<div class="modal fade" id="ppkwt" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="ppkwtLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="pkwtLabel">Form Addendum <?= $list['fullname'] ?></h5>
+        <h5 class="modal-title" id="ppkwtLabel">Form Addendum <?= $list['fullname'] ?></h5>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

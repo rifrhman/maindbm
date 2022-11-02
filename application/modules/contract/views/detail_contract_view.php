@@ -22,7 +22,7 @@
     </div><!-- /.container-fluid -->
   </section>
 
-  <?= $this->session->flashdata('msg'); ?>
+  <div class="flash-data" data-flashdata="<?= $this->session->flashdata('msg') ?>"></div>
 
   <div class="content">
     <div class="container-fluid">

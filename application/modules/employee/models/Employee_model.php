@@ -24,8 +24,8 @@ class Employee_model extends CI_Model
   }
 
   // var $table = 'candidate_basic';
-  var $column_order = array(null, 'fullname', 'client',  'start_date', 'end_date');
-  var $column_search = array('fullname', 'client',  'start_date', 'end_date');
+  var $column_order = array(null, 'fullname', 'client', 'cc', 'position',  'start_date', 'end_of_contract');
+  var $column_search = array('fullname', 'client', 'cc', 'position', 'start_date', 'end_of_contract');
   var $order = array('id_candidate' => 'desc');
 
   private function _get_data_query()
@@ -60,10 +60,17 @@ class Employee_model extends CI_Model
     }
   }
 
-  public function getDataTable()
+  public function getDataTable($firstDate = null, $secondDate = null)
   {
-
     $this->_get_data_query();
+
+    $firstDateNew = strtotime($firstDate);
+    $secondDateNew = strtotime($secondDate);
+
+    if ($firstDate && $secondDate) {
+      $this->db->where('end_of_contract >=', $firstDateNew);
+      $this->db->where('end_of_contract <=', $secondDateNew);
+    }
 
     if ($_POST['length'] != -1) {
       $this->db->limit($_POST['length'], $_POST['start']);

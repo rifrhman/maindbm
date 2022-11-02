@@ -22,6 +22,7 @@ class Employee extends CI_Controller
     $data['title'] = "Karyawan Aktif";
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
     $data['countNull'] = $this->emp->countJoinEmpNull();
+
     $this->load->view('Temp_admin/header', $data);
     $this->load->view('Temp_admin/navbar', $data);
     $this->load->view('Temp_admin/sidebar', $data);
@@ -29,27 +30,41 @@ class Employee extends CI_Controller
     $this->load->view('Temp_admin/footer');
   }
 
+
+
   public function getDataScore()
   {
-    // header('Content-Type: application/json');
-
-    $results = $this->emp->getDataTable();
-
+    header('Content-Type: application/json');
+    $firstDate = $this->input->get('dateFirst');
+    $secondDate = $this->input->get('dateSecond');
+    $results = $this->emp->getDataTable($firstDate, $secondDate);
     $data = [];
     $no = $_POST['start'];
     foreach ($results as $result) {
+      $date1 = strtotime($result->end_of_contract);
+
+      $dating = date("Y-m-d");
+      $date2 = strtotime($dating);
+      $res = ($date1 - $date2) / 60 / 60 / 24;
+      $for = number_format($res, 0, '', '');
+
+      if ($for < 60) {
+        base_url('remainder');
+      };
+
       $row = array();
       $row[] = ++$no;
       $row[] = $result->fullname;
       $row[] = $result->client;
       $row[] = $result->cc;
       $row[] = $result->position;
-      $row[] = date('d-M-Y', strtotime($result->start_of_contract)) . ' - ' . date('d-M-Y', strtotime($result->end_of_contract));
+      $row[] = date('Y-m-d', strtotime($result->start_of_contract)) . ' - ' . date('Y-m-d', strtotime($result->end_of_contract));
+      $row[] = $for . " Hari";
       $row[] = '
       <a href="' . base_url('employee/detail_contract/') . $result->id_candidate . '"
-class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info-circle"></i> Info</a>
+class="badge bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info-circle"></i> Info</a>
 <a href="' . base_url('employee/detail_pkwt/') . $result->id_candidate . '"
-class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-open"></i> PKWT</a><br>';
+class="badge bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-open"></i> PKWT</a><br>';
       $data[] = $row;
     }
 
@@ -156,12 +171,7 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
       $this->db->set('last_education', $last_education);
       $this->db->where('id_candidate', $this->input->post('id_candidate'));
       $this->db->update('candidate_basic');
-      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Horee!</strong> Edit Data Basic berhasil.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      </div>');
+      $this->session->set_flashdata('msg', 'Data Basic Karyawan Berhasil Diubah');
       redirect('employee/detail_contract/' . $id_candidate);
     }
   }
@@ -217,12 +227,7 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
       $this->db->set('postal_code', $postal_code);
       $this->db->where('basic_id', $this->input->post('basic_id'));
       $this->db->update('candidate_secondary');
-      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Horee!</strong> Edit Data Secondary berhasil.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      </div>');
+      $this->session->set_flashdata('msg', 'Data Secondary Karyawan Berhasil Diubah');
       redirect('employee/detail_contract/' . $id_candidate);
     }
   }
@@ -311,21 +316,11 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
         $this->db->where('basic_id', $this->input->post('basic_id'));
         $this->db->update('basic_admin');
 
-        $this->session->set_flashdata('msg', '<div class="alert alert-primary alert-dismissible fade show" role="alert">
-        <strong>Selamat!</strong> Data Tambahan Sudah berhasil Di Edit.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </div>');
+        $this->session->set_flashdata('msg', 'Data Tambahan Karyawan Berhasil Diubah');
         redirect('employee/detail_contract/' . $id_candidate);
       } else {
         $this->db->insert('basic_admin', $data);
-        $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Horee!</strong> Data Tambahan Karyawan berhasil Ditambah.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </div>');
+        $this->session->set_flashdata('msg', 'Data Tambahan Karyawan berhasil Ditambah');
         redirect('employee/detail_contract/' . $id_candidate);
       }
     }
@@ -360,12 +355,7 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
       ];
 
       $this->db->insert('emergency_contact', $data);
-      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Horee!</strong> Data Emergency berhasil ditambah.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-      </button>
-      </div>');
+      $this->session->set_flashdata('msg', 'Data Emergency berhasil ditambah.');
       redirect('employee/detail_contract/' . $id_candidate);
     }
   }
@@ -412,20 +402,10 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
         $this->db->where('basic_id', $id_candidate);
         $new_data = $this->db->update('send_candidate');
         if ($new_data) {
-          $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Horee!</strong> Data PKWT berhasil ditambah.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button>
-          </div>');
+          $this->session->set_flashdata('msg', 'Data PKWT berhasil ditambah');
           redirect('employee/detail_contract/' . $id_candidate);
         } else {
-          $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <strong>Horee!</strong> Data PKWT gagal ditambah.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button>
-          </div>');
+          $this->session->set_flashdata('msg', 'Data PKWT gagal ditambah');
           redirect('employee/detail_contract/' . $id_candidate);
         }
       }
@@ -459,12 +439,7 @@ class="btn bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-o
       $this->db->where('id', $this->input->post('id'));
 
       $this->db->update('pkwt_employee');
-      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Horeee!</strong> Status berhasil di update .
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      </div>');
+      $this->session->set_flashdata('msg', 'Status berhasil di update');
       redirect('employee');
     }
   }

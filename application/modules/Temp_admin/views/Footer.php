@@ -24,6 +24,7 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="<?= base_url('assets/') ?>plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?= base_url('assets/sweetalert/dist/sweetalert2.all.min.js') ?>"></script>
 
 <!-- DataTables  & Plugins -->
 <script src="<?= base_url('assets/'); ?>plugins/datatables/jquery.dataTables.min.js"></script>
@@ -101,7 +102,7 @@ $(document).ready(function() {
 })
 
 $(document).ready(function() {
-  $("#employee").DataTable({
+  $table = $("#employee").DataTable({
     "processing": true,
     "serverSide": true,
     "order": [],
@@ -117,6 +118,7 @@ $(document).ready(function() {
       "orderable": false
     }],
   })
+  // #myInput is a <input type="text"> element
 })
 
 $(document).ready(function() {
@@ -139,6 +141,36 @@ $(document).ready(function() {
     "buttons": ['excel', 'csv', 'pdf', 'print'],
     "lengthMenu": [10, 25, 50, 100, 1000, 10000],
   })
+})
+
+const flashData = $('.flash-data').data('flashdata');
+if (flashData) {
+  Swal.fire(
+    'Good job!',
+    flashData,
+    'success'
+  )
+}
+
+
+$('.deleted-confirm').on('click', function(e) {
+  e.preventDefault();
+  const href = $(this).attr('href');
+
+  Swal.fire({
+    title: 'Apa anda yakin hapus?',
+    text: "Anda tidak bisa mengulangi data ini kembali!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      document.location.href = href;
+    }
+  })
+
 })
 </script>
 

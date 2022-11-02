@@ -110,6 +110,9 @@ class Sourcing extends CI_Controller
       $error = array('error' => $this->upload->display_errors());
       $this->session->set_flashdata('msg', $error);
     } else {
+
+      // $mod = $this->sour->checkDataCandidate($data['fullname'], $data['date_of_birth']);
+
       $file = $this->upload->data();
       $reader = ReaderEntityFactory::createXLSXReader();
 
@@ -131,6 +134,17 @@ class Sourcing extends CI_Controller
               'gender' => $row->getCellAtIndex(6),
               'test_one' => $row->getCellAtIndex(7)
             ];
+            $mod = $this->sour->checkDataCandidate($candidate_basic['fullname'], $candidate_basic['date_of_birth']);
+            if ($mod) {
+              $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Oopss!</strong> Data kandidat sudah terdaftar.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+              </div>');
+              redirect('sourcing');
+            }
+
             $this->sour->importCandidate($candidate_basic);
           }
           $numrow++;

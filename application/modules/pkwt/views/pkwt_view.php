@@ -21,9 +21,10 @@
           <div class="card">
             <div class="card-header">
               <div class="card-title">
-                <a href="<?= base_url('pkwt/exportExcel') ?>" class="mb-3 btn btn-danger btn-sm"><i
+                <!-- <a href="<?= base_url('pkwt/exportExcel') ?>" class="mb-3 btn btn-danger btn-sm"><i
                     class="fas fa-fw fa-file-excel"></i>
-                  Export Excel</a>
+                  Export Excel</a> -->
+                PKWT Karyawan
               </div>
             </div>
 

@@ -11,7 +11,7 @@
     </div><!-- /.container-fluid -->
   </section>
 
-  <?= $this->session->flashdata('msg'); ?>
+  <div class="flash-data" data-flashdata="<?= $this->session->flashdata('msg') ?>"></div>
 
   <!-- Main content -->
   <section class="content">
