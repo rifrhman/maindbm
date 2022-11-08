@@ -17,7 +17,13 @@
   <link rel="stylesheet"
     href="<?= base_url('assets/'); ?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/datatables/dataTables.dateTime.min.css">
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/datepicker/css/datepicker.css">
+
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet"
+    href="<?= base_url('assets/'); ?>plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
   <!-- JQVMap -->
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->

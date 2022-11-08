@@ -22,21 +22,26 @@
           <div class="card">
             <div class="card-header">
               <span class="badge badge-danger"><?= $countNull; ?> Karyawan Aktif</span>
-              <form method="GET" action="<?= base_url('employee') ?>">
-                <div class="row mt-4 justify-content-end">
-                  <div class="col-3">
-                    <input type="date" class="form-control" name="dateFirst">
-                  </div>
-                  <div class="col-3">
+              <div class="form-group">
+                <div class="col-md mt-2 justify-content-end">
 
-                    <input type="date" class="form-control" name="dateSecond">
-                  </div>
-                  <div class="col-3">
+                  <table border="0" cellspacing="5" cellpadding="5">
+                    <tbody>
+                      <tr>
+                        <td>Minimum date:</td>
+                        <td><input type="text" id="min" name="min"></td>
+                      </tr>
+                      <tr>
+                        <td>Maximum date:</td>
+                        <td><input type="text" id="max" name="max"></td>
+                      </tr>
+                    </tbody>
+                  </table>
 
-                    <button class="btn bg-gradient-purple" type="submit"><i class="fas fa-fw fa-search"></i></button>
-                  </div>
+
                 </div>
-              </form>
+
+              </div>
             </div>
 
             <div class="card-body">
@@ -48,7 +53,8 @@
                     <th>Klien</th>
                     <th>CC</th>
                     <th>Jabatan</th>
-                    <th>Tgl Awal - Tgl Akhir</th>
+                    <th>Tgl Awal</th>
+                    <th>Tgl Akhir</th>
                     <th>Sisa Hari</th>
                     <th>Action</th>
                   </tr>

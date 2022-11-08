@@ -60,12 +60,22 @@
             </p>
           </a>
         </li>
+        <li class="nav-header">DATA LAINNYA</li>
         <li class="nav-item">
           <a href="<?= base_url('remainder') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'remainder' ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-fw fa-exclamation-triangle"></i>
+            <i class="nav-icon fas fa-fw fa-user-minus"></i>
             <p>
-              Remainder
+              Karyawan Resign
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= base_url('remainder') ?>"
+            class="nav-link <?= $this->uri->segment(1) == 'remainder' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-fw fa-user-times"></i>
+            <p>
+              Karyawan BlackList
             </p>
           </a>
         </li>

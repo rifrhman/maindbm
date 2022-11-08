@@ -31,6 +31,10 @@ class Employee_model extends CI_Model
   private function _get_data_query()
   {
     // $qu = "SELECT DISTINCT `basic_id` FROM `pkwt_employee`";
+    if ($this->input->post('min')) {
+      $this->db->where('end_of_contract >=', $this->input->post('min'));
+      $this->db->where('end_of_contract <=', $this->input->post('max'));
+    }
     $this->queryNew();
 
     $i = 0;
@@ -60,17 +64,19 @@ class Employee_model extends CI_Model
     }
   }
 
-  public function getDataTable($firstDate = null, $secondDate = null)
+  public function getDataTable()
   {
+    // var_dump($first, $last);
+    // die;
+
+    // $first = strtotime($first);
+    // $lastly = strtotime($last);
+
+
+
+
     $this->_get_data_query();
 
-    $firstDateNew = strtotime($firstDate);
-    $secondDateNew = strtotime($secondDate);
-
-    if ($firstDate && $secondDate) {
-      $this->db->where('end_of_contract >=', $firstDateNew);
-      $this->db->where('end_of_contract <=', $secondDateNew);
-    }
 
     if ($_POST['length'] != -1) {
       $this->db->limit($_POST['length'], $_POST['start']);

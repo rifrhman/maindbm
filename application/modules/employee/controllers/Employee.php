@@ -34,10 +34,10 @@ class Employee extends CI_Controller
 
   public function getDataScore()
   {
-    header('Content-Type: application/json');
-    $firstDate = $this->input->get('dateFirst');
-    $secondDate = $this->input->get('dateSecond');
-    $results = $this->emp->getDataTable($firstDate, $secondDate);
+    // header('Content-Type: application/json');
+
+
+    $results = $this->emp->getDataTable();
     $data = [];
     $no = $_POST['start'];
     foreach ($results as $result) {
@@ -48,17 +48,14 @@ class Employee extends CI_Controller
       $res = ($date1 - $date2) / 60 / 60 / 24;
       $for = number_format($res, 0, '', '');
 
-      if ($for < 60) {
-        base_url('remainder');
-      };
-
       $row = array();
       $row[] = ++$no;
       $row[] = $result->fullname;
       $row[] = $result->client;
       $row[] = $result->cc;
       $row[] = $result->position;
-      $row[] = date('Y-m-d', strtotime($result->start_of_contract)) . ' - ' . date('Y-m-d', strtotime($result->end_of_contract));
+      $row[] = date('Y-m-d', strtotime($result->start_of_contract));
+      $row[] = date('Y-m-d', strtotime($result->end_of_contract));
       $row[] = $for . " Hari";
       $row[] = '
       <a href="' . base_url('employee/detail_contract/') . $result->id_candidate . '"
