@@ -116,7 +116,6 @@ $(document).ready(function() {
 
 
 
-
 var minDate, maxDate;
 
 // Custom filtering function which will search data in column four between two values
@@ -189,6 +188,29 @@ $(document).ready(function() {
     "autoWidth": false,
     "ajax": {
       "url": "<?= base_url('pkwt/getDataScore') ?>",
+      "type": "POST"
+    },
+    "columnDefs": [{
+      "target": [-1],
+      "orderable": false
+    }],
+    "dom": 'lBfrtip',
+    "buttons": ['excel', 'csv', 'pdf', 'print'],
+    "lengthMenu": [10, 25, 50, 100, 1000, 10000],
+  })
+})
+
+
+$(document).ready(function() {
+  $("#resigntable").DataTable({
+    "processing": true,
+    "serverSide": true,
+    "order": [],
+    "responsive": true,
+    "lengthChange": true,
+    "autoWidth": false,
+    "ajax": {
+      "url": "<?= base_url('resign/getDataScore') ?>",
       "type": "POST"
     },
     "columnDefs": [{

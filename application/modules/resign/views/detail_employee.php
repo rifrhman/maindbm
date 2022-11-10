@@ -7,7 +7,7 @@
         <div class="col-sm">
           <h1>Detail Karyawan</h1>
         </div>
-        <button type="button" class="btn btn-dark mr-2 btn-sm" data-toggle="modal" data-target="#infoemp">
+        <!-- <button type="button" class="btn btn-dark mr-2 btn-sm" data-toggle="modal" data-target="#infoemp">
           <i class="fas fa-fw fa-user-edit"></i> Tambah/Edit Info Karyawan
         </button>
         <button type="button" class="btn btn-dark mr-2 btn-sm" data-toggle="modal" data-target="#allow">
@@ -16,7 +16,7 @@
         <button type="button" class="btn btn-dark justify-content-end btn-sm" data-toggle="modal"
           data-target="#emergency">
           <i class="fas fa-fw fa-exclamation-triangle"></i> Tambah Kontak Darurat
-        </button>
+        </button> -->
 
       </div>
     </div><!-- /.container-fluid -->
@@ -869,7 +869,7 @@
           </div>
         </div>
 
-        <div class="col-lg mb-3 d-flex">
+        <!-- <div class="col-lg mb-3 d-flex">
           <button type="button" class="btn bg-gradient-indigo " data-toggle="modal" data-target="#ppkwt">
             <i class="fas fa-fw fa-plus-square"></i> Tambah Data Addendum
           </button>
@@ -878,7 +878,7 @@
           <button type="button" class="btn bg-gradient-maroon " data-toggle="modal" data-target="#formresign">
             <i class="fas fa-fw fa-exclamation-triangle"></i> Resign / Blacklist Karyawan
           </button>
-        </div>
+        </div> -->
 
 
 

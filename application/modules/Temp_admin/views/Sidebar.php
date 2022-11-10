@@ -62,8 +62,8 @@
         </li>
         <li class="nav-header">DATA LAINNYA</li>
         <li class="nav-item">
-          <a href="<?= base_url('remainder') ?>"
-            class="nav-link <?= $this->uri->segment(1) == 'remainder' ? 'active' : '' ?>">
+          <a href="<?= base_url('resign') ?>"
+            class="nav-link <?= $this->uri->segment(1) == 'resign' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-fw fa-user-minus"></i>
             <p>
               Karyawan Resign

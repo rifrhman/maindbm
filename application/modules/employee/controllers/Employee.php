@@ -17,11 +17,17 @@ class Employee extends CI_Controller
     $this->load->model('Employee_model', 'emp');
   }
 
+
+
+
   public function index()
   {
+    // $id = $this->uri->segment(2);
     $data['title'] = "Karyawan Aktif";
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
     $data['countNull'] = $this->emp->countJoinEmpNull();
+    $data['list'] = $this->db->get('candidate_basic')->row_array();
+    // $data['pk_add'] = $this->emp->getstat();
 
     $this->load->view('Temp_admin/header', $data);
     $this->load->view('Temp_admin/navbar', $data);
@@ -31,13 +37,11 @@ class Employee extends CI_Controller
   }
 
 
-
   public function getDataScore()
   {
-    // header('Content-Type: application/json');
-
 
     $results = $this->emp->getDataTable();
+
     $data = [];
     $no = $_POST['start'];
     foreach ($results as $result) {
@@ -47,22 +51,29 @@ class Employee extends CI_Controller
       $date2 = strtotime($dating);
       $res = ($date1 - $date2) / 60 / 60 / 24;
       $for = number_format($res, 0, '', '');
+      $que = $this->emp->editstatPkwt($result->id_candidate);
 
-      $row = array();
-      $row[] = ++$no;
-      $row[] = $result->fullname;
-      $row[] = $result->client;
-      $row[] = $result->cc;
-      $row[] = $result->position;
-      $row[] = date('Y-m-d', strtotime($result->start_of_contract));
-      $row[] = date('Y-m-d', strtotime($result->end_of_contract));
-      $row[] = $for . " Hari";
-      $row[] = '
-      <a href="' . base_url('employee/detail_contract/') . $result->id_candidate . '"
-class="badge bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info-circle"></i> Info</a>
-<a href="' . base_url('employee/detail_pkwt/') . $result->id_candidate . '"
-class="badge bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-open"></i> PKWT</a><br>';
-      $data[] = $row;
+
+      foreach ($que as $q) {
+        $row = array();
+        $row[] = ++$no;
+        $row[] = $result->fullname;
+        $row[] = $result->client;
+        $row[] = $result->cc;
+        $row[] = $result->position;
+        $row[] = date('Y-m-d', strtotime($result->start_of_contract));
+        $row[] = date('Y-m-d', strtotime($result->end_of_contract));
+        $row[] = $for . " Hari";
+        $row[] = '
+          <a href="' . base_url('employee/detail_contract/') . $result->id_candidate . '"
+    class="badge bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info-circle"></i> Info</a>
+    <a href="' . base_url('employee/detail_pkwt/') . $result->id_candidate . '"
+    class="badge bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-open"></i> PKWT</a><br>
+    <a href="' . $q['id'] . '"
+    class="badge bg-gradient-purple text-light btn-sm text-light" data-toggle="modal"
+    data-target="#updateRemainder"><i class="fas fa-fw fa-plus-circle"></i> Remainder</a><br>';
+        $data[] = $row;
+      }
     }
 
     $output = array(
@@ -91,8 +102,6 @@ class="badge bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder
     $data['pkwt'] = $this->emp->pkwtEmployee($id_candidate);
     $data['pkwt_add'] = $this->emp->addendum($id_candidate);
     $data['statPkwt'] = $this->emp->statPkwt();
-
-
 
     $this->load->view('Temp_admin/header', $data);
     $this->load->view('Temp_admin/navbar', $data);
@@ -438,6 +447,53 @@ class="badge bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder
       $this->db->update('pkwt_employee');
       $this->session->set_flashdata('msg', 'Status berhasil di update');
       redirect('employee');
+    }
+  }
+
+  public function resign_employee($id_candidate)
+  {
+    $data['title'] = "Detail Kandidat";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    $data['basic'] = $this->db->get_where('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
+    $data['res'] = $this->db->get('resign_employee')->result_array();
+
+    $validation = $this->form_validation;
+
+    $validation->set_rules('work_end_date', 'Work End Date', 'required|trim');
+    $validation->set_rules('date_resign', 'Date Resign', 'required|trim');
+    $validation->set_rules('desc_resign', 'Desc Resign', 'required|trim');
+    $validation->set_rules('resign_status', 'Status Resign', 'required|trim');
+    $validation->set_rules('flags_resign', 'Flags Resign', 'required|trim');
+
+    if ($validation->run() == false) {
+      $this->load->view('Temp_admin/header', $data);
+      $this->load->view('Temp_admin/navbar', $data);
+      $this->load->view('Temp_admin/sidebar', $data);
+      $this->load->view('detail_employee', $data);
+      $this->load->view('Temp_admin/footer');
+    } else {
+      $data = [
+        'work_end_date' => $this->input->post('work_end_date'),
+        'date_resign' => $this->input->post('date_resign'),
+        'desc_resign' => $this->input->post('desc_resign'),
+        'resign_status' => $this->input->post('resign_status'),
+        'basic_id' => $id_candidate
+      ];
+
+      $id = $this->db->insert('resign_employee', $data);
+      if ($id) {
+        $confirm_resign = $this->input->post('flags_resign');
+        $this->db->set('flags_resign', $confirm_resign);
+        $this->db->where('basic_id', $id_candidate);
+        $new_data = $this->db->update('pkwt_employee');
+        if ($new_data) {
+          $this->session->set_flashdata('msg', 'Data Resign berhasil ditambah');
+          redirect('employee/detail_contract/' . $id_candidate);
+        } else {
+          $this->session->set_flashdata('msg', 'Data Resign gagal ditambah');
+          redirect('employee/detail_contract/' . $id_candidate);
+        }
+      }
     }
   }
 }
