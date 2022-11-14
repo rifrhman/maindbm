@@ -69,9 +69,7 @@ class Employee extends CI_Controller
     class="badge bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info-circle"></i> Info</a>
     <a href="' . base_url('employee/detail_pkwt/') . $result->id_candidate . '"
     class="badge bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-open"></i> PKWT</a><br>
-    <a href="' . $q['id'] . '"
-    class="badge bg-gradient-purple text-light btn-sm text-light" data-toggle="modal"
-    data-target="#updateRemainder"><i class="fas fa-fw fa-plus-circle"></i> Remainder</a><br>';
+    <a class="badge bg-gradient-indigo text-light" href="javascript:void(0)" title="Edit" onclick="edit_person(' . "'" . $q['id'] . "'" . ')"><i class="fas fa-fw fa-plus-circle"></i> Reminder</a>';
         $data[] = $row;
       }
     }
@@ -84,6 +82,51 @@ class Employee extends CI_Controller
     );
 
     $this->output->set_output(json_encode($output));
+  }
+
+  public function ajax_edit($id)
+  {
+    $data = $this->emp->get_by_id($id);
+    // $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
+    echo json_encode($data);
+  }
+
+
+  public function ajax_update()
+  {
+    $this->_validate();
+    $data = array(
+      'desc_pkwt' => $this->input->post('desc_pkwt'),
+      'status_pkwt' => $this->input->post('status_pkwt'),
+    );
+    $this->emp->update(array('id' => $this->input->post('id')), $data);
+    echo json_encode(array("status" => TRUE));
+  }
+
+
+  private function _validate()
+  {
+    $data = array();
+    $data['error_string'] = array();
+    $data['inputerror'] = array();
+    $data['status'] = TRUE;
+
+    if ($this->input->post('desc_pkwt') == '') {
+      $data['inputerror'][] = 'desc_pkwt';
+      $data['error_string'][] = 'Description is required';
+      $data['status'] = FALSE;
+    }
+
+    if ($this->input->post('status_pkwt') == '') {
+      $data['inputerror'][] = 'status_pkwt';
+      $data['error_string'][] = 'Status is required';
+      $data['status'] = FALSE;
+    }
+
+    if ($data['status'] === FALSE) {
+      echo json_encode($data);
+      exit();
+    }
   }
 
   public function detail_contract($id_candidate)

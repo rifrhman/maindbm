@@ -104,6 +104,27 @@ class Employee_model extends CI_Model
     $this->db->order_by('candidate_basic.id_candidate', 'DESC');
     return $this->db->count_all_results();
   }
+  var $table = 'pkwt_employee';
+  public function get_by_id($id)
+  {
+    $this->db->from($this->table);
+    $this->db->where('id', $id);
+    $query = $this->db->get();
+
+    return $query->row();
+  }
+
+  public function save($data)
+  {
+    $this->db->insert($this->table, $data);
+    return $this->db->insert_id();
+  }
+
+  public function update($where, $data)
+  {
+    $this->db->update($this->table, $data, $where);
+    return $this->db->affected_rows();
+  }
 
   public function detailAll($id_candidate)
   {

@@ -111,6 +111,7 @@ $(document).ready(function() {
       "orderable": false
     }],
   })
+
 })
 
 
@@ -167,6 +168,9 @@ $(document).ready(function() {
       "target": [-1],
       "orderable": false
     }],
+    "dom": 'lBfrtip',
+    "buttons": ['excel', 'csv', 'pdf', 'print'],
+    "lengthMenu": [10, 25, 50, 100, 1000, 10000],
   });
 
   // $('#min, #max').change(function() {
@@ -176,6 +180,20 @@ $(document).ready(function() {
   $('#min, #max').on('change', function() {
     table.draw();
   });
+
+  $("input").change(function() {
+    $(this).parent().parent().removeClass('has-error');
+    $(this).next().empty();
+  });
+  $("textarea").change(function() {
+    $(this).parent().parent().removeClass('has-error');
+    $(this).next().empty();
+  });
+  $("select").change(function() {
+    $(this).parent().parent().removeClass('has-error');
+    $(this).next().empty();
+  });
+
 });
 
 $(document).ready(function() {
@@ -222,6 +240,90 @@ $(document).ready(function() {
     "lengthMenu": [10, 25, 50, 100, 1000, 10000],
   })
 })
+
+
+function edit_person(id) {
+  save_method = 'update';
+  $('#form')[0].reset(); // reset form on modals
+  $('.form-group').removeClass('has-error'); // clear error class
+  $('.help-block').empty(); // clear error string
+
+  //Ajax Load data from ajax
+  $.ajax({
+    url: "<?php echo site_url('employee/ajax_edit/') ?>/" + id,
+    type: "GET",
+    dataType: "JSON",
+    success: function(data) {
+
+      $('[name="id"]').val(data.id);
+
+      $('[name="status_pkwt"]').val(data.status_pkwt);
+      $('[name="desc_pkwt"]').val(data.desc_pkwt);
+
+      $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
+      $('.modal-title').text('Reminder'); // Set title to Bootstrap modal title
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('Error get data from ajax');
+    }
+  });
+}
+
+// function reload_table() {
+//   table.ajax.reload(null, false); //reload datatable ajax 
+// }
+
+function save() {
+  $('#btnSave').text('saving...'); //change button text
+  $('#btnSave').attr('disabled', true); //set button disable 
+  var url;
+
+  if (save_method == 'add') {
+    url = "<?php echo site_url('employee/ajax_add') ?>";
+  } else {
+    url = "<?php echo site_url('employee/ajax_update') ?>";
+  }
+
+  // ajax adding data to database
+  $.ajax({
+    url: url,
+    type: "POST",
+    data: $('#form').serialize(),
+    dataType: "JSON",
+    success: function(data) {
+
+      if (data.status) //if success close modal and reload ajax table
+      {
+        $('#modal_form').modal('hide');
+        // reload_table();
+        Swal.fire(
+          'Good job!',
+          flashData,
+          'success'
+        )
+      } else {
+        for (var i = 0; i < data.inputerror.length; i++) {
+          $('[name="' + data.inputerror[i] + '"]').parent().parent().addClass(
+            'has-error'); //select parent twice to select div form-group class and add has-error class
+          $('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[
+            i]); //select span help-block class set text error string
+        }
+      }
+      $('#btnSave').text('save'); //change button text
+      $('#btnSave').attr('disabled', false); //set button enable 
+
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('Error adding / update data');
+      $('#btnSave').text('save'); //change button text
+      $('#btnSave').attr('disabled', false); //set button enable 
+
+    }
+  });
+}
+
 
 const flashData = $('.flash-data').data('flashdata');
 if (flashData) {

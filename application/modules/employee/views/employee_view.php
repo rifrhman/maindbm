@@ -45,6 +45,8 @@
 
 
                 </div>
+                <!-- <button class="btn btn-default" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i>
+                  Reload</button> -->
 
               </div>
             </div>
@@ -86,51 +88,50 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="updateRemainder" data-backdrop="static" data-keyboard="false" tabindex="-1"
-  aria-labelledby="updateRemainderLabel" aria-hidden="true">
+
+<!-- Bootstrap modal -->
+<div class="modal fade" id="modal_form" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="updateRemainderLabel">Form updateStatus <?= $list['fullname'] ?>
-        </h5>
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h3 class="modal-title"></h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
       </div>
+      <div class="modal-body form">
+        <form action="#" id="form" class="form-horizontal">
+          <input type="hidden" value="" name="id" />
+          <div class="form-body">
 
-      <form action="<?= base_url('employee/update_status_file/')  ?>" method="POST">
-        <div class="modal-body">
-          <div class="card-body">
-            <input type="hidden" name="id" id="id" value="id">
             <div class="form-group">
-              <label for="status_pkwt">Status Berkas</label>
-
-              <select id="inputState" name="status_pkwt" class="form-control">
-                <option selected="selected" value="">
-                  <?= $pk_add['status_pkwt'] ?>
-                </option>
-                <option value="Belum Dibalas">Belum Dibalas</option>
-                <option value="Belum Dibuat">Belum Dibuat</option>
-                <option value="Belum Kembali">Belum Kembali</option>
-                <option value="Selesai">Selesai</option>
-
-              </select>
-              <?= form_error('status_pkwt', '<small class="text-danger pl-2">', '</small>') ?>
-
+              <label class="control-label col-md-3">Status PKWT</label>
+              <div class="col-md">
+                <select name="status_pkwt" class="form-control">
+                  <option value="">--Select Status--</option>
+                  <option value="Belum Dibalas">Belum Dibalas</option>
+                  <option value="Belum Dibuat">Belum Dibuat</option>
+                  <option value="Belum Kembali">Belum Kembali</option>
+                  <option value="Selesai">Selesai</option>
+                </select>
+                <span class="help-block"></span>
+              </div>
             </div>
-
-
+            <div class="form-group">
+              <label class="control-label col-md-3">Description</label>
+              <div class="col-md">
+                <textarea name="desc_pkwt" placeholder="Description" class="form-control"></textarea>
+                <span class="help-block"></span>
+              </div>
+            </div>
           </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 
-        </div>
-        <div class="modal-footer">
-          <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-      </form>
-
-    </div>
-  </div>
-</div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- End Bootstrap modal -->
