@@ -23,6 +23,8 @@ class Admin extends CI_Controller
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
     $data['countjoin'] = $this->amod->countJoinEmp();
     $data['countemp'] = $this->amod->countEmpActive();
+    $data['countempresign'] = $this->amod->countResign();
+    $data['countempblacklist'] = $this->amod->countBlacklist();
     $this->load->view('Temp_admin/header', $data);
     $this->load->view('Temp_admin/navbar', $data);
     $this->load->view('Temp_admin/sidebar', $data);

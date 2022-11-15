@@ -100,8 +100,32 @@
       </div>
       <div class="modal-body form">
         <form action="#" id="form" class="form-horizontal">
+          <input type="hidden" value="" name="basic_id" />
           <input type="hidden" value="" name="id" />
           <div class="form-body">
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nomor PKWT</label>
+              <input type="text" class="form-control" name="pkwt_number" value="">
+
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Tanggal PKWT</label>
+              <input type="date" class="form-control" name="date_pkwt" value="">
+
+            </div>
+            <div class="row">
+              <div class="col form-group">
+                <label for="exampleInputEmail1">Tanggal Kontrak Awal PKWT</label>
+                <input type="date" class="form-control" name="start_of_contract" value="">
+
+              </div>
+              <div class="col form-group">
+                <label for="exampleInputEmail1">Tanggal Kontrak Akhir PKWT</label>
+                <input type="date" class="form-control" name="end_of_contract" value="">
+
+              </div>
+            </div>
 
             <div class="form-group">
               <label class="control-label col-md-3">Status PKWT</label>

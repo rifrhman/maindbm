@@ -240,7 +240,63 @@ $(document).ready(function() {
     "lengthMenu": [10, 25, 50, 100, 1000, 10000],
   })
 })
+$(document).ready(function() {
+  $("#blacklist_karyawan").DataTable({
+    "processing": true,
+    "serverSide": true,
+    "order": [],
+    "responsive": true,
+    "lengthChange": true,
+    "autoWidth": false,
+    "ajax": {
+      "url": "<?= base_url('blacklist/getDataScore') ?>",
+      "type": "POST"
+    },
+    "columnDefs": [{
+      "target": [-1],
+      "orderable": false
+    }],
+    "dom": 'lBfrtip',
+    "buttons": ['excel', 'csv', 'pdf', 'print'],
+    "lengthMenu": [10, 25, 50, 100, 1000, 10000],
+  })
+})
 
+function add_person(basic_id) {
+  save_method = 'add';
+  $('#form')[0].reset(); // reset form on modals
+  $('.form-group').removeClass('has-error'); // clear error class
+  $('.help-block').empty(); // clear error string
+  // $('#modal_form').modal('show'); // show bootstrap modal
+  // $('.modal-title').text('Add PKWT'); // Set Title to Bootstrap modal title
+
+  //Ajax Load data from ajax
+  $.ajax({
+    url: "<?php echo site_url('employee/ajax_add_id/') ?>" + basic_id,
+    type: "GET",
+    dataType: "JSON",
+    success: function(data) {
+
+
+      $('[name="id"]').val();
+      $('[name="basic_id"]').val(data.basic_id);
+      $('[name="pkwt_number"]').val();
+      $('[name="date_pkwt"]').val();
+      $('[name="start_of_contract"]').val();
+      $('[name="end_of_contract"]').val();
+      $('[name="desc_pkwt"]').val();
+      $('[name="status_pkwt"]').val();
+
+      $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
+      $('.modal-title').text('Add PKWT'); // Set title to Bootstrap modal title
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('Error get data from ajax');
+    }
+  });
+
+}
 
 function edit_person(id) {
   save_method = 'update';
@@ -256,7 +312,10 @@ function edit_person(id) {
     success: function(data) {
 
       $('[name="id"]').val(data.id);
-
+      $('[name="pkwt_number"]').val(data.pkwt_number);
+      $('[name="date_pkwt"]').val(data.date_pkwt);
+      $('[name="start_of_contract"]').val(data.start_of_contract);
+      $('[name="end_of_contract"]').val(data.end_of_contract);
       $('[name="status_pkwt"]').val(data.status_pkwt);
       $('[name="desc_pkwt"]').val(data.desc_pkwt);
 
@@ -284,6 +343,7 @@ function save() {
   } else {
     url = "<?php echo site_url('employee/ajax_update') ?>";
   }
+
 
   // ajax adding data to database
   $.ajax({

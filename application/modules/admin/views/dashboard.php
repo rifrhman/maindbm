@@ -18,7 +18,7 @@
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
+          <div class="info-box dark-mode">
             <span class="info-box-icon bg-gradient-olive elevation-1"><i class="fas fa-user-check"></i></span>
 
             <a href="<?= base_url('contract') ?>">
@@ -53,16 +53,16 @@
         </div>
         <!-- ./col -->
         <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
+          <div class="info-box dark-mode">
             <span class="info-box-icon bg-gradient-info elevation-1"><i class="fas fa-user-times"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Karyawan Resign</span>
-              <span class="info-box-number">
-                10
-                <small>%</small>
-              </span>
-            </div>
+            <a href="<?= base_url('resign') ?>">
+              <div class="info-box-content">
+                <span class="info-box-text text-dark font-weight-bold">Karyawan Resign</span>
+                <span class="info-box-number">
+                  <?= $countempresign; ?>
+                </span>
+              </div>
+            </a>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
@@ -71,14 +71,14 @@
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box">
             <span class="info-box-icon bg-gradient-maroon elevation-1"><i class="fas fa-user-alt-slash"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Karyawan Blacklist</span>
-              <span class="info-box-number">
-                10
-                <small>%</small>
-              </span>
-            </div>
+            <a href="<?= base_url('blacklist') ?>">
+              <div class="info-box-content">
+                <span class="info-box-text text-dark font-weight-bold">Karyawan Blacklist</span>
+                <span class="info-box-number">
+                  <?= $countempblacklist; ?>
+                </span>
+              </div>
+            </a>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->

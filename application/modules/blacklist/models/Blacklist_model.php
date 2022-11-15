@@ -1,43 +1,41 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Employee_model extends CI_Model
+class Blacklist_model extends CI_Model
 {
-
-  public function countJoinEmpNull()
-  {
-    $query = "SELECT DISTINCT send_candidate.id, send_candidate.basic_id, pkwt_employee.id, pkwt_employee.basic_id, pkwt_employee.flags_resign 
-    FROM send_candidate LEFT JOIN pkwt_employee ON send_candidate.basic_id = pkwt_employee.basic_id WHERE send_candidate.confirm = 'Approved' AND `send_candidate`.`confirm_admin` 
-    IS NOT NULL AND pkwt_employee.flags_resign IS NULL GROUP BY pkwt_employee.basic_id";
-    return $this->db->query($query)->num_rows();
-  }
   public function queryNew()
   {
     $this->db->select('*');
     $this->db->from('candidate_basic');
     $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
-    $this->db->join('basic_admin', 'basic_admin.basic_id = candidate_basic.id_candidate', 'left');
-    $this->db->join('pkwt_employee', 'pkwt_employee.basic_id = candidate_basic.id_candidate');
-    $this->db->where('send_candidate.confirm IS NOT NULL AND send_candidate.confirm_admin IS NOT NULL');
-    $this->db->where('pkwt_employee.flags_resign IS NULL');
-    // $this->db->group_by('pkwt_employee.end_of_contract');
+    // $this->db->join('basic_admin', 'basic_admin.basic_id = candidate_basic.id_candidate', 'left');
+    $this->db->join('pkwt_employee', 'pkwt_employee.basic_id = candidate_basic.id_candidate', 'left');
+    $this->db->join('resign_employee', 'resign_employee.basic_id = candidate_basic.id_candidate');
+
+    // $this->db->where('send_candidate.confirm IS NOT NULL AND send_candidate.confirm_admin IS NOT NULL');
+    $this->db->where('pkwt_employee.flags_resign = "Blacklist"');
+    // // $this->db->group_by('pkwt_employee.end_of_contract');
     $this->db->group_by('candidate_basic.fullname');
-    $this->db->select_max('pkwt_employee.end_of_contract');
+    // $this->db->select_max('pkwt_employee.end_of_contract');
     $this->db->order_by('pkwt_employee.id', 'DESC');
+
+    // $query = "SELECT * FROM candidate_basic RIGHT JOIN pkwt_employee ON candidate_basic.id_candidate = pkwt_employee.basic_id LEFT JOIN resign_employee ON pkwt_employee.basic_id = resign_employee.basic_id WHERE pkwt_employee.flags_resign IS NOT NULL GROUP BY candidate_basic.fullname";
+    // return $this->db->query($query)->result_array();
   }
 
+
   // var $table = 'candidate_basic';
-  var $column_order = array(null, 'fullname', 'client', 'cc', 'position',  'start_date', 'end_of_contract');
-  var $column_search = array('fullname', 'client', 'cc', 'position', 'start_date', 'end_of_contract');
+  var $column_order = array(null, 'fullname', 'client', 'date_resign', 'desc_resign', 'resign_status');
+  var $column_search = array('fullname', 'client', 'date_resign', 'desc_resign', 'resign_status');
   var $order = array('id_candidate' => 'desc');
 
   private function _get_data_query()
   {
     // $qu = "SELECT DISTINCT `basic_id` FROM `pkwt_employee`";
-    if ($this->input->post('min')) {
-      $this->db->where('end_of_contract >=', $this->input->post('min'));
-      $this->db->where('end_of_contract <=', $this->input->post('max'));
-    }
+    // if ($this->input->post('min')) {
+    //   $this->db->where('end_of_contract >=', $this->input->post('min'));
+    //   $this->db->where('end_of_contract <=', $this->input->post('max'));
+    // }
     $this->queryNew();
 
     $i = 0;
@@ -69,14 +67,6 @@ class Employee_model extends CI_Model
 
   public function getDataTable()
   {
-    // var_dump($first, $last);
-    // die;
-
-    // $first = strtotime($first);
-    // $lastly = strtotime($last);
-
-
-
 
     $this->_get_data_query();
 
@@ -105,38 +95,6 @@ class Employee_model extends CI_Model
     $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
     $this->db->order_by('candidate_basic.id_candidate', 'DESC');
     return $this->db->count_all_results();
-  }
-  var $table = 'pkwt_employee';
-
-  public function get_by_id($id)
-  {
-    $this->db->from($this->table);
-    $this->db->where('id', $id);
-    $query = $this->db->get();
-
-    return $query->row();
-  }
-  public function get_by_basic_id($basic_id)
-  {
-    $this->db->select('*');
-    $this->db->from('candidate_basic');
-    $this->db->join('pkwt_employee', 'pkwt_employee.basic_id = candidate_basic.id_candidate', 'left');
-    $this->db->where('id_candidate', $basic_id);
-    $query = $this->db->get();
-
-    return $query->row();
-  }
-
-  public function save($where, $data)
-  {
-    $this->db->insert($this->table, $data, $where);
-    // return $this->db->insert_id();
-  }
-
-  public function update($where, $data)
-  {
-    $this->db->update($this->table, $data, $where);
-    return $this->db->affected_rows();
   }
 
   public function detailAll($id_candidate)
@@ -179,15 +137,6 @@ class Employee_model extends CI_Model
     ";
     return $this->db->query($query)->result_array();
   }
-
-  public function getAllBasicAdmin($id_candidate)
-  {
-    $query = "SELECT `candidate_basic`.*, `basic_admin`.* FROM `candidate_basic` 
-    JOIN `basic_admin` ON `candidate_basic`.id_candidate = `basic_admin`.`basic_id`
-    WHERE `basic_admin`.`id_canidate` = $id_candidate";
-    return $this->db->query($query)->row_array();
-  }
-
   public function adminQuery($id_candidate)
   {
     $query = "SELECT * FROM `basic_admin` WHERE `basic_id` = $id_candidate";
@@ -225,22 +174,6 @@ class Employee_model extends CI_Model
   public function statPkwt()
   {
     $query = "SELECT * FROM `pkwt_employee` WHERE `id` = `id`";
-    return $this->db->query($query)->row_array();
-  }
-  public function editstatPkwt($id_candidate)
-  {
-    $query = "SELECT * FROM `pkwt_employee` WHERE basic_id = $id_candidate ORDER BY id DESC LIMIT 1";
-    return $this->db->query($query)->result_array();
-  }
-
-  public function getstat($id)
-  {
-    $query = "SELECT * FROM `pkwt_employee` WHERE id = $id ORDER BY id DESC LIMIT 1";
-    return $this->db->query($query)->result_array();
-  }
-  public function getRes()
-  {
-    $query = "SELECT * FROM pkwt_employee WHERE flags_resign IS NOT NULL";
     return $this->db->query($query)->row_array();
   }
 }

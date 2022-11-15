@@ -69,7 +69,8 @@ class Employee extends CI_Controller
     class="badge bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info-circle"></i> Info</a>
     <a href="' . base_url('employee/detail_pkwt/') . $result->id_candidate . '"
     class="badge bg-gradient-danger btn-sm text-light"><i class="fas fa-fw fa-folder-open"></i> PKWT</a><br>
-    <a class="badge bg-gradient-indigo text-light" href="javascript:void(0)" title="Edit" onclick="edit_person(' . "'" . $q['id'] . "'" . ')"><i class="fas fa-fw fa-plus-circle"></i> Reminder</a>';
+    <a class="badge bg-gradient-indigo text-light" href="javascript:void(0)" title="Edit" onclick="edit_person(' . "'" . $q['id'] . "'" . ')"><i class="fas fa-fw fa-plus-circle"></i> Update Reminder</a>
+    <a class="badge bg-gradient-gray text-light" href="javascript:void(0)" title="Add" onclick="add_person(' . "'" . $result->id_candidate . "'" . ')"><i class="fas fa-fw fa-plus-circle"></i> Addendum</a>';
         $data[] = $row;
       }
     }
@@ -84,9 +85,34 @@ class Employee extends CI_Controller
     $this->output->set_output(json_encode($output));
   }
 
+  public function ajax_add()
+  {
+    $this->_validate();
+    $data = array(
+      'id' => $this->input->post('id'),
+      'basic_id' => $this->input->post('basic_id'),
+      'pkwt_number' => $this->input->post('pkwt_number'),
+      'date_pkwt' => $this->input->post('date_pkwt'),
+      'start_of_contract' => $this->input->post('start_of_contract'),
+      'end_of_contract' => $this->input->post('end_of_contract'),
+      'desc_pkwt' => $this->input->post('desc_pkwt'),
+      'status_pkwt' => $this->input->post('status_pkwt'),
+    );
+    $this->emp->save(array('basic_id' => $this->input->post('basic_id')), $data);
+    echo json_encode(array("status" => TRUE));
+  }
+
+
   public function ajax_edit($id)
   {
     $data = $this->emp->get_by_id($id);
+    // $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
+    echo json_encode($data);
+  }
+
+  public function ajax_add_id($basic_id)
+  {
+    $data = $this->emp->get_by_basic_id($basic_id);
     // $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
     echo json_encode($data);
   }

@@ -71,8 +71,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="<?= base_url('remainder') ?>"
-            class="nav-link <?= $this->uri->segment(1) == 'remainder' ? 'active' : '' ?>">
+          <a href="<?= base_url('blacklist') ?>"
+            class="nav-link <?= $this->uri->segment(1) == 'blacklist' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-fw fa-user-times"></i>
             <p>
               Karyawan BlackList

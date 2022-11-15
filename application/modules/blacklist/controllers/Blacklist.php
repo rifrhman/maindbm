@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Resign extends CI_Controller
+class Blacklist extends CI_Controller
 {
 
   public function __construct()
@@ -13,19 +13,19 @@ class Resign extends CI_Controller
     if ($this->session->userdata('level_id') != 1) {
       show_404();
     }
-    $this->load->model('resign_model', 'res');
+    $this->load->model('blacklist_model', 'res');
   }
 
   public function index()
   {
-    $data['title'] = "Karyawan Resign";
+    $data['title'] = "Karyawan Blacklist";
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
     $data['list'] = $this->db->get('candidate_basic')->row_array();
 
     $this->load->view('Temp_admin/header', $data);
     $this->load->view('Temp_admin/navbar', $data);
     $this->load->view('Temp_admin/sidebar', $data);
-    $this->load->view('resign_view', $data);
+    $this->load->view('blacklist_view', $data);
     $this->load->view('Temp_admin/footer');
   }
 
@@ -37,15 +37,6 @@ class Resign extends CI_Controller
     $data = [];
     $no = $_POST['start'];
     foreach ($results as $result) {
-      // $date1 = strtotime($result->end_of_contract);
-
-      // $dating = date("Y-m-d");
-      // $date2 = strtotime($dating);
-      // $res = ($date1 - $date2) / 60 / 60 / 24;
-      // $for = number_format($res, 0, '', '');
-      // $que = $this->emp->editstatPkwt($result->id_candidate);
-
-
 
       $row = array();
       $row[] = ++$no;
@@ -55,7 +46,7 @@ class Resign extends CI_Controller
       $row[] = $result->desc_resign;
       $row[] = $result->resign_status;
       $row[] = '
-          <a href="' . base_url('resign/detail_resign/') . $result->id_candidate . '"
+          <a href="' . base_url('blacklist/detail_blacklist/') . $result->id_candidate . '"
     class="badge bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info-circle"></i> Info</a>';
       $data[] = $row;
     }
@@ -70,7 +61,8 @@ class Resign extends CI_Controller
     $this->output->set_output(json_encode($output));
   }
 
-  public function detail_resign($id_candidate)
+
+  public function detail_blacklist($id_candidate)
   {
     $data['title'] = "Detail Karyawan";
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
@@ -90,7 +82,7 @@ class Resign extends CI_Controller
     $this->load->view('Temp_admin/header', $data);
     $this->load->view('Temp_admin/navbar', $data);
     $this->load->view('Temp_admin/sidebar', $data);
-    $this->load->view('detail_employee', $data);
+    $this->load->view('detail_employee_blacklist', $data);
     $this->load->view('Temp_admin/footer');
   }
 }
