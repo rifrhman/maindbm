@@ -1246,7 +1246,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('contract/addBankData/') . $list['id_candidate'] ?>" method="POST">
+      <form action="<?= base_url('employee/addBankData/') . $list['id_candidate'] ?>" method="POST">
         <div class="modal-body">
           <div class="card-body">
             <input type="hidden" name="basic_id" id="basic_id" value="<?= $list['id_candidate'] ?>">

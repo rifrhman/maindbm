@@ -50,6 +50,7 @@ class Resign extends CI_Controller
       $row = array();
       $row[] = ++$no;
       $row[] = $result->fullname;
+      $row[] = $result->branch_company;
       $row[] = $result->client;
       $row[] = date('Y-m-d', strtotime($result->date_resign));
       $row[] = $result->desc_resign;

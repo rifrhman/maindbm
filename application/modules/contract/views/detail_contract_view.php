@@ -184,7 +184,7 @@
                   <div class="col form-group">
                     <?php if (isset($basicadmin['id_emp']) == null) : ?>
                     <label for="exampleInputEmail1">Id Karyawan</label>
-                    <input type="text" class="form-control" name="id_emp" value="" readonly>
+                    <input type="text" class="form-control" name="id_emp" readonly>
                     <?= form_error('id_emp', '<small class="text-danger">', '</small>') ?>
                     <?php elseif (isset($basicadmin['id_emp']) != null) : ?>
                     <label for="exampleInputEmail1">Id Karyawan</label>
@@ -195,7 +195,7 @@
                   <div class="col form-group">
                     <?php if (isset($basicadmin['id_privy']) == null) : ?>
                     <label for="exampleInputEmail1">Id Privy</label>
-                    <input type="text" class="form-control" name="id_privy" value="" readonly>
+                    <input type="text" class="form-control" name="id_privy" readonly>
                     <?= form_error('id_privy', '<small class="text-danger">', '</small>') ?>
                     <?php else : ?>
                     <label for="exampleInputEmail1">Id Privy</label>
@@ -997,10 +997,10 @@
             <div class="row">
               <div class="col form-group">
                 <?php if (isset($basicadmin['id_emp']) == null) : ?>
-                <label for="exampleInputEmail1">Id Karyawan</label>
-                <input type="text" class="form-control" name="id_emp" value="">
+                <label for="id_karyawan">Id Karyawan</label>
+                <input type="text" class="form-control" name="id_emp">
                 <?= form_error('id_emp', '<small class="text-danger">', '</small>') ?>
-                <?php elseif (isset($basicadmin['id_emp']) != null) : ?>
+                <?php else : ?>
                 <label for="exampleInputEmail1">Id Karyawan</label>
                 <input type="text" class="form-control" name="id_emp" value="<?= $basicadmin['id_emp'] ?>">
                 <?= form_error('id_emp', '<small class="text-danger">', '</small>') ?>
@@ -1009,7 +1009,7 @@
               <div class="col form-group">
                 <?php if (isset($basicadmin['id_privy']) == null) : ?>
                 <label for="exampleInputEmail1">Id Privy</label>
-                <input type="text" class="form-control" name="id_privy" value="">
+                <input type="text" class="form-control" name="id_privy">
                 <?= form_error('id_privy', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">Id Privy</label>
@@ -1021,7 +1021,7 @@
             <div class="form-group">
               <?php if (isset($basicadmin['cc']) == null) : ?>
               <label for="exampleInputEmail1">CC</label>
-              <input type="text" class="form-control" name="cc" value="">
+              <input type="text" class="form-control" name="cc">
               <?= form_error('cc', '<small class="text-danger">', '</small>') ?>
               <?php else : ?>
               <label for="exampleInputEmail1">CC</label>
@@ -1032,7 +1032,7 @@
             <div class="form-group">
               <?php if (isset($basicadmin['branch_company']) == null) : ?>
               <label for="exampleInputEmail1">Kanrep</label>
-              <input type="text" class="form-control" name="branch_company" value="">
+              <input type="text" class="form-control" name="branch_company">
               <?= form_error('branch_company', '<small class="text-danger">', '</small>') ?>
               <?php else : ?>
               <label for="exampleInputEmail1">Kanrep</label>
@@ -1045,7 +1045,7 @@
               <div class="col form-group">
                 <?php if (isset($basicadmin['payroll_one']) == null) : ?>
                 <label for="exampleInputEmail1">Payroll 1</label>
-                <input type="text" class="form-control" name="payroll_one" value="">
+                <input type="text" class="form-control" name="payroll_one">
                 <?= form_error('payroll_one', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">Payroll 1</label>
@@ -1056,7 +1056,7 @@
               <div class="col form-group">
                 <?php if (isset($basicadmin['payroll_two']) == null) : ?>
                 <label for="exampleInputEmail1">Payroll 2</label>
-                <input type="text" class="form-control" name="payroll_two" value="">
+                <input type="text" class="form-control" name="payroll_two">
                 <?= form_error('payroll_two', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">Payroll 2</label>
@@ -1069,7 +1069,7 @@
               <div class="col form-group">
                 <?php if (isset($basicadmin['address_ktp']) == null) : ?>
                 <label for="exampleInputEmail1">Alamat KTP</label>
-                <input type="text" class="form-control" name="address_ktp" value="">
+                <input type="text" class="form-control" name="address_ktp">
                 <?= form_error('address_ktp', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">Alamat KTP</label>
@@ -1080,7 +1080,7 @@
               <div class="col form-group">
                 <?php if (isset($basicadmin['postal_code_ktp']) == null) : ?>
                 <label for="exampleInputEmail1">Kode Pos KTP</label>
-                <input type="text" class="form-control" name="postal_code_ktp" value="">
+                <input type="text" class="form-control" name="postal_code_ktp">
                 <?= form_error('postal_code_ktp', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">Kode Pos KTP</label>
@@ -1094,7 +1094,7 @@
               <div class="col form-group">
                 <?php if (isset($basicadmin['no_kk']) == null) : ?>
                 <label for="exampleInputEmail1">No Kartu Keluarga</label>
-                <input type="text" class="form-control" name="no_kk" value="">
+                <input type="text" class="form-control" name="no_kk">
                 <?= form_error('no_kk', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">No Kartu Keluarga</label>
@@ -1105,7 +1105,7 @@
               <div class="col form-group">
                 <?php if (isset($basicadmin['blood_type']) == null) : ?>
                 <label for="exampleInputEmail1">Golongan Darah</label>
-                <input type="text" class="form-control" name="blood_type" value="">
+                <input type="text" class="form-control" name="blood_type">
                 <?= form_error('blood_type', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">Golongan Darah</label>
@@ -1119,7 +1119,7 @@
               <div class="col form-group">
                 <?php if (isset($basicadmin['status_company']) == null) : ?>
                 <label for="exampleInputEmail1">Status (M+ / MTA)</label>
-                <input type="text" class="form-control" name="status_company" value="">
+                <input type="text" class="form-control" name="status_company">
                 <?= form_error('status_company', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">Status (M+ / MTA)</label>
@@ -1131,7 +1131,7 @@
               <div class="col form-group">
                 <?php if (isset($basicadmin['surrogate_status']) == null) : ?>
                 <label for="exampleInputEmail1">Status Pengganti</label>
-                <input type="text" class="form-control" name="surrogate_status" value="">
+                <input type="text" class="form-control" name="surrogate_status">
                 <?= form_error('surrogate_status', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">Status Pengganti</label>
@@ -1144,7 +1144,7 @@
             <div class="form-group">
               <?php if (isset($basicadmin['type_recruitment']) == null) : ?>
               <label for="exampleInputEmail1">Jenis Rekrutment</label>
-              <input type="text" class="form-control" name="type_recruitment" value="">
+              <input type="text" class="form-control" name="type_recruitment">
               <?= form_error('type_recruitment', '<small class="text-danger">', '</small>') ?>
               <?php else : ?>
               <label for="exampleInputEmail1">Jenis Rekrutment</label>
@@ -1184,7 +1184,7 @@
               <div class="col form-group">
                 <?php if (isset($secondadmin['allowance_premium']) == null) { ?>
                 <label for="exampleInputEmail1">Tunjangan Premium</label>
-                <input type="text" class="form-control" name="allowance_premium" value="">
+                <input type="text" class="form-control" name="allowance_premium">
                 <?= form_error('allowance_premium', '<small class="text-danger">', '</small>') ?>
                 <?php } else { ?>
                 <label for="exampleInputEmail1">Tunjangan Premium</label>
@@ -1196,7 +1196,7 @@
               <div class="col form-group">
                 <?php if (isset($secondadmin['allowance_others']) == null) : ?>
                 <label for="exampleInputEmail1">Tunjangan Lain</label>
-                <input type="text" class="form-control" name="allowance_others" value="">
+                <input type="text" class="form-control" name="allowance_others">
                 <?= form_error('allowance_others', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">Tunjangan Lain</label>
@@ -1211,7 +1211,7 @@
               <div class="col form-group">
                 <?php if (isset($secondadmin['placement_city']) == null) : ?>
                 <label for="exampleInputEmail1">Kota Penempatan</label>
-                <input type="text" class="form-control" name="placement_city" value="">
+                <input type="text" class="form-control" name="placement_city">
                 <?= form_error('placement_city', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">Kota Penempatan</label>
@@ -1223,7 +1223,7 @@
               <div class="col form-group">
                 <?php if (isset($secondadmin['placement_district']) == null) : ?>
                 <label for="exampleInputEmail1">Kabupaten Penempatan</label>
-                <input type="text" class="form-control" name="placement_district" value="">
+                <input type="text" class="form-control" name="placement_district">
                 <?= form_error('placement_district', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">Kabupaten Penempatan</label>
@@ -1238,7 +1238,7 @@
               <div class="col form-group">
                 <?php if (isset($secondadmin['type_bank']) == null) : ?>
                 <label for="exampleInputEmail1">BANK</label>
-                <input type="text" class="form-control" name="type_bank" value="">
+                <input type="text" class="form-control" name="type_bank">
                 <?= form_error('type_bank', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">BANK</label>
@@ -1249,7 +1249,7 @@
               <div class="col form-group">
                 <?php if (isset($secondadmin['account_number']) == null) : ?>
                 <label for="exampleInputEmail1">No. Rekening</label>
-                <input type="text" class="form-control" name="account_number" value="">
+                <input type="text" class="form-control" name="account_number">
                 <?= form_error('account_number', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">No. Rekening</label>
@@ -1264,7 +1264,7 @@
             <div class="form-group">
               <?php if (isset($secondadmin['name_of_bank']) == null) : ?>
               <label for="exampleInputEmail1">Bank Atas Nama</label>
-              <input type="text" class="form-control" name="name_of_bank" value="">
+              <input type="text" class="form-control" name="name_of_bank">
               <?= form_error('name_of_bank', '<small class="text-danger">', '</small>') ?>
               <?php else : ?>
               <label for="exampleInputEmail1">Bank Atas Nama</label>
@@ -1277,7 +1277,7 @@
               <div class="col form-group">
                 <?php if (isset($secondadmin['bpjs_tk']) == null) : ?>
                 <label for="exampleInputEmail1">BPJS Ketenagakerjaan</label>
-                <input type="text" class="form-control" name="bpjs_tk" value="">
+                <input type="text" class="form-control" name="bpjs_tk">
                 <?= form_error('bpjs_tk', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">BPJS Ketenagakerjaan</label>
@@ -1288,7 +1288,7 @@
               <div class="col form-group">
                 <?php if (isset($secondadmin['bpjs_ks']) == null) : ?>
                 <label for="exampleInputEmail1">BPJS Kesehatan</label>
-                <input type="text" class="form-control" name="bpjs_ks" value="">
+                <input type="text" class="form-control" name="bpjs_ks">
                 <?= form_error('bpjs_ks', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
                 <label for="exampleInputEmail1">BPJS Kesehatan</label>
@@ -1301,7 +1301,7 @@
             <div class="form-group">
               <?php if (isset($secondadmin['npwp']) == null) : ?>
               <label for="exampleInputEmail1">NPWP</label>
-              <input type="text" class="form-control" name="npwp" value="">
+              <input type="text" class="form-control" name="npwp">
               <?= form_error('npwp', '<small class="text-danger">', '</small>') ?>
               <?php else : ?>
               <label for="exampleInputEmail1">NPWP</label>
@@ -1339,17 +1339,17 @@
 
             <div class="form-group">
               <label for="exampleInputEmail1">Nama Kontak Darurat</label>
-              <input type="text" class="form-control" name="name_emergency" value="">
+              <input type="text" class="form-control" name="name_emergency">
               <?= form_error('name_emergency', '<small class="text-danger">', '</small>') ?>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">No. Handphone Darurat</label>
-              <input type="text" class="form-control" name="phone_emergency" value="">
+              <input type="text" class="form-control" name="phone_emergency">
               <?= form_error('phone_emergency', '<small class="text-danger">', '</small>') ?>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Hubungan Kontak Darurat</label>
-              <input type="text" class="form-control" name="relation_emergency" value="">
+              <input type="text" class="form-control" name="relation_emergency">
               <?= form_error('relation_emergency', '<small class="text-danger">', '</small>') ?>
             </div>
           </div>
@@ -1385,23 +1385,23 @@
 
             <div class="form-group">
               <label for="exampleInputEmail1">Nomor PKWT</label>
-              <input type="text" class="form-control" name="pkwt_number" value="">
+              <input type="text" class="form-control" name="pkwt_number">
               <?= form_error('pkwt_number', '<small class="text-danger">', '</small>') ?>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Tanggal PKWT</label>
-              <input type="date" class="form-control" name="date_pkwt" value="">
+              <input type="date" class="form-control" name="date_pkwt">
               <?= form_error('date_pkwt', '<small class="text-danger">', '</small>') ?>
             </div>
             <div class="row">
               <div class="col form-group">
                 <label for="exampleInputEmail1">Tanggal Kontrak Awal PKWT</label>
-                <input type="date" class="form-control" name="start_of_contract" value="">
+                <input type="date" class="form-control" name="start_of_contract">
                 <?= form_error('start_of_contract', '<small class="text-danger">', '</small>') ?>
               </div>
               <div class="col form-group">
                 <label for="exampleInputEmail1">Tanggal Kontrak Akhir PKWT</label>
-                <input type="date" class="form-control" name="end_of_contract" value="">
+                <input type="date" class="form-control" name="end_of_contract">
                 <?= form_error('end_of_contract', '<small class="text-danger">', '</small>') ?>
               </div>
             </div>

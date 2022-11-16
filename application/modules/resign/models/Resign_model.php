@@ -9,7 +9,7 @@ class Resign_model extends CI_Model
     $this->db->select('*');
     $this->db->from('candidate_basic');
     $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
-    // $this->db->join('basic_admin', 'basic_admin.basic_id = candidate_basic.id_candidate', 'left');
+    $this->db->join('basic_admin', 'basic_admin.basic_id = candidate_basic.id_candidate', 'left');
     $this->db->join('pkwt_employee', 'pkwt_employee.basic_id = candidate_basic.id_candidate', 'left');
     $this->db->join('resign_employee', 'resign_employee.basic_id = candidate_basic.id_candidate');
 
@@ -25,8 +25,8 @@ class Resign_model extends CI_Model
   }
 
   // var $table = 'candidate_basic';
-  var $column_order = array(null, 'fullname', 'client', 'date_resign', 'desc_resign', 'resign_status');
-  var $column_search = array('fullname', 'client', 'date_resign', 'desc_resign', 'resign_status');
+  var $column_order = array(null, 'fullname', 'branch_company', 'client', 'date_resign', 'desc_resign', 'resign_status');
+  var $column_search = array('fullname', 'branch_company', 'client', 'date_resign', 'desc_resign', 'resign_status');
   var $order = array('id_candidate' => 'desc');
 
   private function _get_data_query()

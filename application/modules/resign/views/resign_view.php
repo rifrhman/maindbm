@@ -34,6 +34,7 @@
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
+                    <th>Kanrep</th>
                     <th>Klien</th>
                     <th>Tanggal Resign</th>
                     <th>Keterangan</th>

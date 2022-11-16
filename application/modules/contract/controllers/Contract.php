@@ -202,19 +202,19 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
 
     $validation = $this->form_validation;
 
-    $validation->set_rules('id_emp', 'Id Karyawan', 'required|trim');
-    $validation->set_rules('id_privy', 'Id Privy', 'required|trim');
-    $validation->set_rules('cc', 'cc', 'required|trim');
-    $validation->set_rules('branch_company', 'Branch Company', 'required|trim');
-    $validation->set_rules('payroll_one', 'payroll_one', 'required|trim');
-    $validation->set_rules('payroll_two', 'payroll_two', 'required|trim');
-    $validation->set_rules('blood_type', 'blood_type', 'required|trim');
-    $validation->set_rules('address_ktp', 'address_ktp', 'required|trim');
-    $validation->set_rules('postal_code_ktp', 'postal_code_ktp', 'required|trim');
-    $validation->set_rules('no_kk', 'no_kk', 'required|trim');
-    $validation->set_rules('status_company', 'status_company', 'required|trim');
-    $validation->set_rules('surrogate_status', 'surrogate_status', 'required|trim');
-    $validation->set_rules('type_recruitment', 'type_recruitment', 'required|trim');
+    $validation->set_rules('id_emp', 'Id Karyawan', 'required');
+    $validation->set_rules('id_privy', 'Id Privy', 'required');
+    $validation->set_rules('cc', 'cc', 'required');
+    $validation->set_rules('branch_company', 'Branch Company', 'required');
+    $validation->set_rules('payroll_one', 'payroll_one', 'required');
+    $validation->set_rules('payroll_two', 'payroll_two', 'required');
+    $validation->set_rules('blood_type', 'blood_type', 'required');
+    $validation->set_rules('address_ktp', 'address_ktp', 'required');
+    $validation->set_rules('postal_code_ktp', 'postal_code_ktp', 'required');
+    $validation->set_rules('no_kk', 'no_kk', 'required');
+    $validation->set_rules('status_company', 'status_company', 'required');
+    $validation->set_rules('surrogate_status', 'surrogate_status', 'required');
+    $validation->set_rules('type_recruitment', 'type_recruitment', 'required');
 
     if ($validation->run() == false) {
       $this->load->view('Temp_admin/header', $data);
@@ -237,12 +237,11 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
         "status_company" => $this->input->post('status_company'),
         "surrogate_status" => $this->input->post('surrogate_status'),
         "type_recruitment" => $this->input->post('type_recruitment'),
-        "basic_id" => $this->input->post('basic_id')
+        "basic_id" => $id_candidate
       ];
 
       $que = "SELECT * FROM basic_admin WHERE basic_id IS NOT NULL";
       if ($que) {
-
         $id_emp = $this->input->post('id_emp');
         $id_privy = $this->input->post('id_privy');
         $cc = $this->input->post('cc');
@@ -270,7 +269,7 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
         $this->db->set('status_company', $status_company);
         $this->db->set('surrogate_status', $surrogate_status);
         $this->db->set('type_recruitment', $type_recruitment);
-        $this->db->where('basic_id', $this->input->post('basic_id'));
+        $this->db->where('basic_id', $id_candidate);
         $this->db->update('basic_admin');
 
         $this->session->set_flashdata('msg', 'Data Tambahan Sudah berhasil Di Edit');
