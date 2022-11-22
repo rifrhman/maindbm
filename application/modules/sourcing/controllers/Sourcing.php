@@ -193,7 +193,7 @@ class Sourcing extends CI_Controller
       $row[] = $result->domicile;
       $row[] = $result->last_education;
       $row[] = date('d-M-Y', strtotime($result->test_one));
-      $row[] = $result->test_two;
+      $row[] = date('d-M-Y', strtotime($result->test_two));
       $row[] = $result->test_three;
       $row[] = '<a href="' . base_url('sourcing/detailcandidate/') . $result->id_candidate . '"
       class="badge bg-lime"><i class="fas fa-fw fa-info"></i> Detail</a>';

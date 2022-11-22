@@ -8,8 +8,13 @@ class Employee_model extends CI_Model
   {
     $query = "SELECT DISTINCT send_candidate.id, send_candidate.basic_id, pkwt_employee.id, pkwt_employee.basic_id, pkwt_employee.flags_resign 
     FROM send_candidate LEFT JOIN pkwt_employee ON send_candidate.basic_id = pkwt_employee.basic_id WHERE send_candidate.confirm = 'Approved' AND `send_candidate`.`confirm_admin` 
-    IS NOT NULL AND pkwt_employee.flags_resign IS NULL GROUP BY pkwt_employee.basic_id";
+    = 'Approved' AND pkwt_employee.flags_resign IS NULL GROUP BY pkwt_employee.basic_id";
     return $this->db->query($query)->num_rows();
+  }
+  public function get_basic_admin($id_candidate)
+  {
+    $query = "SELECT * FROM basic_admin WHERE basic_id = $id_candidate";
+    return $this->db->query($query)->result_array();
   }
   public function queryNew()
   {
@@ -17,8 +22,8 @@ class Employee_model extends CI_Model
     $this->db->from('candidate_basic');
     $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
     $this->db->join('basic_admin', 'basic_admin.basic_id = candidate_basic.id_candidate', 'left');
-    $this->db->join('pkwt_employee', 'pkwt_employee.basic_id = candidate_basic.id_candidate');
-    $this->db->where('send_candidate.confirm IS NOT NULL AND send_candidate.confirm_admin IS NOT NULL');
+    $this->db->join('pkwt_employee', 'pkwt_employee.basic_id = candidate_basic.id_candidate', 'left');
+    $this->db->where('send_candidate.confirm = "Approved" AND send_candidate.confirm_admin = "Approved"');
     $this->db->where('pkwt_employee.flags_resign IS NULL');
     // $this->db->group_by('pkwt_employee.end_of_contract');
     $this->db->group_by('candidate_basic.fullname');
@@ -137,6 +142,12 @@ class Employee_model extends CI_Model
   {
     $this->db->update($this->table, $data, $where);
     return $this->db->affected_rows();
+  }
+
+  public function get_secondary_admin($id_candidate)
+  {
+    $query = "SELECT * FROM `secondary_admin` WHERE `basic_id` = $id_candidate";
+    return $this->db->query($query)->result_array();
   }
 
   public function detailAll($id_candidate)

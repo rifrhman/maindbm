@@ -240,7 +240,7 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
         "basic_id" => $id_candidate
       ];
 
-      $que = "SELECT * FROM basic_admin WHERE basic_id IS NOT NULL";
+      $que = $this->con->get_basic_admin($id_candidate);
       if ($que) {
         $id_emp = $this->input->post('id_emp');
         $id_privy = $this->input->post('id_privy');
@@ -329,7 +329,7 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
         "basic_id" => $this->input->post('basic_id')
       ];
 
-      $que = "SELECT * FROM `secondary_admin` WHERE `basic_id` IS NOT NULL";
+      $que = $this->con->get_secondary_admin($id_candidate);
       if ($que) {
         $allowance_premium = $this->input->post('allowance_premium');
         $allowance_others = $this->input->post('allowance_others');
@@ -360,7 +360,7 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
         redirect('contract/detail_contract/' . $id_candidate);
       } else {
         $this->db->insert('secondary_admin', $data);
-        $this->session->set_flashdata('msg', 'Data Bank Karyawan berhasil dibuat');
+        $this->session->set_flashdata('msg', 'Data Bank Karyawan berhasil Ditambah');
         redirect('contract/detail_contract/' . $id_candidate);
       }
     }

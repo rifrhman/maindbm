@@ -358,7 +358,7 @@ class Employee extends CI_Controller
         "basic_id" => $this->input->post('basic_id')
       ];
 
-      $que = "SELECT * FROM basic_admin WHERE basic_id = $id_candidate";
+      $que = $this->emp->get_basic_admin($id_candidate);
       if ($que) {
 
         $id_emp = $this->input->post('id_emp');
@@ -396,6 +396,90 @@ class Employee extends CI_Controller
       } else {
         $this->db->insert('basic_admin', $data);
         $this->session->set_flashdata('msg', 'Data Tambahan Karyawan berhasil Ditambah');
+        redirect('employee/detail_contract/' . $id_candidate);
+      }
+    }
+  }
+
+  public function addBankData($id_candidate)
+  {
+    $data['title'] = "Detail Kandidat";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    // $data['basic'] = $this->db->get('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
+    $data['list'] = $this->emp->detailAll($id_candidate);
+    $data['second'] = $this->emp->detailSecond($id_candidate);
+    $data['educate'] = $this->emp->detailEducation($id_candidate);
+    $data['exp'] = $this->emp->detailExp($id_candidate);
+    $data['basicadmin'] = $this->emp->adminQuery($id_candidate);
+    $data['secondadmin'] = $this->emp->adminBank($id_candidate);
+
+    $validation = $this->form_validation;
+
+    $validation->set_rules('allowance_premium', 'Allowance Premium', 'required|trim');
+    $validation->set_rules('allowance_others', 'Allowance Others', 'required|trim');
+    $validation->set_rules('placement_city', 'Placement City', 'required|trim');
+    $validation->set_rules('placement_district', 'Placement District', 'required|trim');
+    $validation->set_rules('type_bank', 'BANK', 'required|trim');
+    $validation->set_rules('account_number', 'Number Account', 'required|trim');
+    $validation->set_rules('name_of_bank', 'Name Of Bank', 'required|trim');
+    $validation->set_rules('bpjs_tk', 'BPJS TK', 'required|trim');
+    $validation->set_rules('bpjs_ks', 'BPJS KS', 'required|trim');
+    $validation->set_rules('npwp', 'NPWP', 'required|trim');
+
+
+    if ($validation->run() == false) {
+      $this->load->view('Temp_admin/header', $data);
+      $this->load->view('Temp_admin/navbar', $data);
+      $this->load->view('Temp_admin/sidebar', $data);
+      $this->load->view('detail_employee', $data);
+      $this->load->view('Temp_admin/footer');
+    } else {
+      $data = [
+        "allowance_premium" => $this->input->post('allowance_premium'),
+        "allowance_others" => $this->input->post('allowance_others'),
+        "placement_city" => $this->input->post('placement_city'),
+        "placement_district" => $this->input->post('placement_district'),
+        "type_bank" => $this->input->post('type_bank'),
+        "account_number" => $this->input->post('account_number'),
+        "name_of_bank" => $this->input->post('name_of_bank'),
+        "bpjs_tk" => $this->input->post('bpjs_tk'),
+        "bpjs_ks" => $this->input->post('bpjs_ks'),
+        "npwp" => $this->input->post('npwp'),
+        "basic_id" => $this->input->post('basic_id')
+      ];
+
+      $que = $this->emp->get_secondary_admin($id_candidate);
+      if ($que) {
+        $allowance_premium = $this->input->post('allowance_premium');
+        $allowance_others = $this->input->post('allowance_others');
+        $placement_city = $this->input->post('placement_city');
+        $placement_district = $this->input->post('placement_district');
+        $type_bank = $this->input->post('type_bank');
+        $account_number = $this->input->post('account_number');
+        $name_of_bank = $this->input->post('name_of_bank');
+        $bpjs_tk = $this->input->post('bpjs_tk');
+        $bpjs_ks = $this->input->post('bpjs_ks');
+        $npwp = $this->input->post('npwp');
+
+
+        $this->db->set('allowance_premium', $allowance_premium);
+        $this->db->set('allowance_others', $allowance_others);
+        $this->db->set('placement_city', $placement_city);
+        $this->db->set('placement_district', $placement_district);
+        $this->db->set('type_bank', $type_bank);
+        $this->db->set('account_number', $account_number);
+        $this->db->set('name_of_bank', $name_of_bank);
+        $this->db->set('bpjs_tk', $bpjs_tk);
+        $this->db->set('bpjs_ks', $bpjs_ks);
+        $this->db->set('npwp', $npwp);
+        $this->db->where('basic_id', $this->input->post('basic_id'));
+        $this->db->update('secondary_admin');
+
+        $this->session->set_flashdata('msg', 'Data Bank Sudah Berhasil Di Edit');
+        redirect('employee/detail_contract/' . $id_candidate);
+      } else {
+        $this->db->insert('secondary_admin', $data);
+        $this->session->set_flashdata('msg', 'Data Bank Karyawan berhasil Ditambah');
         redirect('employee/detail_contract/' . $id_candidate);
       }
     }

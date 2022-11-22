@@ -34,6 +34,7 @@
                     <th>Penempatan</th>
                     <th>Tanggal Mulai - Tanggal Akhir</th>
                     <th>Diajukan Oleh</th>
+                    <th>Status Karyawan</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -56,7 +57,15 @@
                     <td></td>
                     <?php endif; ?>
 
+
                     <td><?= $can['created_by'] ?></td>
+
+                    <?php if ($can['confirm'] == '') : ?>
+                    <td>Dikembalikan Admin</td>
+                    <?php elseif ($can['confirm'] == NULL) : ?>
+                    <td>Diterima dari Recruitment</td>
+                    <?php endif; ?>
+
                     <td>
                       <a href="<?= base_url('head/detailcandidate/') . $can['id_candidate']; ?>"
                         class="badge badge-primary btn-sm"><i class="fas fa-fw fa-info-circle"></i> Detail</a><br>
