@@ -406,6 +406,15 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
     $data['basic'] = $this->db->get_where('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
     $data['pkwt'] = $this->db->get('pkwt_employee')->result_array();
+    $data['list'] = $this->con->detailAll($id_candidate);
+    $data['second'] = $this->con->detailSecond($id_candidate);
+    $data['educate'] = $this->con->detailEducation($id_candidate);
+    $data['exp'] = $this->con->detailExp($id_candidate);
+    $data['basicadmin'] = $this->con->adminQuery($id_candidate);
+    $data['secondadmin'] = $this->con->adminBank($id_candidate);
+    $data['emergency'] = $this->con->emergencyContact($id_candidate);
+    $data['detailEmergency'] = $this->con->detailEmergency($id_candidate);
+    $data['pkwt'] = $this->con->pkwtEmployee($id_candidate);
 
     $validation = $this->form_validation;
 

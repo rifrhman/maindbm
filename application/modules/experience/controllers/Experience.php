@@ -38,8 +38,8 @@ class Experience extends CI_Controller
     $validation = $this->form_validation;
 
     $validation->set_rules('company', 'Company', 'required|trim');
-    $validation->set_rules('position', 'Position');
-    $validation->set_rules('year_in', 'Year In');
+    $validation->set_rules('position_exp', 'Position');
+    $validation->set_rules('year_in_exp', 'Year In');
     $validation->set_rules('month_period', 'Month Period');
     $validation->set_rules('last_salary', 'Last Salary');
     $validation->set_rules('Resign', 'Resign');
@@ -53,8 +53,8 @@ class Experience extends CI_Controller
     } else {
       $data = [
         'company' => $this->input->post('company'),
-        'position' => $this->input->post('position'),
-        'year_in' => $this->input->post('year_in'),
+        'position_exp' => $this->input->post('position_exp'),
+        'year_in_exp' => $this->input->post('year_in_exp'),
         'month_period' => $this->input->post('month_period'),
         'last_salary' => $this->input->post('last_salary'),
         'resign' => $this->input->post('resign'),

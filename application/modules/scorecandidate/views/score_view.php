@@ -4,8 +4,8 @@
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="font-weight-bold text-secondary text-uppercase">Penilaian Kandidat</h1>
+        <div class="col-sm mb-2 mt-2">
+          <h1 class="font-weight-bold text-secondary text-center text-uppercase">Penilaian Kandidat</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -23,6 +23,17 @@
               <span class="badge badge-danger"><?= $count_stat; ?> Kandidat</span>
               Belum dinilai
             </div>
+
+
+            <style>
+            table th {
+              font-size: 14px;
+            }
+
+            table tbody {
+              font-size: 14px;
+            }
+            </style>
 
             <div class="card-body">
               <table id="examscore" class="table table-bordered table-dark table-striped text-center">

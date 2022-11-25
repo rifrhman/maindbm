@@ -4,20 +4,21 @@
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm">
-          <h1>Detail Karyawan Join</h1>
+        <div class="col-sm mb-3 mt-3">
+          <h1 class="font-weight-bold text-secondary text-center text-uppercase">Detail Karyawan Join</h1>
         </div>
-        <button type="button" class="btn btn-dark mr-2 btn-sm" data-toggle="modal" data-target="#info">
+      </div>
+      <div class="row mb-3 text-center justify-content-center">
+        <button type="button" class="btn bg-olive mr-2 mb-3 btn-sm" data-toggle="modal" data-target="#info">
           <i class="fas fa-fw fa-user-edit"></i> Tambah/Edit Info Karyawan
         </button>
-        <button type="button" class="btn btn-dark mr-2 btn-sm" data-toggle="modal" data-target="#allow">
+        <button type="button" class="btn bg-primary mr-2 mb-3 btn-sm" data-toggle="modal" data-target="#allow">
           <i class="fas fa-money-check-alt"></i> Tambah/Edit Bank dan Data
         </button>
-        <button type="button" class="btn btn-dark justify-content-end btn-sm" data-toggle="modal"
+        <button type="button" class="btn btn-dark mr-2 mb-3 justify-content-end btn-sm" data-toggle="modal"
           data-target="#emergency">
           <i class="fas fa-fw fa-exclamation-triangle"></i> Tambah Kontak Darurat
         </button>
-
       </div>
     </div><!-- /.container-fluid -->
   </section>
@@ -33,7 +34,7 @@
               <h3 class="card-title font-weight-bold">Data Basic Join Karyawan</h3>
               <div class="d-flex justify-content-end">
                 <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#basic">
-                  <i class="fas fa-fw fa-pen"></i> Edit Data
+                  <i class="fas fa-fw fa-pencil-alt"></i> Edit Basic
                 </button>
               </div>
             </div>
@@ -106,7 +107,7 @@
               <h3 class="card-title font-weight-bold">Data Secondary Join Karyawan</h3>
               <div class="d-flex justify-content-end">
                 <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#secondary">
-                  <i class="fas fa-fw fa-pen"></i> Edit Data
+                  <i class="fas fa-fw fa-pencil-alt"></i> Edit Secondary
                 </button>
               </div>
             </div>
@@ -637,15 +638,17 @@
 
                     <div class="col-sm-3">
                       <div class="form-group">
-                        <label for="year_in">Tahun Masuk</label>
-                        <input type="text" class="form-control" id="year_in" value="<?= $ed['year_in'] ?>" readonly>
+                        <label for="year_in_edu">Tahun Masuk</label>
+                        <input type="text" class="form-control" id="year_in_edu" value="<?= $ed['year_in_edu'] ?>"
+                          readonly>
                       </div>
 
                     </div>
                     <div class="col-sm-3">
                       <div class="form-group">
-                        <label for="year_out">Tahun Keluar</label>
-                        <input type="text" class="form-control" id="year_out" value="<?= $ed['year_out'] ?>" readonly>
+                        <label for="year_out_edu">Tahun Keluar</label>
+                        <input type="text" class="form-control" id="year_out_edu" value="<?= $ed['year_out_edu'] ?>"
+                          readonly>
                       </div>
 
                     </div>
@@ -709,12 +712,13 @@
 
                     <div class="form-group col-md-5">
                       <label for="institute">Posisi</label>
-                      <input type="text" class="form-control" id="position" value="<?= $ex['position'] ?>" readonly>
+                      <input type="text" class="form-control" id="position_exp" value="<?= $ex['position_exp'] ?>"
+                        readonly>
                     </div>
                     <div class="form-group col-md-4">
                       <label for="major">Tahun Masuk</label>
-                      <input type="text" class="form-control" id="year_in"
-                        value="<?= date('d F Y', strtotime($ex['year_in'])) ?>" readonly>
+                      <input type="text" class="form-control" id="year_in_exp"
+                        value="<?= date('d F Y', strtotime($ex['year_in_exp'])) ?>" readonly>
                     </div>
 
                   </div>

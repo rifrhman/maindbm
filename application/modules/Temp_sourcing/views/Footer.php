@@ -27,6 +27,7 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?= base_url('assets/sweetalert/dist/sweetalert2.all.min.js') ?>"></script>
 
 <!-- DataTables  & Plugins -->
 <script src="<?= base_url('assets/'); ?>plugins/datatables/jquery.dataTables.min.js"></script>
@@ -73,6 +74,33 @@ $('#custom-file-input').on('change', function() {
   $(this).next('.custom-file-label').addClass("selected").html(fileName);
 });
 
+const flashData = $('.flash-data').data('flashdata');
+if (flashData) {
+  Swal.fire(
+    'Good job!',
+    flashData,
+    'success'
+  )
+}
+
+const flashDataScore = $('.flash-data-score').data('flashdata-score');
+if (flashDataScore) {
+  Swal.fire(
+    'Good job!',
+    flashData,
+    'success'
+  )
+}
+
+const flashDataErr = $('.flash-data-err').data('flashdata-err');
+if (flashDataErr) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Data kandidat sudah terdaftar.'
+  })
+}
+
 $(function() {
   $("#example1").DataTable({
     "responsive": true,
@@ -91,10 +119,10 @@ $(function() {
   });
 });
 $(document).ready(function() {
-  $('#example').DataTable({
+  $('#head').DataTable({
     "responsive": true,
     "lengthChange": true,
-    "autoWidth": false,
+    "autoWidth": true,
   });
 });
 

@@ -4,8 +4,8 @@
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1>Detail Kandidat</h1>
+        <div class="col-sm mt-2 mb-3">
+          <h1 class="font-weight-bold text-secondary text-uppercase text-center">Detail Kandidat</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -319,14 +319,15 @@
                     <div class="col-sm-3">
                       <div class="form-group">
                         <label for="year_in">Tahun Masuk</label>
-                        <input type="text" class="form-control" id="year_in" value="<?= $ed['year_in'] ?>" readonly>
+                        <input type="text" class="form-control" id="year_in" value="<?= $ed['year_in_edu'] ?>" readonly>
                       </div>
 
                     </div>
                     <div class="col-sm-3">
                       <div class="form-group">
                         <label for="year_out">Tahun Keluar</label>
-                        <input type="text" class="form-control" id="year_out" value="<?= $ed['year_out'] ?>" readonly>
+                        <input type="text" class="form-control" id="year_out" value="<?= $ed['year_out_edu'] ?>"
+                          readonly>
                       </div>
 
                     </div>
@@ -390,12 +391,18 @@
 
                     <div class="form-group col-md-5">
                       <label for="institute">Posisi</label>
-                      <input type="text" class="form-control" id="position" value="<?= $ex['position'] ?>" readonly>
+                      <input type="text" class="form-control" id="position_exp" value="<?= $ex['position_exp'] ?>"
+                        readonly>
                     </div>
                     <div class="form-group col-md-4">
                       <label for="major">Tahun Masuk</label>
-                      <input type="text" class="form-control" id="year_in"
-                        value="<?= date('d F Y', strtotime($ex['year_in'])) ?>" readonly>
+                      <?php if (isset($ex['year_in_exp'])) : ?>
+                      <input type="text" class="form-control" id="year_in_exp"
+                        value="<?= date('d F Y', strtotime($ex['year_in_exp'])) ?>" readonly>
+                      <?php else : ?>
+                      <input type="text" class="form-control" id="year_in_exp" value="<?= $ex['year_in_exp'] ?>"
+                        readonly>
+                      <?php endif; ?>
                     </div>
 
                   </div>

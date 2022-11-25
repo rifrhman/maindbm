@@ -43,8 +43,8 @@ class Education extends CI_Controller
     $validation->set_rules('major', 'Major', 'required|trim');
     $validation->set_rules('city', 'City', 'required|trim');
     $validation->set_rules('score', 'score', 'required|trim|numeric');
-    $validation->set_rules('year_in', 'Year In', 'required|numeric');
-    $validation->set_rules('year_out', 'Year Out', 'required|numeric');
+    $validation->set_rules('year_in_edu', 'Year In', 'required|numeric');
+    $validation->set_rules('year_out_edu', 'Year Out', 'required|numeric');
 
     if ($validation->run() == false) {
       $this->load->view('Temp_sourcing/header', $data);
@@ -59,8 +59,8 @@ class Education extends CI_Controller
         'major' => $this->input->post('major'),
         'city' => $this->input->post('city'),
         'score' => $this->input->post('score'),
-        'year_in' => $this->input->post('year_in'),
-        'year_out' => $this->input->post('year_out'),
+        'year_in_edu' => $this->input->post('year_in_edu'),
+        'year_out_edu' => $this->input->post('year_out_edu'),
         'basic_id' => $id_candidate
       ];
 

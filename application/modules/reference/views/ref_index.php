@@ -98,7 +98,7 @@
                       <br>
                       <?php foreach ($exp as $ex) : ?>
                       <?php if ($ex['id_candidate'] == $can['id_candidate']) : ?>
-                      <span><?= $ex['position']; ?> (<?= $ex['month_period'] ?>), </span>
+                      <span><?= $ex['position_exp']; ?> (<?= $ex['month_period'] ?>), </span>
                       <?php endif; ?>
                       <?php endforeach; ?>
 
@@ -115,7 +115,7 @@
                       </a>
                       <br>
                       <?php } ?>
-                      <?php if ($s['result_send'] == 'Lolos') { ?>
+                      <?php if ($s['result_send'] == 'Lulus') { ?>
 
                       <a href="<?= base_url('reference/contract_ref/') . $s['id'] ?>">
                         <span class="text-light"><?= $s['client'] ?></span>
@@ -123,7 +123,7 @@
                       </a>
                       <br>
                       <?php } ?>
-                      <?php if ($s['result_send'] == 'Tidak Lolos') { ?>
+                      <?php if ($s['result_send'] == 'Tidak Lulus') { ?>
 
                       <span class="text-light"><?= $s['client'] ?></span>
                       <span class="badge badge-pill badge-danger"><?= $s['result_send'] ?></span>

@@ -72,24 +72,21 @@ class Sourcing_model extends CI_Model
     return $this->db->query($query)->result_array();
   }
 
+  public function quer()
+  {
+    $this->db->select('*');
+    $this->db->from('candidate_basic');
+    $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
+  }
 
-  var $table = 'candidate_basic';
   var $column_order = array(null, 'fullname', 'domicile', 'last_education', 'test_one', 'test_two', 'test_three');
   var $column_search = array('fullname', 'domicile', 'last_education', 'test_one', 'test_two', 'test_three');
   var $order = array('id_candidate' => 'desc');
 
   private function _get_data_query()
   {
-    $this->db->from($this->table);
+    $this->quer();
 
-    // if (isset($_POST['search']['value'])) {
-    //   $this->db->like('fullname', $_POST['search']['value']);
-    //   $this->db->or_like('domicile', $_POST['search']['value']);
-    //   $this->db->or_like('last_education', $_POST['search']['value']);
-    //   $this->db->or_like('test_one', $_POST['search']['value']);
-    //   $this->db->or_like('test_two', $_POST['search']['value']);
-    //   $this->db->or_like('test_three', $_POST['search']['value']);
-    // }
     $i = 0;
     foreach ($this->column_search as $item) // loop kolom 
     {
@@ -143,7 +140,10 @@ class Sourcing_model extends CI_Model
 
   public function count_all_data()
   {
-    $this->db->from($this->table);
+    $this->db->select('*');
+    $this->db->from('candidate_basic');
+    $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
+    $this->db->order_by('candidate_basic.id_candidate', 'DESC');
     return $this->db->count_all_results();
   }
 }

@@ -48,7 +48,7 @@ class Signin extends CI_Controller
 
 
       // foreach ($que as $q) {
-      if ($result->is_join) {
+      if (isset($result->is_join)) {
       } else {
         $row = array();
         $row[] = ++$no;
@@ -60,7 +60,7 @@ class Signin extends CI_Controller
         $row[] = date('Y-m-d', strtotime($result->end_of_contract));
         $row[] = '
               
-        <a class="badge bg-gradient-danger text-light" href="javascript:void(0)" title="Edit Join" onclick="edit_join(' . "'" . $result->id_candidate . "'" . ')"><i class="fas fa-fw fa-map-pin"></i>JOIN</a>';
+        <a class="badge bg-gradient-warning" href="javascript:void(0)" title="Edit Join" onclick="edit_join(' . "'" . $result->id_candidate . "'" . ')"><i class="fas fa-fw fa-map-pin"></i>JOIN</a>';
         $data[] = $row;
       }
     }

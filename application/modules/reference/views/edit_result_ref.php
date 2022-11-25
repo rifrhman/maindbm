@@ -47,8 +47,8 @@
                       <select id="result_send" name="result_send" class="form-control is-warning">
                         <option selected="selected" value="" disabled="disabled"><?= $status['result_send'] ?>
                         </option>
-                        <option value="Lolos">Lolos</option>
-                        <option value="Tidak Lolos">Tidak Lolos</option>
+                        <option value="Lulus">Lolos</option>
+                        <option value="Tidak Lulus">Tidak Lolos</option>
                       </select>
                     </div>
 

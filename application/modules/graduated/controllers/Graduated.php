@@ -66,7 +66,7 @@ class Graduated extends CI_Controller
         <span aria-hidden="true">&times;</span>
         </button>
         </div>');
-      redirect('graduated');
+      redirect('graduated/detailgraduatecandidate/' . $id_candidate);
     }
   }
 

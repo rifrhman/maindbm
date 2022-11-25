@@ -16,9 +16,9 @@ class Signin_model extends CI_Model
     $this->db->join('basic_admin', 'candidate_basic.id_candidate = basic_admin.basic_id', 'left');
     $this->db->join('secondary_admin', 'candidate_basic.id_candidate = secondary_admin.basic_id', 'left');
     $this->db->join('pkwt_employee', 'candidate_basic.id_candidate = pkwt_employee.basic_id', 'left');
-    $this->db->join('emergency_contact', 'pkwt_employee.basic_id = emergency_contact.basic_id', 'left');
-    $this->db->where('send_candidate.confirm = "Approved" AND send_candidate.confirm_admin = "Approved"');
-    $this->db->where('pkwt_employee.flags_resign IS NULL AND send_candidate.is_join IS NULL');
+    $this->db->join('emergency_contact', 'candidate_basic.id_candidate = emergency_contact.basic_id', 'left');
+    $this->db->where('send_candidate.confirm = "Approved" AND send_candidate.confirm_admin = "Approved" AND send_candidate.is_join IS NULL');
+    $this->db->where('pkwt_employee.flags_resign IS NULL');
     // $this->db->group_by('pkwt_employee.end_of_contract');
     $this->db->group_by('candidate_basic.fullname');
     $this->db->select_max('pkwt_employee.end_of_contract');
@@ -65,14 +65,6 @@ class Signin_model extends CI_Model
 
   public function getDataTable()
   {
-    // var_dump($first, $last);
-    // die;
-
-    // $first = strtotime($first);
-    // $lastly = strtotime($last);
-
-
-
 
     $this->_get_data_query();
 

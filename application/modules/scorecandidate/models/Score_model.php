@@ -59,6 +59,7 @@ class Score_model extends CI_Model
     $this->db->select('*');
     $this->db->from('candidate_basic');
     $this->db->join('candidate_secondary', 'candidate_secondary.basic_id = candidate_basic.id_candidate', 'left');
+    $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
     $this->db->order_by('candidate_basic.id_candidate', 'DESC');
 
     // $query = "SELECT `candidate_basic`.*, `candidate_secondary`.* FROM `candidate_basic`

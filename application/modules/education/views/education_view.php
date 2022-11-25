@@ -4,8 +4,8 @@
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="font-weight-bold text-secondary text-uppercase">Tambah Data Pendidikan Kandidat</h1>
+        <div class="col-sm mb-2 mt-2">
+          <h1 class="font-weight-bold text-secondary text-center text-uppercase">Tambah Data Pendidikan Kandidat</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->

@@ -3,8 +3,8 @@
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1>Penjadwalan Kandidat</h1>
+        <div class="col-sm mb-2 mt-3">
+          <h1 class="font-weight-bold text-secondary text-center text-uppercase">Penjadwalan Kandidat</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -52,7 +52,7 @@
                     </div>
                     <div class="form-group col-lg-6">
                       <label for="status_test">Submit Data</label>
-                      <button type="submit" class="form-control btn bg-gradient-primary font-weight-bold"><i
+                      <button type="submit" class="form-control btn bg-olive font-weight-bold"><i
                           class="fas fa-calendar-alt"></i>
                         Tambah Jadwal</button>
                     </div>

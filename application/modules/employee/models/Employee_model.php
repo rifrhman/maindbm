@@ -23,7 +23,7 @@ class Employee_model extends CI_Model
     $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
     $this->db->join('basic_admin', 'basic_admin.basic_id = candidate_basic.id_candidate', 'left');
     $this->db->join('pkwt_employee', 'pkwt_employee.basic_id = candidate_basic.id_candidate', 'left');
-    $this->db->where('send_candidate.confirm = "Approved" AND send_candidate.confirm_admin = "Approved"');
+    $this->db->where('send_candidate.confirm = "Approved" AND send_candidate.confirm_admin = "Approved" AND send_candidate.is_join = "Join"');
     $this->db->where('pkwt_employee.flags_resign IS NULL');
     // $this->db->group_by('pkwt_employee.end_of_contract');
     $this->db->group_by('candidate_basic.fullname');

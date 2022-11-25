@@ -70,13 +70,13 @@
                     </div>
                     <div class="form-group col-md-3">
                       <label for="year_in">Tahun Masuk</label>
-                      <input type="text" name="year_in" class="form-control" id="year_in">
-                      <?= form_error('year_in', '<small class="text-danger">', '</small>') ?>
+                      <input type="text" name="year_in_edu" class="form-control" id="year_in_edu">
+                      <?= form_error('year_in_edu', '<small class="text-danger">', '</small>') ?>
                     </div>
                     <div class="form-group col-md-3">
                       <label for="year_out">Tahun Keluar</label>
-                      <input type="text" name="year_out" class="form-control" id="year_out">
-                      <?= form_error('year_out', '<small class="text-danger">', '</small>') ?>
+                      <input type="text" name="year_out_edu" class="form-control" id="year_out_edu">
+                      <?= form_error('year_out_edu', '<small class="text-danger">', '</small>') ?>
                     </div>
                   </div>
                   <div class="form-row col-lg-12">

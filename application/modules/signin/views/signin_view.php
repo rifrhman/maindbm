@@ -4,8 +4,8 @@
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="font-weight-bold text-secondary text-uppercase">Karyawan Masuk (IN)</h1>
+        <div class="col-sm mb-2 mt-2">
+          <h1 class="font-weight-bold text-center text-secondary text-uppercase">Karyawan Masuk (IN)</h1>
         </div>
 
       </div>
@@ -112,40 +112,42 @@
               <label class="control-label col-md-6">Join Karyawan ?</label>
               <div class="col-md">
                 <select name="is_join" class="form-control">
-                  <option value="">--Select Status--</option>
+                  <option value="" selected="selected" disabled="disabled">--Select Status--</option>
                   <option value="Join">Join</option>
                   <option value="Batal Join">Batal Join</option>
                 </select>
                 <span class="help-block"></span>
               </div>
             </div>
-            <?= $val = NULL; ?>
             <div class="form-group">
-              <label class="control-label col-md-6">Konfirmasi ?</label>
+              <label class="control-label col-md-6">Kembalikan Ke Recruitment ?</label>
               <div class="col-md">
                 <select name="confirm" class="form-control">
-                  <option value="">--Pilih Konfirmasi--</option>
-                  <option value="<?= $val; ?>">Ya</option>
+                  <option value="" selected="selected" disabled="disabled">--Pilih Konfirmasi--</option>
+                  <option value="Back">Ya</option>
                   <option value="Approved">Tidak</option>
                 </select>
-
+                <span class="help-block"></span>
+              </div>
+              <div class="form-group mt-2 mb-1 ml-3">
                 <small>Pilih "YA" jika ingin dikembalikan ke Sourcing</small><br>
                 <small>Pilih "Tidak" jika ingin dikembalikan ke Head Recruitment</small>
-                <span class="help-block"></span>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-6">Konfirmasi Admin ?</label>
+              <label class="control-label col-md-6">Hilangkan Dari Tabel Admin ?</label>
               <div class="col-md">
                 <select name="confirm_admin" class="form-control">
-                  <option value="">--Pilih Konfirmasi--</option>
-                  <option value="<?= $val; ?>">Ya</option>
+                  <option value="" selected="selected" disabled="disabled">--Pilih Konfirmasi--</option>
+                  <option value="Back">Ya</option>
                   <option value="Approved">Tidak</option>
 
                 </select>
+                <span class="help-block"></span>
+              </div>
+              <div class="form-group mt-2 mb-1 ml-3">
                 <small>Pilih "YA" jika ingin dikembalikan ke Sourcing</small><br>
                 <small>Pilih "Tidak" jika ingin tetap di tabel admin</small>
-                <span class="help-block"></span>
               </div>
             </div>
 

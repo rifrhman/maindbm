@@ -77,22 +77,12 @@ class Sourcing extends CI_Controller
       $mod = $this->sour->checkDataCandidate($data['fullname'], $data['date_of_birth']);
       if ($mod) {
 
-        $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong>Oopss!</strong> Data kandidat sudah terdaftar.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-              </button>
-              </div>');
-        redirect('sourcing');
+        $this->session->set_flashdata('err', 'Data kandidat sudah terdaftar.');
+        redirect('sourcing/addNewCandidate');
       } else {
         $this->db->insert('candidate_basic', $data);
 
-        $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-              <strong>Horee!</strong> Data kandidat berhasil ditambah.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-              </button>
-              </div>');
+        $this->session->set_flashdata('msg', 'Data Kandidat Berhasil Ditambah');
         redirect('sourcing/addNewCandidate');
       }
     }
@@ -136,12 +126,7 @@ class Sourcing extends CI_Controller
             ];
             $mod = $this->sour->checkDataCandidate($candidate_basic['fullname'], $candidate_basic['date_of_birth']);
             if ($mod) {
-              $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong>Oopss!</strong> Data kandidat sudah terdaftar.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-              </button>
-              </div>');
+              $this->session->set_flashdata('err', 'Data kandidat sudah terdaftar.');
               redirect('sourcing');
             }
 
@@ -150,12 +135,7 @@ class Sourcing extends CI_Controller
           $numrow++;
         }
         $reader->close();
-        $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Horee!</strong> Upload Data kandidat berhasil ditambah.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-        </div>');
+        $this->session->set_flashdata('msg', 'Upload Data kandidat berhasil ditambah');
         redirect('sourcing');
       }
     }
@@ -196,7 +176,7 @@ class Sourcing extends CI_Controller
       $row[] = date('d-M-Y', strtotime($result->test_two));
       $row[] = $result->test_three;
       $row[] = '<a href="' . base_url('sourcing/detailcandidate/') . $result->id_candidate . '"
-      class="badge bg-lime"><i class="fas fa-fw fa-info"></i> Detail</a>';
+      class="badge bg-warning">Detail <i class="fas fa-fw fa-info-circle"></i> </a>';
       $data[] = $row;
     }
 

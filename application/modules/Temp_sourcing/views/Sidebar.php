@@ -24,7 +24,7 @@
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <?php if ($this->session->userdata('level_id') == 2) : ?>
-        <li class="nav-header font-weight-bold bg-indigo mb-2" style="border-radius: 5px;">SOURCING MENU</li>
+        <li class="nav-header font-weight-bold bg-dark mb-2" style="border-radius: 5px;">SOURCING MENU</li>
         <li class="nav-item">
           <a href="<?= base_url('sourcing') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'sourcing' ||  $this->uri->segment(1) == '' ? 'active' : '' ?>">
@@ -72,7 +72,7 @@
               <a href="<?= base_url('uploadcandidate') ?>"
                 class="nav-link <?= $this->uri->segment(1) == 'uploadcandidate' ? 'active menu-is-opening menu-open' : '' ?>">
                 <i class="fas fa-file-image nav-icon"></i>
-                <p>Upload File & Gambar</p>
+                <p>Upload Data</p>
               </a>
             </li>
           </ul>
@@ -80,7 +80,7 @@
         <?php endif; ?>
         <?php if ($this->session->userdata('level_id') == 3 || $this->session->userdata('level_id') == 2) : ?>
 
-        <li class="nav-header font-weight-bold bg-indigo mb-2" style="border-radius: 5px;">RECRUITMENT MENU</li>
+        <li class="nav-header font-weight-bold bg-dark mb-2" style="border-radius: 5px;">RECRUITMENT MENU</li>
         <li class="nav-item">
           <a href="<?= base_url('graduated') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'graduated' ? 'active menu-is-opening menu-open' : '' ?>">

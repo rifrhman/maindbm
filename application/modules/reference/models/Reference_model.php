@@ -82,7 +82,7 @@ class Reference_model extends CI_Model
 
   public function expIndex()
   {
-    $query = "SELECT `candidate_basic`.`id_candidate`, `experience`.`position`, `experience`.`month_period`
+    $query = "SELECT `candidate_basic`.`id_candidate`, `experience`.`position_exp`, `experience`.`month_period`
               FROM `candidate_basic` JOIN `experience` 
               ON `candidate_basic`.`id_candidate` = `experience`.`basic_id`
               WHERE `candidate_basic`.`id_candidate`";

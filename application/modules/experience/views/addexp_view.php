@@ -36,14 +36,15 @@
                     </div>
                     <div class="form-group col-md-4">
                       <label for="position">Posisi</label>
-                      <input type="text" name="position" class="form-control" id="position" placeholder="Posisi ...">
-                      <?= form_error('position', '<small class="text-danger">', '</small>') ?>
+                      <input type="text" name="position_exp" class="form-control" id="position_exp"
+                        placeholder="Posisi ...">
+                      <?= form_error('position_exp', '<small class="text-danger">', '</small>') ?>
                     </div>
 
                     <div class="form-group col-md-4">
                       <label for="year_in">Tahun Masuk</label>
-                      <input type="date" name="year_in" class="form-control" id="year_in" placeholder="2018 ..">
-                      <?= form_error('year_in', '<small class="text-danger">', '</small>') ?>
+                      <input type="date" name="year_in_exp" class="form-control" id="year_in_exp" placeholder="2018 ..">
+                      <?= form_error('year_in_exp', '<small class="text-danger">', '</small>') ?>
                     </div>
                   </div>
 

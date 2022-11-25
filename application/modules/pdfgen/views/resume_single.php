@@ -18,11 +18,12 @@
 
   td,
   th {
-    text-align: left;
+    text-align: left
   }
 
   table {
     border-spacing: 1px;
+
   }
 
   * {
@@ -65,12 +66,12 @@
     <h2><b>RESUME PELAMAR</b></h2>
   </center>
   <h3><b>A. IDENTITAS PELAMAR</b></h3>
-  <table style="width:100%">
+  <table id="head-table" style="width:100%;">
     <tr>
       <td><b>Nama Lengkap</b></td>
       <td>: <?= $list['fullname'] ?></td>
       <td rowspan="7" valign="top"><img src="<?= base_url('assets/uploads/image/candidate-image/') . $list['image'] ?>"
-          width="150" /></td>
+          width="120" /></td>
     </tr>
     <tr>
       <td><b>Tempat/Tanggal Lahir</b></td>
@@ -100,8 +101,8 @@
 
   <h3><b>B. PENDIDIKAN FORMAL</b></h3>
   <?php foreach ($educate as $ed) : ?>
-  <table style="width:100%; text-align:center">
-    <tr style="background-color:#eee;">
+  <table style="width:100%; text-align:center !important;">
+    <tr style="background-color:#eee; text-align:center !important;">
       <th>Tingkat </th>
       <th>Institut </th>
       <th>Jurusan </th>
@@ -113,7 +114,7 @@
       <td> <?= $ed['institute'] ?></td>
       <td><?= $ed['major'] ?></td>
       <td><?= $ed['city'] ?></td>
-      <td><?= $ed['year_out'] ?></td>
+      <td><?= $ed['year_out_edu'] ?></td>
     </tr>
 
   </table>
@@ -121,19 +122,19 @@
 
 
   <br></br>
-  <h3><b>D. PENGALAMAN KERJA</b></h3>
+  <h3><b>C. PENGALAMAN KERJA</b></h3>
   <?php foreach ($exp as $ex) : ?>
-  <table style="width:100%; text-align: center;">
-    <tr style="background-color:#eee;">
+  <table style="width:100%; text-align:center !important;">
+    <tr style="background-color:#eee; text-align:center !important;">
       <th>Perusahaan</th>
       <th>Posisi</th>
       <th>Thn Masuk</th>
       <th>Periode(bln)</th>
     </tr>
-    <tr>
+    <tr class="exp_class">
       <td> <?= $ex['company'] ?></td>
-      <td><?= $ex['position'] ?></td>
-      <td><?= $ex['year_in'] ?></td>
+      <td><?= $ex['position_exp'] ?></td>
+      <td><?= $ex['year_in_exp'] ?></td>
       <td><?= $ex['month_period'] ?></td>
     </tr>
 
@@ -141,7 +142,7 @@
   <?php endforeach; ?>
 
 
-  <h3><b>E. REKOMENDASI</b></h3>
+  <h3><b>D. REKOMENDASI</b></h3>
   <a>
     <?= $list['note_recommend'] ?> </a>
 </body>

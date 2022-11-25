@@ -32,7 +32,7 @@ class Contract_model extends CI_Model
     $this->db->select('*');
     $this->db->from('candidate_basic');
     $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
-    $this->db->where('send_candidate.confirm = "Approved" AND send_candidate.confirm_admin IS NULL OR send_candidate.confirm_admin = ""');
+    $this->db->where('send_candidate.confirm = "Approved" AND send_candidate.confirm_admin IS NULL');
     $this->db->order_by('candidate_basic.id_candidate', 'DESC');
 
     $i = 0;

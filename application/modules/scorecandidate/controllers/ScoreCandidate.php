@@ -83,7 +83,7 @@ class ScoreCandidate extends CI_Controller
       <span aria-hidden="true">&times;</span>
       </button>
       </div>');
-        redirect('scorecandidate');
+        redirect('scorecandidate/score_candidate/' . $id_candidate);
       } else {
         $this->db->insert('candidate_secondary', $data);
 
@@ -93,7 +93,7 @@ class ScoreCandidate extends CI_Controller
         <span aria-hidden="true">&times;</span>
         </button>
         </div>');
-        redirect('scorecandidate');
+        redirect('scorecandidate/score_candidate/' . $id_candidate);
       }
     }
   }
@@ -128,12 +128,12 @@ class ScoreCandidate extends CI_Controller
         $this->db->where('id_candidate', $this->input->post('id_candidate'));
         $this->db->update('candidate_basic');
         $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Horee!</strong> Jadwal terbaru berhasil di update.
+        <strong>Horee!</strong> Update Jadwal berhasil dilakukan.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
         </div>');
-        redirect('scorecandidate');
+        redirect('scorecandidate/update_test/' . $id_candidate);
       }
     }
   }
@@ -177,7 +177,7 @@ class ScoreCandidate extends CI_Controller
       <span aria-hidden="true">&times;</span>
       </button>
       </div>');
-      redirect('scorecandidate');
+      redirect('scorecandidate/editStatus/' . $basic_id);
     }
   }
 
@@ -207,12 +207,12 @@ class ScoreCandidate extends CI_Controller
               '<span class="badge badge-pill badge-warning">Tidak Hadir</span>' : '')));
       $row[] = '
       <a href="' . base_url('scorecandidate/score_candidate/') . $result->id_candidate . '"
-class="badge bg-gradient-danger text-light"><i class="fas fa-fw fa-pen"></i> Nilai</a><br>
+class="badge bg-primary text-light"><i class="fas fa-fw fa-pen"></i> Nilai</a>
 <a href="' . base_url('scorecandidate/update_test/') . $result->id_candidate . '"
-                        class="badge bg-gradient-info text-light"><i class="fas fa-fw fa-calendar-alt"></i> Update
+                        class="badge bg-warning text-light"><i class="fas fa-fw fa-calendar-alt"></i> Update
                         Jadwal</a>
                         <a href="' . base_url('scorecandidate/editStatus/') . $result->id_candidate . '"
-                        class="badge bg-gradient-warning text-dark"><i class="fas fa-fw fa-user-edit"></i> Edit
+                        class="badge bg-olive text-dark"><i class="fas fa-fw fa-user-edit"></i> Edit
                         Status</a>';
       $data[] = $row;
     }

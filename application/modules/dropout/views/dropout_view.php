@@ -4,8 +4,8 @@
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="font-weight-bold text-secondary text-uppercase">Karyawan Masuk (IN)</h1>
+        <div class="col-sm mb-2 mt-2">
+          <h1 class="font-weight-bold text-center text-secondary text-uppercase">Karyawan keluar (out)</h1>
         </div>
 
       </div>
@@ -57,7 +57,7 @@
             </div>
 
             <div class="card-body">
-              <table id="signin" class="table table-bordered table-striped text-center">
+              <table id="dropout" class="table table-bordered table-striped text-center">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -94,7 +94,7 @@
 
 
 <!-- Bootstrap modal -->
-<div class="modal fade" id="modal_edit_join" role="dialog">
+<div class="modal fade" id="modal_out_emp" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -102,49 +102,20 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
       </div>
-      <div class="modal-body form_edit_join">
-        <form action="#" id="form_edit_join" class="form-horizontal">
+      <div class="modal-body form_out_emp">
+        <form action="#" id="form_out_emp" class="form-horizontal">
           <input type="hidden" value="" name="basic_id" />
 
           <div class="form-body">
 
             <div class="form-group">
-              <label class="control-label col-md-6">Join Karyawan ?</label>
+              <label class="control-label col-md-6">Fix Resign Karyawan ?</label>
               <div class="col-md">
-                <select name="is_join" class="form-control">
-                  <option value="">--Select Status--</option>
-                  <option value="Join">Join</option>
-                  <option value="Batal Join">Batal Join</option>
+                <select name="flags_resign" class="form-control">
+                  <option value="" selected="selected" disabled="disabled">--Select Status--</option>
+                  <option value="Fix Resign">Resign</option>
+                  <option value="Blacklist">Blacklist</option>
                 </select>
-                <span class="help-block"></span>
-              </div>
-            </div>
-            <?= $val = NULL; ?>
-            <div class="form-group">
-              <label class="control-label col-md-6">Konfirmasi ?</label>
-              <div class="col-md">
-                <select name="confirm" class="form-control">
-                  <option value="">--Pilih Konfirmasi--</option>
-                  <option value="<?= $val; ?>">Ya</option>
-                  <option value="Approved">Tidak</option>
-                </select>
-
-                <small>Pilih "YA" jika ingin dikembalikan ke Sourcing</small><br>
-                <small>Pilih "Tidak" jika ingin dikembalikan ke Head Recruitment</small>
-                <span class="help-block"></span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-md-6">Konfirmasi Admin ?</label>
-              <div class="col-md">
-                <select name="confirm_admin" class="form-control">
-                  <option value="">--Pilih Konfirmasi--</option>
-                  <option value="<?= $val; ?>">Ya</option>
-                  <option value="Approved">Tidak</option>
-
-                </select>
-                <small>Pilih "YA" jika ingin dikembalikan ke Sourcing</small><br>
-                <small>Pilih "Tidak" jika ingin tetap di tabel admin</small>
                 <span class="help-block"></span>
               </div>
             </div>
@@ -153,7 +124,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnSaveJoin" onclick="save_edit_join()" class="btn btn-primary">Save</button>
+        <button type="button" id="btnSaveOut" onclick="save_out_emp()" class="btn btn-primary">Save</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 
       </div>

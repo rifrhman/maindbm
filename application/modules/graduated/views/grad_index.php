@@ -109,7 +109,7 @@
                       <br>
                       <?php foreach ($exp as $ex) : ?>
                       <?php if ($ex['id_candidate'] == $can['id_candidate']) : ?>
-                      <span><?= $ex['position']; ?> (<?= $ex['month_period'] ?>), </span>
+                      <span><?= $ex['position_exp']; ?> (<?= $ex['month_period'] ?>), </span>
                       <?php endif; ?>
                       <?php endforeach; ?>
 

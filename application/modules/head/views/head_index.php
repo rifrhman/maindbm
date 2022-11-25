@@ -25,7 +25,7 @@
             </div>
 
             <div class="card-body">
-              <table id="example" class="table table-bordered table-dark table-striped text-center">
+              <table id="head" class="table table-bordered table-responsive table-dark table-striped text-center">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -60,9 +60,9 @@
 
                     <td><?= $can['created_by'] ?></td>
 
-                    <?php if ($can['confirm'] == '') : ?>
+                    <?php if ($can['confirm'] == 'Back') : ?>
                     <td>Dikembalikan Admin</td>
-                    <?php elseif ($can['confirm'] == NULL) : ?>
+                    <?php elseif ($can['confirm'] == '' || $can['confirm' == null]) : ?>
                     <td>Diterima dari Recruitment</td>
                     <?php endif; ?>
 

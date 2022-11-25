@@ -14,7 +14,7 @@ class Resign_model extends CI_Model
     $this->db->join('resign_employee', 'resign_employee.basic_id = candidate_basic.id_candidate');
 
     // $this->db->where('send_candidate.confirm IS NOT NULL AND send_candidate.confirm_admin IS NOT NULL');
-    $this->db->where('pkwt_employee.flags_resign = "Resign"');
+    $this->db->where('pkwt_employee.flags_resign = "Fix Resign"');
     // // $this->db->group_by('pkwt_employee.end_of_contract');
     $this->db->group_by('candidate_basic.fullname');
     // $this->db->select_max('pkwt_employee.end_of_contract');
