@@ -32,8 +32,8 @@ class Employee_model extends CI_Model
   }
 
   // var $table = 'candidate_basic';
-  var $column_order = array(null, 'fullname', 'client', 'cc', 'position',  'start_date', 'end_of_contract');
-  var $column_search = array('fullname', 'client', 'cc', 'position', 'start_date', 'end_of_contract');
+  var $column_order = array(null, 'fullname', 'id_candidate', 'client', 'cc', 'position',  'start_date', 'end_of_contract');
+  var $column_search = array('fullname', 'id_candidate', 'client', 'cc', 'position', 'start_date', 'end_of_contract');
   var $order = array('id_candidate' => 'desc');
 
   private function _get_data_query()

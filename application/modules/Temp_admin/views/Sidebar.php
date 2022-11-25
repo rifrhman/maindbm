@@ -20,7 +20,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-        <li class="nav-header font-weight-bold text-capitalize text-primary">DASHBOARD</li>
+        <li class="nav-header font-weight-bold bg-light mb-2" style="border-radius: 5px;">DASHBOARD</li>
         <li class="nav-item">
           <a href="<?= base_url('admin') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'admin' ||  $this->uri->segment(1) == '' ? 'active' : '' ?>">
@@ -31,7 +31,7 @@
           </a>
         </li>
 
-        <li class="nav-header font-weight-bold text-capitalize text-primary">KONTRAK BARU</li>
+        <li class="nav-header font-weight-bold bg-light mb-2 mt-3" style="border-radius: 5px;">KONTRAK BARU</li>
         <li class="nav-item">
           <a href="<?= base_url('contract') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'contract' ? 'active' : '' ?>">
@@ -50,7 +50,7 @@
             </p>
           </a>
         </li>
-        <li class="nav-header font-weight-bold text-capitalize text-primary">DATA KARYAWAN</li>
+        <li class="nav-header font-weight-bold bg-light mb-2 mt-3" style="border-radius: 5px;">DATA KARYAWAN</li>
         <li class="nav-item">
           <a href="<?= base_url('employee') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'employee' ? 'active' : '' ?>">
@@ -68,7 +68,7 @@
             </p>
           </a>
         </li>
-        <li class="nav-header font-weight-bold text-capitalize text-primary">DATA LAINNYA</li>
+        <li class="nav-header font-weight-bold bg-light mb-2 mt-3" style="border-radius: 5px;">DATA LAINNYA</li>
         <li class="nav-item">
           <a href="<?= base_url('dropout') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'dropout' ? 'active' : '' ?>">

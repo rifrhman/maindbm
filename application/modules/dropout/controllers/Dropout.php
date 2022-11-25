@@ -100,9 +100,9 @@ class Dropout extends CI_Controller
   //export ke dalam format excel
   public function export_excel()
   {
-    $data['title'] = "Karyawan JOIN (IN)";
-    $data['in'] = $this->sign->quer();
+    $data['title'] = "Karyawan Keluar (OUT)";
+    $data['in'] = $this->drop->quer();
 
-    $this->load->view('export_in', $data);
+    $this->load->view('export_out', $data);
   }
 }

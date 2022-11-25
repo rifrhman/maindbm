@@ -402,11 +402,7 @@ function edit_join(basic_id) {
       $('[name="confirm"]').val(data.confirm);
       $('[name="confirm_admin"]').val(data.confirm_admin);
 
-      // $('[name="date_pkwt"]').val(data.date_pkwt);
-      // $('[name="start_of_contract"]').val(data.start_of_contract);
-      // $('[name="end_of_contract"]').val(data.end_of_contract);
-      // $('[name="status_pkwt"]').val(data.status_pkwt);
-      // $('[name="desc_pkwt"]').val(data.desc_pkwt);
+
 
       $('#modal_edit_join').modal('show'); // show bootstrap modal when complete loaded
       $('.modal-title').text('Edit JOIN'); // Set title to Bootstrap modal title
@@ -417,6 +413,61 @@ function edit_join(basic_id) {
     }
   });
 }
+
+function save_edit_join() {
+  $('#btnSaveJoin').text('saving...'); //change button text
+  $('#btnSaveJoin').attr('disabled', true); //set button disable 
+  var url;
+
+  if (save_method == 'add') {
+    url = "<?php echo site_url('signin/ajax_add') ?>";
+  } else {
+    url = "<?php echo site_url('signin/update_join') ?>";
+  }
+
+
+  // ajax adding data to database
+  $.ajax({
+    url: url,
+    type: "POST",
+    data: $('#form_edit_join').serialize(),
+    dataType: "JSON",
+    success: function(data) {
+
+      if (data.status) //if success close modal and reload ajax table
+      {
+        $('#modal_edit_join').modal('hide');
+        Swal.fire(
+          'Good job!',
+          flashData,
+          'success'
+        )
+        setTimeout(function() { // wait for 5 secs(2)
+          location.reload(); // then reload the page.(3)
+        }, 3000);
+
+      } else {
+        for (var i = 0; i < data.inputerror.length; i++) {
+          $('[name="' + data.inputerror[i] + '"]').parent().parent().addClass(
+            'has-error'); //select parent twice to select div form-group class and add has-error class
+          $('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[
+            i]); //select span help-block class set text error string
+        }
+      }
+      $('#btnSaveJoin').text('save'); //change button text
+      $('#btnSaveJoin').attr('disabled', false); //set button enable 
+
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('Error adding / update data');
+      $('#btnSaveJoin').text('save'); //change button text
+      $('#btnSaveJoin').attr('disabled', false); //set button enable 
+
+    }
+  });
+}
+
 
 function out_emp(basic_id) {
   save_method = 'update';
@@ -515,59 +566,6 @@ function save_out_emp() {
 
 
 
-function save_edit_join() {
-  $('#btnSaveJoin').text('saving...'); //change button text
-  $('#btnSaveJoin').attr('disabled', true); //set button disable 
-  var url;
-
-  if (save_method == 'add') {
-    url = "<?php echo site_url('signin/ajax_add') ?>";
-  } else {
-    url = "<?php echo site_url('signin/update_join') ?>";
-  }
-
-
-  // ajax adding data to database
-  $.ajax({
-    url: url,
-    type: "POST",
-    data: $('#form_edit_join').serialize(),
-    dataType: "JSON",
-    success: function(data) {
-
-      if (data.status) //if success close modal and reload ajax table
-      {
-        $('#modal_edit_join').modal('hide');
-        Swal.fire(
-          'Good job!',
-          flashData,
-          'success'
-        )
-        setTimeout(function() { // wait for 5 secs(2)
-          location.reload(); // then reload the page.(3)
-        }, 3000);
-
-      } else {
-        for (var i = 0; i < data.inputerror.length; i++) {
-          $('[name="' + data.inputerror[i] + '"]').parent().parent().addClass(
-            'has-error'); //select parent twice to select div form-group class and add has-error class
-          $('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[
-            i]); //select span help-block class set text error string
-        }
-      }
-      $('#btnSaveJoin').text('save'); //change button text
-      $('#btnSaveJoin').attr('disabled', false); //set button enable 
-
-
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-      alert('Error adding / update data');
-      $('#btnSaveJoin').text('save'); //change button text
-      $('#btnSaveJoin').attr('disabled', false); //set button enable 
-
-    }
-  });
-}
 
 
 function save() {

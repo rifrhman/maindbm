@@ -22,7 +22,7 @@
           <div class="card">
             <div class="card-header">
               <!-- <span class="badge badge-danger"><?= $countNull; ?> Karyawan Aktif</span> -->
-              <p> <a class="btn btn-danger btn-sm" href="<?php echo base_url('Signin/export_excel') ?>"><i
+              <p> <a class="btn btn-danger btn-sm" href="<?php echo base_url('dropout/export_excel') ?>"><i
                     class="fas fa-fw fa-file-export"></i> Export ke
                   Excel</a>
               </p>

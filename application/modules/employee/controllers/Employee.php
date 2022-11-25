@@ -57,6 +57,7 @@ class Employee extends CI_Controller
       foreach ($que as $q) {
         $row = array();
         $row[] = ++$no;
+        $row[] = $result->id_candidate;
         $row[] = $result->fullname;
         $row[] = $result->client;
         $row[] = $result->cc;
@@ -69,7 +70,7 @@ class Employee extends CI_Controller
     class="btn btn-primary btn-sm mb-1"><i class="fas fa-fw fa-info-circle"></i> Info</a>
     <a href="' . base_url('employee/detail_pkwt/') . $result->id_candidate . '"
     class="btn btn-danger btn-sm mb-1"><i class="fas fa-fw fa-folder-open"></i> PKWT</a><br>
-    <a class="btn btn-warning btn-sm" href="javascript:void(0)" title="Edit" onclick="edit_person(' . "'" . $q['id'] . "'" . ')"><i class="fas fa-fw fa-plus-circle"></i> Update Reminder</a>
+    <a class="btn btn-warning btn-sm mb-1" href="javascript:void(0)" title="Edit" onclick="edit_person(' . "'" . $q['id'] . "'" . ')"><i class="fas fa-fw fa-plus-circle"></i> Update Reminder</a>
     <a class="btn btn-secondary btn-sm" href="javascript:void(0)" title="Add" onclick="add_person(' . "'" . $result->id_candidate . "'" . ')"><i class="fas fa-fw fa-plus-circle"></i> Addendum</a>';
         $data[] = $row;
       }

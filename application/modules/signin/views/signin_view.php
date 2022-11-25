@@ -111,10 +111,10 @@
             <div class="form-group">
               <label class="control-label col-md-6">Join Karyawan ?</label>
               <div class="col-md">
-                <select name="is_join" class="form-control">
+                <select name="is_join" class="form-control" id="is_join">
                   <option value="" selected="selected" disabled="disabled">--Select Status--</option>
-                  <option value="Join">Join</option>
-                  <option value="Batal Join">Batal Join</option>
+                  <option value="Join" data-rec="Approved" data-adm="Approved">Join</option>
+                  <option value="Batal Join" data-rec="Back" data-adm="Back">Batal Join</option>
                 </select>
                 <span class="help-block"></span>
               </div>
@@ -122,7 +122,7 @@
             <div class="form-group">
               <label class="control-label col-md-6">Kembalikan Ke Recruitment ?</label>
               <div class="col-md">
-                <select name="confirm" class="form-control">
+                <select name="confirm" class="form-control" id="confirm">
                   <option value="" selected="selected" disabled="disabled">--Pilih Konfirmasi--</option>
                   <option value="Back">Ya</option>
                   <option value="Approved">Tidak</option>
@@ -163,3 +163,19 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- End Bootstrap modal -->
+
+<script>
+$('#is_join').on('change', function() {
+  // ambil data dari elemen option yang dipilih
+  const rec = $('#is_join option:selected').data('rec');
+  const adm = $('#is_join option:selected').data('adm');
+
+  // // kalkulasi total harga
+  // const totalDiscount = (price * discount/100)
+  // const total = price - totalDiscount;
+
+  // tampilkan data ke element
+
+
+});
+</script>
