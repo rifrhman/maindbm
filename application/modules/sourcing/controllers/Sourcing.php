@@ -176,7 +176,7 @@ class Sourcing extends CI_Controller
       $row[] = date('d-M-Y', strtotime($result->test_two));
       $row[] = $result->test_three;
       $row[] = '<a href="' . base_url('sourcing/detailcandidate/') . $result->id_candidate . '"
-      class="badge bg-warning">Detail <i class="fas fa-fw fa-info-circle"></i> </a>';
+      class="badge bg-lime"><i class="fas fa-fw fa-info-circle"></i> Detail </a>';
       $data[] = $row;
     }
 

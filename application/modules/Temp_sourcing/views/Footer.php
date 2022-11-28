@@ -1,8 +1,8 @@
-<footer class="main-footer navbar-dark">
+<footer class="main-footer navbar-navy">
   <div class="float-right d-none d-sm-block">
-    <b>Version</b> 1.0
+    <b>Candidate System Management.</b> Ver-1.0
   </div>
-  <strong>Copyright &copy; <?= date('F-Y'); ?> </strong> MutualPlus Candidate System.
+  <strong>Copyright &copy; <?= date('F-Y'); ?> </strong>
 
 </footer>
 

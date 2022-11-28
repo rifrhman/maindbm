@@ -5,7 +5,8 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm mb-2 mt-2">
-          <h1 class="font-weight-bold text-secondary text-center text-uppercase">Penilaian Kandidat</h1>
+          <h1 style="font-weight: bold; color: #6B728E;" class="text-uppercase text-center font-italic">Penilaian
+            Kandidat</h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -21,7 +22,7 @@
           <div class="card">
             <div class="card-header">
               <span class="badge badge-danger"><?= $count_stat; ?> Kandidat</span>
-              Belum dinilai
+              Belum Di Nilai
             </div>
 
 

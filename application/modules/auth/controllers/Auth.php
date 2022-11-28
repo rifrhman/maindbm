@@ -43,7 +43,7 @@ class Auth extends CI_Controller
         }
       } else {
         $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Oops!</strong> Password salah.
+        <strong>Oops!</strong> Password <b>SALAH</b>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -65,8 +65,8 @@ class Auth extends CI_Controller
   {
     $this->session->unset_userdata('username');
     $this->session->unset_userdata('level_id');
-    $this->session->set_flashdata('msg', '<div class="alert alert-primary alert-dismissible fade show" role="alert">
-    <strong>Bye!</strong> Sampai ketemu lagi nanti.
+    $this->session->set_flashdata('msg', '<div class="alert alert-info alert-dismissible fade show" role="alert">
+    <strong>Bye!</strong> Sampai jumpa lagi <i class="far fa-fw fa-smile-wink"></i>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
     </button>

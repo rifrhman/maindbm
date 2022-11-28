@@ -1,8 +1,8 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-light-warning elevation-4">
+<aside class="main-sidebar sidebar-light-secondary elevation-4">
   <a href="" class="brand-link">
     <img src="<?= base_url('assets/'); ?>img/logo2.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" ">
-    <span class=" brand-text font-weight-light font-weight-bold">MutualPlus</span>
+    <span class=" brand-text font-weight-light font-weight-bold text-secondary">MutualPlus</span>
   </a>
 
   <!-- Sidebar -->
@@ -24,7 +24,7 @@
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <?php if ($this->session->userdata('level_id') == 2) : ?>
-        <li class="nav-header font-weight-bold bg-dark mb-2" style="border-radius: 5px;">SOURCING MENU</li>
+        <li class="nav-header font-weight-bold bg-navy mb-2" style="border-radius: 5px;">SOURCING MENU</li>
         <li class="nav-item">
           <a href="<?= base_url('sourcing') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'sourcing' ||  $this->uri->segment(1) == '' ? 'active' : '' ?>">
@@ -80,7 +80,7 @@
         <?php endif; ?>
         <?php if ($this->session->userdata('level_id') == 3 || $this->session->userdata('level_id') == 2) : ?>
 
-        <li class="nav-header font-weight-bold bg-dark mb-2" style="border-radius: 5px;">RECRUITMENT MENU</li>
+        <li class="nav-header font-weight-bold bg-navy mb-2" style="border-radius: 5px;">RECRUITMENT MENU</li>
         <li class="nav-item">
           <a href="<?= base_url('graduated') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'graduated' ? 'active menu-is-opening menu-open' : '' ?>">

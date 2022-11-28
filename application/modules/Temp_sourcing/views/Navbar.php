@@ -1,9 +1,9 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-dark navbar-light">
+<nav class="main-header navbar navbar-expand navbar-navy navbar-light">
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      <a class="nav-link text-light" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
   </ul>
 
@@ -11,7 +11,7 @@
   <ul class="navbar-nav ml-auto">
 
     <li class="nav-item">
-      <a class="nav-link btn btn-danger btn-sm text-light" data-toggle="modal" data-target="#logoutmodal">
+      <a class="nav-link btn bg-maroon btn-sm text-light" data-toggle="modal" data-target="#logoutmodal">
         <i class="fas fa-fw fa-sign-out-alt"></i> Logout
       </a>
     </li>

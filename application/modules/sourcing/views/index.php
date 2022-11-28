@@ -4,8 +4,9 @@
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm mt-2 mb-2">
-          <h1 class="font-weight-bold text-secondary text-uppercase text-center">Data Kandidat</h1>
+        <div class="col-sm mt-1 mb-1">
+          <h1 style="font-weight: bold; color: #6B728E;" class="text-uppercase text-center font-italic">Data Kandidat
+          </h1>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -21,22 +22,24 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <div class="row col-lg-12 d-block">
-                <div class="col-lg-6 mb-2">
-                  <a href="<?= base_url('sourcing/addNewCandidate') ?>" class="btn bg-cyan"><i
-                      class="fas fa-plus-circle"></i> Tambah Data Kandidat</a>
+              <div class="row col-lg d-flex justify-content-between align-items-center">
+                <div class="col-lg-6 mt-2">
+                  <a href="<?= base_url('sourcing/addNewCandidate') ?>" class="btn btn-md text-sm bg-pink"><i
+                      class="fas fa-fw fa-plus-circle"></i> Tambah Data</a>
                 </div>
-                <div class="col-lg-12 d-flex justify-content-end">
+                <div class="col-lg-6 mt-2">
                   <?php echo form_open_multipart('sourcing/upload_candidate'); ?>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" name="importexcel" id="custom-file-input"
                           accept=".xlsx,.xls">
-                        <label class="custom-file-label" for="exampleInputFile">Import Data Excel</label>
+                        <label class="custom-file-label text-sm" for="exampleInputFile">
+                          Import Excel</label>
                       </div>
                       <div class="input-group-append">
-                        <button type="submit" id="submit" class="btn bg-gradient-maroon">Upload</button>
+                        <button type="submit" id="submit" class="btn btn-sm bg-yellow"><i
+                            class="fas fa-fw fa-file-import"></i>Upload</button>
                       </div>
                     </div>
                   </div>
@@ -48,16 +51,16 @@
 
             <style>
             table th {
-              font-size: 14px;
+              font-size: 13.5px;
             }
 
             table tbody {
-              font-size: 14px;
+              font-size: 13.5px;
             }
             </style>
 
             <div class="card-body">
-              <table id="exam" class="table table-bordered table-striped table-dark text-center">
+              <table id="exam" class="table table-bordered table-dark table-hover table-responsive text-center">
                 <thead>
                   <tr>
                     <th>No</th>
