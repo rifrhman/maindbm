@@ -153,6 +153,11 @@ class Contract_model extends CI_Model
     $query = "SELECT * FROM `secondary_admin` WHERE `basic_id` = $id_candidate";
     return $this->db->query($query)->row_array();
   }
+  public function getSendCandidate($id_candidate)
+  {
+    $query = "SELECT * FROM `send_candidate` WHERE `basic_id` = $id_candidate AND `confirm` IS NOT NULL AND `result_send` = 'Lulus' ORDER BY id DESC";
+    return $this->db->query($query)->row_array();
+  }
   public function emergencyContact($id_candidate)
   {
     $query = "SELECT * FROM `emergency_contact` WHERE `basic_id` = $id_candidate";

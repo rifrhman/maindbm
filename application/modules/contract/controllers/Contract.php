@@ -70,6 +70,8 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
     $data['exp'] = $this->con->detailExp($id_candidate);
     $data['basicadmin'] = $this->con->adminQuery($id_candidate);
     $data['secondadmin'] = $this->con->adminBank($id_candidate);
+    $data['can_send'] = $this->con->getSendCandidate($id_candidate);
+
     $data['emergency'] = $this->con->emergencyContact($id_candidate);
     $data['detailEmergency'] = $this->con->detailEmergency($id_candidate);
     $data['pkwt'] = $this->con->pkwtEmployee($id_candidate);
@@ -131,6 +133,61 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
       redirect('contract/detail_contract/' . $id_candidate);
     }
   }
+
+  public function edit_send($id)
+  {
+    $data['title'] = "Kontrak Form Kandidat";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    $data['status'] = $this->db->get_where('send_candidate', ['id' => $id])->row_array();
+    $data['candidate'] = $this->db->get('candidate_basic');
+
+    $validation = $this->form_validation;
+
+    $validation->set_rules('client', 'Client', 'required|trim');
+    $validation->set_rules('position', 'Position', 'required|trim');
+    $validation->set_rules('date_send', 'Date Send', 'required|trim');
+    $validation->set_rules('result_send', 'Result Send', 'required|trim');
+    $validation->set_rules('placement', 'Placement', 'required|trim');
+    $validation->set_rules('salary', 'Salary', 'required|trim');
+    $validation->set_rules('start_date', 'Start At', 'required|trim');
+    $validation->set_rules('end_date', 'End At', 'required|trim');
+    $validation->set_rules('desc_send', 'Description Send Candidate', 'required|trim');
+
+    if ($validation->run() == false) {
+      $this->load->view('Temp_admin/header', $data);
+      $this->load->view('Temp_admin/navbar', $data);
+      $this->load->view('Temp_admin/sidebar', $data);
+      $this->load->view('detail_contract_view', $data);
+      $this->load->view('Temp_admin/footer');
+    } else {
+      $client = $this->input->post('client');
+      $position = $this->input->post('position');
+      $date_send = $this->input->post('date_send');
+      $result_send = $this->input->post('result_send');
+      $placement = $this->input->post('placement');
+      $salary = $this->input->post('salary');
+      $start_date = $this->input->post('start_date');
+      $end_date = $this->input->post('end_date');
+      $desc_send = $this->input->post('desc_send');
+
+
+      $this->db->set('client', $client);
+      $this->db->set('position', $position);
+      $this->db->set('date_send', $date_send);
+      $this->db->set('result_send', $result_send);
+      $this->db->set('placement', $placement);
+      $this->db->set('salary', $salary);
+      $this->db->set('start_date', $start_date);
+      $this->db->set('end_date', $end_date);
+      $this->db->set('desc_send', $desc_send);
+      $this->db->where('id', $this->input->post('id'));
+      $this->db->update('send_candidate');
+      $this->session->set_flashdata('msg', 'Edit Data berhasil');
+      $url = $_SERVER['HTTP_REFERER'];
+      redirect($url);
+    }
+  }
+
 
   public function editsecondary($id_candidate)
   {

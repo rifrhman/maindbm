@@ -33,7 +33,8 @@
             <div class="card-header">
               <h3 class="card-title font-weight-bold">Data Basic Join Karyawan</h3>
               <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#basic">
+                <button type="button" class="btn bg-gradient-gray-dark btn-sm btn-sm" data-toggle="modal"
+                  data-target="#basic">
                   <i class="fas fa-fw fa-pencil-alt"></i> Edit Basic
                 </button>
               </div>
@@ -106,7 +107,8 @@
             <div class="card-header">
               <h3 class="card-title font-weight-bold">Data Secondary Join Karyawan</h3>
               <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#secondary">
+                <button type="button" class="btn bg-gradient-gray-dark btn-sm btn-sm" data-toggle="modal"
+                  data-target="#secondary">
                   <i class="fas fa-fw fa-pencil-alt"></i> Edit Secondary
                 </button>
               </div>
@@ -167,6 +169,145 @@
 
         </div>
         <?php endif; ?>
+
+
+
+        <div class="col-lg-12">
+          <div class="card card-olive">
+            <div class="card-header">
+              <h3 class="card-title font-weight-bold">Data Pengiriman Kandidat</h3>
+              <div class="d-flex justify-content-end">
+                <button type="button" class="btn bg-gradient-gray-dark btn-sm" data-toggle="modal"
+                  data-target="#sendcandidate">
+                  <i class="fas fa-fw fa-pencil-alt"></i> Edit Data
+                </button>
+              </div>
+            </div>
+
+            <form>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col form-group">
+                    <?php if (isset($can_send['client']) == null) { ?>
+                    <label for="client">Klien</label>
+                    <input type="text" class="form-control" name="client" value="" readonly>
+                    <?= form_error('client', '<small class="text-danger">', '</small>') ?>
+                    <?php } else { ?>
+                    <label for="client">Klien</label>
+                    <input type="text" class="form-control" name="client" value="<?= $can_send['client'] ?>" readonly>
+                    <?= form_error('client', '<small class="text-danger">', '</small>') ?>
+                    <?php } ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($can_send['position']) == null) : ?>
+                    <label for="position">Jabatan/Posisi</label>
+                    <input type="text" class="form-control" name="position" value="" readonly>
+                    <?= form_error('position', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="position">Jabatan/Posisi</label>
+                    <input type="text" class="form-control" name="position" value="<?= $can_send['position'] ?>"
+                      readonly>
+                    <?= form_error('position', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($can_send['salary']) == null) : ?>
+                    <label for="exampleInputEmail1">Gaji Pokok</label>
+                    <input type="text" class="form-control" name="salary" value="" readonly>
+                    <?= form_error('salary', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Gaji Pokok</label>
+                    <input type="text" class="form-control" name="salary" value="<?= $can_send['salary'] ?>" readonly>
+                    <?= form_error('salary', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col form-group">
+                    <?php if (isset($can_send['date_send']) == null) : ?>
+                    <label for="date_send">Tanggal Dikirim Kandidat</label>
+                    <input type="text" class="form-control" name="date_send" value="" readonly>
+                    <?= form_error('date_send', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="date_send">Tanggal Dikirim Kandidat</label>
+                    <input type="text" class="form-control" name="date_send" value="<?= $can_send['date_send'] ?>"
+                      readonly>
+                    <?= form_error('date_send', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($can_send['placement']) == null) : ?>
+                    <label for="placement">Penempatan Kandidat</label>
+                    <input type="text" class="form-control" name="placement" value="" readonly>
+                    <?= form_error('placement', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="placement">Penempatan Kandidat</label>
+                    <input type="text" class="form-control" name="placement" value="<?= $can_send['placement'] ?>"
+                      readonly>
+                    <?= form_error('placement', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($can_send['result_send']) == null) : ?>
+                    <label for="result_send">Hasil Pengiriman Kandidat</label>
+                    <input type="text" class="form-control" name="result_send" value="" readonly>
+                    <?= form_error('result_send', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="result_send">Hasil Pengiriman Kandidat</label>
+                    <input type="text" class="form-control" name="result_send" value="<?= $can_send['result_send'] ?>"
+                      readonly>
+                    <?= form_error('result_send', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col form-group">
+                    <?php if (isset($can_send['start_date']) == null) : ?>
+                    <label for="start_date">Tanggal Awal</label>
+                    <input type="text" class="form-control" name="start_date" value="" readonly>
+                    <?= form_error('start_date', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="start_date">Tanggal Awal</label>
+                    <input type="text" class="form-control" name="start_date" value="<?= $can_send['start_date'] ?>"
+                      readonly>
+                    <?= form_error('start_date', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($can_send['end_date']) == null) : ?>
+                    <label for="end_date">Tanggal Akhir</label>
+                    <input type="text" class="form-control" name="end_date" value="" readonly>
+                    <?= form_error('end_date', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="end_date">Tanggal Akhir</label>
+                    <input type="text" class="form-control" name="end_date" value="<?= $can_send['end_date'] ?>"
+                      readonly>
+                    <?= form_error('end_date', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <?php if (isset($can_send['desc_send']) == null) : ?>
+                  <label for="desc_send">Deskripsi Kirim Kandidat</label>
+                  <input type="text" class="form-control" name="desc_send" value="" readonly>
+                  <?= form_error('desc_send', '<small class="text-danger">', '</small>') ?>
+                  <?php else : ?>
+                  <label for="desc_send">Deskripsi Kirim Kandidat</label>
+                  <input type="text" class="form-control" name="desc_send" value="<?= $can_send['desc_send'] ?>"
+                    readonly>
+                  <?= form_error('desc_send', '<small class="text-danger">', '</small>') ?>
+                  <?php endif; ?>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+
 
 
         <div class="col-lg-12">
@@ -234,11 +375,11 @@
                 <div class="row">
                   <div class="col form-group">
                     <?php if (isset($basicadmin['payroll_one']) == null) : ?>
-                    <label for="exampleInputEmail1">Payroll 1</label>
+                    <label for="exampleInputEmail1">ID Payroll 1</label>
                     <input type="text" class="form-control" name="payroll_one" value="" readonly>
                     <?= form_error('payroll_one', '<small class="text-danger">', '</small>') ?>
                     <?php else : ?>
-                    <label for="exampleInputEmail1">Payroll 1</label>
+                    <label for="exampleInputEmail1">ID Payroll 1</label>
                     <input type="text" class="form-control" name="payroll_one" value="<?= $basicadmin['payroll_one'] ?>"
                       readonly>
                     <?= form_error('payroll_one', '<small class="text-danger">', '</small>') ?>
@@ -246,11 +387,11 @@
                   </div>
                   <div class="col form-group">
                     <?php if (isset($basicadmin['payroll_two']) == null) : ?>
-                    <label for="exampleInputEmail1">Payroll 2</label>
+                    <label for="exampleInputEmail1">ID Payroll 2</label>
                     <input type="text" class="form-control" name="payroll_two" readonly value="">
                     <?= form_error('payroll_two', '<small class="text-danger">', '</small>') ?>
                     <?php else : ?>
-                    <label for="exampleInputEmail1">Payroll 2</label>
+                    <label for="exampleInputEmail1">ID Payroll 2</label>
                     <input type="text" class="form-control" name="payroll_two" value="<?= $basicadmin['payroll_two'] ?>"
                       readonly>
                     <?= form_error('payroll_two', '<small class="text-danger">', '</small>') ?>
@@ -384,6 +525,17 @@
                     <input type="text" class="form-control" name="allowance_others"
                       value="<?= $secondadmin['allowance_others'] ?>" readonly>
                     <?= form_error('allowance_others', '<small class="text-danger">', '</small>') ?>
+                    <?php endif; ?>
+                  </div>
+                  <div class="col form-group">
+                    <?php if (isset($can_send['salary']) == null) : ?>
+                    <label for="exampleInputEmail1">Gaji Pokok</label>
+                    <input type="text" class="form-control" name="salary" value="" readonly>
+                    <?= form_error('salary', '<small class="text-danger">', '</small>') ?>
+                    <?php else : ?>
+                    <label for="exampleInputEmail1">Gaji Pokok</label>
+                    <input type="text" class="form-control" name="salary" value="<?= $can_send['salary'] ?>" readonly>
+                    <?= form_error('salary', '<small class="text-danger">', '</small>') ?>
                     <?php endif; ?>
                   </div>
                 </div>
@@ -1048,22 +1200,22 @@
             <div class="row">
               <div class="col form-group">
                 <?php if (isset($basicadmin['payroll_one']) == null) : ?>
-                <label for="exampleInputEmail1">Payroll 1</label>
+                <label for="exampleInputEmail1">ID Payroll 1</label>
                 <input type="text" class="form-control" name="payroll_one">
                 <?= form_error('payroll_one', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
-                <label for="exampleInputEmail1">Payroll 1</label>
+                <label for="exampleInputEmail1">ID Payroll 1</label>
                 <input type="text" class="form-control" name="payroll_one" value="<?= $basicadmin['payroll_one'] ?>">
                 <?= form_error('payroll_one', '<small class="text-danger">', '</small>') ?>
                 <?php endif; ?>
               </div>
               <div class="col form-group">
                 <?php if (isset($basicadmin['payroll_two']) == null) : ?>
-                <label for="exampleInputEmail1">Payroll 2</label>
+                <label for="exampleInputEmail1">ID Payroll 2</label>
                 <input type="text" class="form-control" name="payroll_two">
                 <?= form_error('payroll_two', '<small class="text-danger">', '</small>') ?>
                 <?php else : ?>
-                <label for="exampleInputEmail1">Payroll 2</label>
+                <label for="exampleInputEmail1">ID Payroll 2</label>
                 <input type="text" class="form-control" name="payroll_two" value="<?= $basicadmin['payroll_two'] ?>">
                 <?= form_error('payroll_two', '<small class="text-danger">', '</small>') ?>
                 <?php endif; ?>
@@ -1424,6 +1576,86 @@
               </div>
             </div>
 
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="sendcandidate" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="sendcandidateLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sendcandidateLabel">Form Data Kirim Kandidat</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url('contract/edit_send/') . $can_send['id'] ?>" method="POST">
+        <div class="modal-body">
+          <div class="card-body">
+            <input type="hidden" name="id" id="id" value="<?= $can_send['id'] ?>">
+            <div class="row">
+              <div class="col form-group">
+                <label for="client">Klien</label>
+                <input type="text" class="form-control" name="client" value="<?= $can_send['client'] ?>">
+                <?= form_error('client', '<small class="text-danger">', '</small>') ?>
+              </div>
+              <div class="col form-group">
+                <label for="position">Jabatan/Posisi</label>
+                <input type="text" class="form-control" name="position" value="<?= $can_send['position'] ?>">
+                <?= form_error('position', '<small class="text-danger">', '</small>') ?>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="salary">Gaji Pokok</label>
+              <input type="text" class="form-control" name="salary" value="<?= $can_send['salary'] ?>">
+              <?= form_error('salary', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="row">
+              <div class="col form-group">
+                <label for="date_send">Tanggal Kirim Kandidat</label>
+                <input type="text" class="form-control" name="date_send" value="<?= $can_send['date_send'] ?>" readonly>
+                <?= form_error('date_send', '<small class="text-danger">', '</small>') ?>
+              </div>
+              <div class="col form-group">
+                <label for="result_send">Hasil Kirim Kandidat</label>
+                <input type="text" class="form-control" name="result_send" value="<?= $can_send['result_send'] ?>"
+                  readonly>
+                <?= form_error('result_send', '<small class="text-danger">', '</small>') ?>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="placement">Penempatan</label>
+              <input type="text" class="form-control" name="placement" value="<?= $can_send['placement'] ?>">
+              <?= form_error('placement', '<small class="text-danger">', '</small>') ?>
+            </div>
+            <div class="row">
+              <div class="col form-group">
+                <label for="start_date">Tanggal Awal</label>
+                <input type="text" class="form-control" name="start_date" value="<?= $can_send['start_date'] ?>">
+                <?= form_error('start_date', '<small class="text-danger">', '</small>') ?>
+              </div>
+              <div class="col form-group">
+                <label for="end_date">Tanggal Akhir</label>
+                <input type="text" class="form-control" name="end_date" value="<?= $can_send['end_date'] ?>">
+                <?= form_error('end_date', '<small class="text-danger">', '</small>') ?>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="desc_send">Deskripsi Kirim Kandidat</label>
+              <input type="text" class="form-control" name="desc_send" value="<?= $can_send['desc_send'] ?>">
+              <?= form_error('desc_send', '<small class="text-danger">', '</small>') ?>
+            </div>
           </div>
 
         </div>

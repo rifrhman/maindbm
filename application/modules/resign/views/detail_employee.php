@@ -638,14 +638,15 @@
                     <div class="col-sm-3">
                       <div class="form-group">
                         <label for="year_in">Tahun Masuk</label>
-                        <input type="text" class="form-control" id="year_in" value="<?= $ed['year_in'] ?>" readonly>
+                        <input type="text" class="form-control" id="year_in" value="<?= $ed['year_in_edu'] ?>" readonly>
                       </div>
 
                     </div>
                     <div class="col-sm-3">
                       <div class="form-group">
                         <label for="year_out">Tahun Keluar</label>
-                        <input type="text" class="form-control" id="year_out" value="<?= $ed['year_out'] ?>" readonly>
+                        <input type="text" class="form-control" id="year_out" value="<?= $ed['year_out_edu'] ?>"
+                          readonly>
                       </div>
 
                     </div>
@@ -695,7 +696,6 @@
               <div class="card card-default">
                 <div class="card-header">
                   <h3 class="card-title font-weight-bold">List Pengalaman Kandidat</h3>
-
                 </div>
 
 
@@ -709,12 +709,12 @@
 
                     <div class="form-group col-md-5">
                       <label for="institute">Posisi</label>
-                      <input type="text" class="form-control" id="position" value="<?= $ex['position'] ?>" readonly>
+                      <input type="text" class="form-control" id="position" value="<?= $ex['position_exp'] ?>" readonly>
                     </div>
                     <div class="form-group col-md-4">
                       <label for="major">Tahun Masuk</label>
-                      <input type="text" class="form-control" id="year_in"
-                        value="<?= date('d F Y', strtotime($ex['year_in'])) ?>" readonly>
+                      <input type="text" class="form-control" id="year_in_exp"
+                        value="<?= date('d F Y', strtotime($ex['year_in_exp'])) ?>" readonly>
                     </div>
 
                   </div>

@@ -123,6 +123,10 @@ class Employee extends CI_Controller
   {
     $this->_validate();
     $data = array(
+      'pkwt_number' => $this->input->post('pkwt_number'),
+      'date_pkwt' => $this->input->post('date_pkwt'),
+      'start_of_contract' => $this->input->post('start_of_contract'),
+      'end_of_contract' => $this->input->post('end_of_contract'),
       'desc_pkwt' => $this->input->post('desc_pkwt'),
       'status_pkwt' => $this->input->post('status_pkwt'),
     );

@@ -60,7 +60,7 @@
             </style>
 
             <div class="card-body">
-              <table id="exam" class="table table-bordered table-dark table-hover table-responsive text-center">
+              <table id="exam" class="table table-bordered table-dark table-hover text-center">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -73,10 +73,6 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody>
-
-                </tbody>
-
               </table>
             </div>
             <!-- /.card-body -->
