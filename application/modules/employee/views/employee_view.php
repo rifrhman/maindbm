@@ -52,7 +52,7 @@
             </div>
 
             <div class="card-body">
-              <table id="employee" class="table table-bordered table-striped text-center">
+              <table id="employee" class="table table-bordered table-dark table-striped text-center">
                 <thead>
                   <tr>
                     <th>No</th>

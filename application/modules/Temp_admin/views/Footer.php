@@ -154,7 +154,7 @@ $(document).ready(function() {
     "order": [],
     "responsive": true,
     "lengthChange": true,
-    "autoWidth": false,
+    "autoWidth": true,
     "searching": true,
     "ajax": {
       "url": "<?= base_url('employee/getDataScore') ?>",
