@@ -254,4 +254,24 @@ class Employee_model extends CI_Model
     $query = "SELECT * FROM pkwt_employee WHERE flags_resign IS NOT NULL";
     return $this->db->query($query)->row_array();
   }
+
+  public function quer()
+  {
+    $query = "
+    SELECT * FROM candidate_basic 
+    LEFT JOIN candidate_secondary ON candidate_secondary.basic_id = candidate_basic.id_candidate
+    LEFT JOIN education ON education.basic_id = candidate_basic.id_candidate
+    LEFT JOIN experience ON experience.basic_id = candidate_basic.id_candidate
+    LEFT JOIN send_candidate ON send_candidate.basic_id = candidate_basic.id_candidate
+    LEFT JOIN basic_admin ON basic_admin.basic_id = candidate_basic.id_candidate
+    LEFT JOIN secondary_admin ON secondary_admin.basic_id = candidate_basic.id_candidate
+    LEFT JOIN pkwt_employee ON pkwt_employee.basic_id = candidate_basic.id_candidate
+    LEFT JOIN emergency_contact ON emergency_contact.basic_id = candidate_basic.id_candidate
+    WHERE send_candidate.confirm = 'Approved' AND send_candidate.confirm_admin = 'Approved'
+    AND pkwt_employee.flags_resign IS NULL AND send_candidate.is_join = 'Join' AND send_candidate.result_send = 'Lulus'
+    GROUP BY candidate_basic.fullname
+    ORDER BY pkwt_employee.id DESC;
+    ";
+    return $this->db->query($query)->result_array();
+  }
 }

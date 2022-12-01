@@ -54,7 +54,7 @@ header("Expires: 0");
       <th>Pengalaman Kerja Terakhir (Nama Perusahaan)</th>
       <th>Jabatan</th>
       <th>Tanggal Masuk</th>
-      <th>Tanggal Keluar</th>
+      <th>Periode Bulan</th>
       <th>Gaji Terakhir</th>
       <th>Alasan Berhenti</th>
     </tr>
@@ -78,7 +78,7 @@ header("Expires: 0");
       <td><?= $i['placement_district'] ?></td>
       <td><?= $i['placement_city'] ?></td>
       <td><?= $i['type_bank'] ?></td>
-      <td><?= $i['account_number'] ?></td>
+      <td>'<?= $i['account_number'] ?></td>
       <td><?= $i['name_of_bank'] ?></td>
       <td>'<?= strval($i['bpjs_tk']) ?></td>
       <td>'<?= strval($i['bpjs_ks']) ?></td>
@@ -104,6 +104,7 @@ header("Expires: 0");
       <td><?= $i['company'] ?></td>
       <td><?= $i['position_exp'] ?></td>
       <td><?= $i['year_in_exp'] ?></td>
+      <td><?= $i['month_period'] ?></td>
       <td><?= $i['last_salary'] ?></td>
       <td><?= $i['resign'] ?></td>
       <?php } ?>

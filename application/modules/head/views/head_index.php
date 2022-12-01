@@ -68,10 +68,10 @@
 
                     <td>
                       <a href="<?= base_url('head/detailcandidate/') . $can['id_candidate']; ?>"
-                        class="badge badge-primary btn-sm"><i class="fas fa-fw fa-info-circle"></i> Detail</a><br>
+                        class="badge bg-olive btn-sm"><i class="fas fa-fw fa-info-circle"></i> Detail</a><br>
 
                       <a href="<?= base_url('head/approved/') . $can['id_candidate'] ?>"
-                        class="badge badge-primary btn-sm"><i class="fas fa-fw fa-info-circle"></i>
+                        class="badge badge-danger btn-sm"><i class="fas fa-fw fa-info-circle"></i>
                         Approve</a><br>
 
                     </td>

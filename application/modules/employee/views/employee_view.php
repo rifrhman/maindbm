@@ -21,9 +21,18 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <span class="badge badge-danger"><?= $countNull; ?> Karyawan Aktif</span>
+              <div class="d-flex flex-row justify-content-between">
+                <h6>Total Karyawan Aktif &nbsp;<span class="badge badge-danger"><i class="fas fa-fw fa-user"></i>&nbsp;
+                    <strong>
+                      <?= $countNull; ?></strong>
+                  </span></h6>
+                <p> <a class="btn btn-danger btn-sm" href="<?php echo base_url('employee/export_excel_emp') ?>"><i
+                      class="fas fa-fw fa-file-export"></i> Export
+                    Full Excel</a>
+                </p>
+              </div>
               <div class="form-group row">
-                <div class="col-md mt-2">
+                <div class="col-md">
 
                   <table border="0" cellspacing="5" cellpadding="5">
                     <thead>

@@ -99,8 +99,9 @@
                       <?php endif; ?>
                       <br>
                       <?php if (isset($can['interview'])) : ?>
-                      : <a href="<?= base_url('assets/uploads/interview/') . $can['interview'] ?>" target="_blank">Cek
-                        Disini...</a>
+                      : <a href="<?= base_url('assets/uploads/interview/') . $can['interview'] ?>" target="_blank"
+                        class="badge bg-maroon">Cek
+                        Disini</a>
                       </a>
                       <?php else : ?>
                       : <span class="text-danger">Belum di Upload</span>

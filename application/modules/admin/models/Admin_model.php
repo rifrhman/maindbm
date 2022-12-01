@@ -7,7 +7,7 @@ class Admin_model extends CI_Model
 
   public function countJoinEmp()
   {
-    $query = "SELECT * FROM `send_candidate` WHERE `confirm` = 'Approved' AND `confirm_admin` IS NULL";
+    $query = "SELECT * FROM `send_candidate` WHERE `confirm` = 'Approved' AND `result_send` = 'Lulus' AND `confirm_admin` IS NULL";
     return $this->db->query($query)->num_rows();
   }
   public function countEmpActive()

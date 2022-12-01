@@ -6,7 +6,7 @@ class Contract_model extends CI_Model
 
   public function countJoinEmpNull()
   {
-    $query = "SELECT * FROM `send_candidate` WHERE `confirm` = 'Approved' AND `confirm_admin` IS NULL OR `confirm_admin` = ''";
+    $query = "SELECT * FROM `send_candidate` WHERE `confirm` = 'Approved' AND `result_send` = 'Lulus' AND `confirm_admin` IS NULL OR `confirm_admin` = ''";
     return $this->db->query($query)->num_rows();
   }
 
@@ -32,7 +32,7 @@ class Contract_model extends CI_Model
     $this->db->select('*');
     $this->db->from('candidate_basic');
     $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
-    $this->db->where('send_candidate.confirm = "Approved" AND send_candidate.confirm_admin IS NULL');
+    $this->db->where('send_candidate.confirm = "Approved" AND send_candidate.result_send = "Lulus" AND send_candidate.confirm_admin IS NULL');
     $this->db->order_by('candidate_basic.id_candidate', 'DESC');
 
     $i = 0;
