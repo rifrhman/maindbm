@@ -78,6 +78,7 @@ class Blacklist extends CI_Controller
     $data['pkwt'] = $this->res->pkwtEmployee($id_candidate);
     $data['pkwt_add'] = $this->res->addendum($id_candidate);
     $data['statPkwt'] = $this->res->statPkwt();
+    $data['resign_emp'] = $this->res->res_black($id_candidate);
 
     $this->load->view('Temp_admin/header', $data);
     $this->load->view('Temp_admin/navbar', $data);

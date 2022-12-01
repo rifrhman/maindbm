@@ -176,4 +176,11 @@ class Blacklist_model extends CI_Model
     $query = "SELECT * FROM `pkwt_employee` WHERE `id` = `id`";
     return $this->db->query($query)->row_array();
   }
+  public function res_black($id_candidate)
+  {
+    $query = "SELECT * FROM `pkwt_employee`
+    JOIN `resign_employee` ON `pkwt_employee`.`basic_id` = `resign_employee`.`basic_id`
+    WHERE `pkwt_employee`.`basic_id` = $id_candidate";
+    return $this->db->query($query)->result_array();
+  }
 }
