@@ -659,6 +659,8 @@ class Employee extends CI_Controller
   {
     $data['title'] = "Karyawan Aktif " . date('d-F-Y');
     $data['actived'] = $this->emp->quer();
+    $data['pkw'] = $this->emp->pkwt_export();
+    $data['end'] = $this->emp->end_contract();
 
     $this->load->view('export_emp_active', $data);
   }
