@@ -19,7 +19,7 @@ class ScoreCandidate extends CI_Controller
   {
     $data['title'] = "Halaman Penilaian";
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
-    $this->load->model('score_model', 'score');
+
 
     $data['candidate'] = $this->score->getCandidateDesc();
     $data['count_stat'] = $this->score->countStatus();
@@ -36,7 +36,7 @@ class ScoreCandidate extends CI_Controller
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
     $data['basic'] = $this->db->get_where('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
     $data['list'] = $this->db->get('candidate_secondary')->row_array();
-    $this->load->model('Score_model', 'score');
+
 
     $validation = $this->form_validation;
 

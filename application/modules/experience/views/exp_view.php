@@ -20,7 +20,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <table id="example" class="table table-bordered table-dark table-striped text-center">
+              <table id="example2" class="table table-bordered table-dark table-striped text-center">
                 <thead>
                   <tr>
                     <th>No</th>

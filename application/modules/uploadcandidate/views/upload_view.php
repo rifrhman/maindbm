@@ -21,14 +21,14 @@
           <div class="card">
 
             <div class="card-body">
-              <table id="example" class="table table-bordered table-striped table-dark table-responsive-lg text-center">
+              <table id="example2"
+                class="table table-bordered table-striped table-dark table-responsive-lg text-center">
                 <thead>
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
                     <th>Foto Kandidat</th>
                     <th>Jadwal Test Terakhir</th>
-
                     <th>Interview</th>
                     <th>Action</th>
                   </tr>

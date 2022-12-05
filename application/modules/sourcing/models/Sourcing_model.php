@@ -77,6 +77,7 @@ class Sourcing_model extends CI_Model
     $this->db->select('*');
     $this->db->from('candidate_basic');
     $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
+    $this->db->group_by('candidate_basic.id_candidate');
   }
 
   var $column_order = array(null, 'fullname', 'domicile', 'last_education', 'test_one', 'test_two', 'test_three');

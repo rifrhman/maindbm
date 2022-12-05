@@ -26,7 +26,7 @@ class Pkwt_model extends CI_Model
     $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
     $this->db->join('basic_admin', 'basic_admin.basic_id = candidate_basic.id_candidate', 'left');
     $this->db->join('pkwt_employee', 'pkwt_employee.basic_id = candidate_basic.id_candidate');
-    $this->db->where('send_candidate.confirm IS NOT NULL AND send_candidate.confirm_admin IS NOT NULL');
+    $this->db->where('send_candidate.confirm IS NOT NULL AND send_candidate.confirm_admin IS NOT NULL AND send_candidate.result_send = "Lulus"');
     // $this->db->group_by('pkwt_employee.end_of_contract');
     // $this->db->group_by('candidate_basic.fullname');
     // $this->db->select_max('pkwt_employee.end_of_contract');

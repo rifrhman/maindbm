@@ -21,7 +21,7 @@
           <div class="card">
 
             <div class="card-body">
-              <table id="example" class="table table-bordered table-responsive table-dark table-striped ">
+              <table id="example2" class="table table-bordered table-dark table-striped ">
                 <thead class="text-center">
                   <tr>
                     <th>Kandidat</th>
@@ -154,10 +154,14 @@
                       <a href="<?= base_url('pdfgen/resumesingle/') . $can['id_candidate'] ?>"
                         class="badge badge-warning  mb-2" target="_blank"><i class="fas fa-fw fa-file-pdf"></i>
                         Resume-User</a>
+                      <?php if ($users['level_id'] != 3) : ?>
+
+                      <?php else : ?>
                       <br>
                       <a href="<?= base_url('graduated/addsend_candidate/') . $can['id_candidate'] ?>"
                         class="badge badge-info mb-2"><i class="fas fa-fw fa-paper-plane"></i>
                         Kirim Kandidat</a>
+                      <?php endif; ?>
                       <br>
                       <a href="<?= base_url('graduated/add_psikogram_many/') . $can['id_candidate'] ?>"
                         class="badge badge-primary mb-2">

@@ -79,8 +79,10 @@
         </li>
         <?php endif; ?>
         <?php if ($this->session->userdata('level_id') == 3 || $this->session->userdata('level_id') == 2) : ?>
-
+        <?php if ($this->session->userdata('level_id') == 2) : ?>
+        <?php else :  ?>
         <li class="nav-header font-weight-bold bg-navy mb-2" style="border-radius: 5px;">RECRUITMENT MENU</li>
+        <?php endif; ?>
         <li class="nav-item">
           <a href="<?= base_url('graduated') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'graduated' ? 'active menu-is-opening menu-open' : '' ?>">
