@@ -264,6 +264,43 @@ class Graduated extends CI_Controller
     }
   }
 
+  public function reject_data($id_candidate)
+  {
+    $data['title'] = "Reject Kandidat";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    // $data['basic'] = $this->db->get('candidate_secondary', ['basic_id' => $basic_id])->row_array();
+    $data['all'] = $this->db->get_where('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
+
+    $validation = $this->form_validation;
+
+    $validation->set_rules('fullname', 'FullName', 'required|trim');
+    $validation->set_rules('desc_reject', 'desc reject', 'required|trim');
+
+    if ($validation->run() == false) {
+      $this->load->view('Temp_sourcing/header', $data);
+      $this->load->view('Temp_sourcing/navbar', $data);
+      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('reject_form', $data);
+      $this->load->view('Temp_sourcing/footer');
+    } else {
+      $fullname = $this->input->post('fullname');
+      $desc_reject = $this->input->post('desc_reject');
+
+      $this->db->set('fullname', $fullname);
+      $this->db->set('desc_reject', $desc_reject);
+      $this->db->where('id_candidate', $id_candidate);
+      $this->db->update('candidate_basic');
+
+      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Horee!</strong> Data Kandidat Berhasil Reject.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>');
+      redirect('reject');
+    }
+  }
+
   public function contract_form($id)
   {
     $data['title'] = "Kontrak Form Kandidat";

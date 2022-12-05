@@ -129,6 +129,17 @@ $(document).ready(function() {
     "responsive": true,
   });
 });
+$(document).ready(function() {
+  $('#reject').DataTable({
+    "paging": true,
+    "lengthChange": true,
+    "searching": true,
+    "ordering": true,
+    "info": true,
+    "autoWidth": false,
+    "responsive": true,
+  });
+});
 
 $('input[type="text"]').keyup(function(evt) {
   var txt = $(this).val();
@@ -168,7 +179,7 @@ $('#examscore').DataTable({
   "lengthChange": true,
   "autoWidth": false,
   "ajax": {
-    "url": "<?= base_url('scoreCandidate/getDataScore') ?>",
+    "url": "<?= base_url('ScoreCandidate/getDataScore') ?>",
     "type": "POST"
   },
   "columnDefs": [{

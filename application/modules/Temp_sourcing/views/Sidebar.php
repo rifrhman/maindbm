@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-light-secondary elevation-4">
   <a href="" class="brand-link">
     <img src="<?= base_url('assets/'); ?>img/logo2.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" ">
-    <span class=" brand-text font-weight-light font-weight-bold text-secondary">MutualPlus</span>
+    <span class=" brand-text font-weight-light font-weight-bold text-secondary">Mutualplus</span>
   </a>
 
   <!-- Sidebar -->
@@ -118,6 +118,22 @@
             </p>
           </a>
         </li>
+        <?php endif; ?>
+
+        <?php if ($this->session->userdata('level_id') != 3 && $this->session->userdata('level_id') == 2) : ?>
+
+        <?php elseif ($this->session->userdata('level_id') == 3) : ?>
+        <!-- <li class="nav-header font-weight-bold bg-indigo mb-2" style="border-radius: 5px;">HEAD RECRUITMENT MENU</li> -->
+        <li class="nav-item">
+          <a href="<?= base_url('reject') ?>"
+            class="nav-link <?= $this->uri->segment(1) == 'reject' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-user-times"></i>
+            <p>
+              Karyawan Reject
+            </p>
+          </a>
+        </li>
+        <?php else : ?>
         <?php endif; ?>
 
       </ul>

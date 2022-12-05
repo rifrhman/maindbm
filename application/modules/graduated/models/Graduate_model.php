@@ -9,7 +9,7 @@ class Graduate_model extends CI_Model
     $query = "SELECT `candidate_basic`.*, `candidate_secondary`.*
               FROM `candidate_basic` JOIN `candidate_secondary`
               ON `candidate_basic`.`id_candidate` = `candidate_secondary`.`basic_id`
-              WHERE `candidate_secondary`.`status_test` = 'Lulus' 
+              WHERE `candidate_secondary`.`status_test` = 'Lulus' AND `candidate_basic`.`desc_reject` IS NULL
               ORDER BY `candidate_basic`.`id_candidate` DESC";
     return $this->db->query($query)->result_array();
   }

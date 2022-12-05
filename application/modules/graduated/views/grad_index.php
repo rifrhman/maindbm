@@ -167,7 +167,15 @@
                         class="badge badge-primary mb-2">
                         <i class="fas fa-fw fa-upload"></i>
                         Tambah Psikogram
+                      </a> <br>
+                      <?php if ($this->session->userdata('level_id') != 3) : ?>
+                      <?php else : ?>
+                      <a href="<?= base_url('graduated/reject_data/') . $can['id_candidate'] ?>"
+                        class="badge bg-maroon mb-2">
+                        <i class="fas fa-fw fa-times"></i>
+                        Reject
                       </a>
+                      <?php endif ?>
 
                     </td>
                   </tr>
@@ -189,3 +197,75 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+
+
+<div class="modal fade" id="modal_form" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"></h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body form">
+        <form action="#" id="form" class="form-horizontal">
+          <input type="hidden" value="" name="basic_id" />
+          <input type="hidden" value="" name="id" />
+          <div class="form-body">
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nomor PKWT</label>
+              <input type="text" class="form-control" name="pkwt_number" value="">
+
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Tanggal PKWT</label>
+              <input type="date" class="form-control" name="date_pkwt" value="">
+
+            </div>
+            <div class="row">
+              <div class="col form-group">
+                <label for="exampleInputEmail1">Tanggal Kontrak Awal PKWT</label>
+                <input type="date" class="form-control" name="start_of_contract" value="">
+
+              </div>
+              <div class="col form-group">
+                <label for="exampleInputEmail1">Tanggal Kontrak Akhir PKWT</label>
+                <input type="date" class="form-control" name="end_of_contract" value="">
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-md-3">Status PKWT</label>
+              <div class="col-md">
+                <select name="status_pkwt" class="form-control">
+                  <option value="">--Select Status--</option>
+                  <option value="Belum Dibalas">Belum Dibalas</option>
+                  <option value="Belum Dibuat">Belum Dibuat</option>
+                  <option value="Belum Kembali">Belum Kembali</option>
+                  <option value="Selesai">Selesai</option>
+                </select>
+                <span class="help-block"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">Description</label>
+              <div class="col-md">
+                <textarea name="desc_pkwt" placeholder="Description" class="form-control"></textarea>
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- End Bootstrap modal -->
