@@ -63,18 +63,12 @@ header("Expires: 0");
       <th>Nama Emergency Contract Person</th>
       <th>HP / Telp Emergency Contract Person</th>
       <th>Hubungan Keluarga</th>
-      <th>Pengalaman Kerja Terakhir (Nama Perusahaan)</th>
-      <th>Jabatan</th>
-      <th>Tanggal Masuk</th>
-      <th>Periode Bulan</th>
-      <th>Gaji Terakhir</th>
-      <th>Alasan Berhenti</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <?php $no = 1;
-      foreach ($in as $i) { ?>
+      foreach ($actived as $i) : ?>
       <td><?= $no++ ?></td>
       <td>'<?= $i['id_emp'] ?></td>
       <td><?= $i['client'] ?></td>
@@ -122,13 +116,7 @@ header("Expires: 0");
       <td><?= $i['name_emergency'] ?></td>
       <td>'<?= $i['phone_emergency'] ?></td>
       <td><?= $i['relation_emergency'] ?></td>
-      <td><?= $i['company'] ?></td>
-      <td><?= $i['position_exp'] ?></td>
-      <td><?= $i['year_in_exp'] ?></td>
-      <td><?= $i['month_period'] ?></td>
-      <td><?= $i['last_salary'] ?></td>
-      <td><?= $i['resign'] ?></td>
-      <?php } ?>
+      <?php endforeach; ?>
     </tr>
   </tbody>
 </table>

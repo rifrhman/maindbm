@@ -1,6 +1,8 @@
-<footer class="main-footer">
-  <strong>Copyright &copy; <?= date('Y'); ?> </strong>
-  All rights reserved.
+<footer class="main-footer navbar-navy">
+  <div class="float-right d-none d-sm-block">
+    <b>Candidate System Management.</b> Ver-1.0
+  </div>
+  <strong>Copyright &copy; <?= date('F-Y'); ?> </strong>
 
 </footer>
 
@@ -331,10 +333,8 @@ function add_person(basic_id) {
     type: "GET",
     dataType: "JSON",
     success: function(data) {
-
-
-      $('[name="id"]').val();
       $('[name="basic_id"]').val(data.basic_id);
+      $('[name="id"]').val();
       $('[name="pkwt_number"]').val();
       $('[name="date_pkwt"]').val();
       $('[name="start_of_contract"]').val();
@@ -350,8 +350,60 @@ function add_person(basic_id) {
       alert('Error get data from ajax');
     }
   });
-
 }
+
+
+function save() {
+  $('#btnSave').text('saving...'); //change button text
+  $('#btnSave').attr('disabled', true); //set button disable 
+  var url;
+
+  if (save_method == 'add') {
+    url = "<?php echo site_url('employee/ajax_add') ?>";
+  } else {
+    url = "<?php echo site_url('employee/ajax_update') ?>";
+  }
+
+
+  // ajax adding data to database
+  $.ajax({
+    url: url,
+    type: "POST",
+    data: $('#form').serialize(),
+    dataType: "JSON",
+    success: function(data) {
+
+      if (data.status) //if success close modal and reload ajax table
+      {
+        $('#modal_form').modal('hide');
+        // reload_table();
+        Swal.fire(
+          'Good job!',
+          flashData,
+          'success'
+        )
+      } else {
+        for (var i = 0; i < data.inputerror.length; i++) {
+          $('[name="' + data.inputerror[i] + '"]').parent().parent().addClass(
+            'has-error'); //select parent twice to select div form-group class and add has-error class
+          $('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[
+            i]); //select span help-block class set text error string
+        }
+      }
+      $('#btnSave').text('save'); //change button text
+      $('#btnSave').attr('disabled', false); //set button enable 
+
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('Error adding / update data');
+      $('#btnSave').text('save'); //change button text
+      $('#btnSave').attr('disabled', false); //set button enable 
+
+    }
+  });
+}
+
 
 function edit_person(id) {
   save_method = 'update';
@@ -568,56 +620,6 @@ function save_out_emp() {
 
 
 
-function save() {
-  $('#btnSave').text('saving...'); //change button text
-  $('#btnSave').attr('disabled', true); //set button disable 
-  var url;
-
-  if (save_method == 'add') {
-    url = "<?php echo site_url('employee/ajax_add') ?>";
-  } else {
-    url = "<?php echo site_url('employee/ajax_update') ?>";
-  }
-
-
-  // ajax adding data to database
-  $.ajax({
-    url: url,
-    type: "POST",
-    data: $('#form').serialize(),
-    dataType: "JSON",
-    success: function(data) {
-
-      if (data.status) //if success close modal and reload ajax table
-      {
-        $('#modal_form').modal('hide');
-        // reload_table();
-        Swal.fire(
-          'Good job!',
-          flashData,
-          'success'
-        )
-      } else {
-        for (var i = 0; i < data.inputerror.length; i++) {
-          $('[name="' + data.inputerror[i] + '"]').parent().parent().addClass(
-            'has-error'); //select parent twice to select div form-group class and add has-error class
-          $('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[
-            i]); //select span help-block class set text error string
-        }
-      }
-      $('#btnSave').text('save'); //change button text
-      $('#btnSave').attr('disabled', false); //set button enable 
-
-
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-      alert('Error adding / update data');
-      $('#btnSave').text('save'); //change button text
-      $('#btnSave').attr('disabled', false); //set button enable 
-
-    }
-  });
-}
 
 
 const flashData = $('.flash-data').data('flashdata');

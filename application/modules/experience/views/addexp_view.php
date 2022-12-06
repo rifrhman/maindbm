@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="form-group col-md-4">
-                      <label for="year_in">Tahun Masuk</label>
+                      <label for="year_in">Tanggal dan Tahun Masuk</label>
                       <input type="date" name="year_in_exp" class="form-control" id="year_in_exp" placeholder="2018 ..">
                       <?= form_error('year_in_exp', '<small class="text-danger">', '</small>') ?>
                     </div>

@@ -58,6 +58,7 @@ class Employee extends CI_Controller
         $row = array();
         $row[] = ++$no;
         $row[] = $result->id_candidate;
+        $row[] = $result->status_company;
         $row[] = $result->fullname;
         $row[] = $result->client;
         $row[] = $result->cc;
@@ -536,7 +537,7 @@ class Employee extends CI_Controller
     $validation->set_rules('pkwt_number', 'No PKWT', 'required|trim');
     $validation->set_rules('date_pkwt', 'Date PKWT', 'required|trim');
     $validation->set_rules('start_of_contract', 'StartOf PKWT', 'required|trim');
-    $validation->set_rules('end_of_contract', 'EndOf PKWT', 'required|trim');
+    $validation->set_rules('end_of_contract', 'end_of_contract PKWT', 'required|trim');
     $validation->set_rules('desc_pkwt', 'Desc PKWT', 'required|trim');
     $validation->set_rules('status_pkwt', 'Status PKWT', 'required|trim');
 

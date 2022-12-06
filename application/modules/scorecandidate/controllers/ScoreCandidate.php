@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class ScoreCandidate extends CI_Controller
+class Scorecandidate extends CI_Controller
 {
 
   public function __construct()

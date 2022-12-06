@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-orange elevation-4">
+<aside class="main-sidebar sidebar-dark-purple elevation-4" style="font-size: 14px;">
   <!-- Brand Logo -->
   <a href="" class="brand-link">
     <img src="<?= base_url('assets/'); ?>img/logo2.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">

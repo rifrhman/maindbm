@@ -1564,6 +1564,7 @@
             <div class="form-group">
               <label for="desc_pkwt">Keterangan PKWT</label>
               <textarea class="form-control" id="desc_pkwt" rows="3" name="desc_pkwt"></textarea>
+              <small class="text-danger font-weight-bold">*KETERANGAN TIDAK BOLEH KOSONG</small>
               <?= form_error('desc_pkwt', '<small class="text-danger">', '</small>') ?>
             </div>
 

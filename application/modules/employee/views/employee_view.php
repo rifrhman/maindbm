@@ -66,6 +66,7 @@
                   <tr>
                     <th>No</th>
                     <th>Candidate ID</th>
+                    <th>Status</th>
                     <th>Nama</th>
                     <th>Klien</th>
                     <th>CC</th>

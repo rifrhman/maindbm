@@ -22,7 +22,15 @@
             <div class="card-header">
               <span class="badge badge-danger"><?= $countNull; ?> Calon Karyawan</span>
               Belum Sign Kontrak
+              <div class="float-right">
+                <p>
+                  <a class="btn btn-danger btn-sm" href="<?php echo base_url('contract/export_excel_contract') ?>"><i
+                      class="fas fa-fw fa-file-export"></i> Export
+                    Full Excel</a>
+                </p>
+              </div>
             </div>
+
 
             <div class="card-body">
               <table id="contract" class="table table-bordered table-dark table-striped text-center">

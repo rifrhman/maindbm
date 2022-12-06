@@ -53,8 +53,6 @@
                       <select id="inputState" name="result_send" class="form-control">
                         <option selected="selected" disabled="disabled">Choose...</option>
                         <option value="Sedang Dikirim">Sedang Dikirim</option>
-                        <option value="Lolos">Lolos</option>
-                        <option value="Tidak Lolos">Tidak Lolos</option>
                       </select>
                       <?= form_error('result_send', '<small class="text-danger">', '</small>') ?>
                     </div>

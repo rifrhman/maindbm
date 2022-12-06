@@ -516,4 +516,13 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
       }
     }
   }
+
+  //export ke dalam format excel
+  public function export_excel_contract()
+  {
+    $data['title'] = "Karyawan Join " . date('d-F-Y');
+    $data['actived'] = $this->con->quer();
+
+    $this->load->view('export_contract', $data);
+  }
 }

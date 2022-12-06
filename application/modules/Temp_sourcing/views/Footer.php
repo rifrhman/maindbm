@@ -179,7 +179,7 @@ $('#examscore').DataTable({
   "lengthChange": true,
   "autoWidth": false,
   "ajax": {
-    "url": "<?= base_url('ScoreCandidate/getDataScore') ?>",
+    "url": "<?= base_url('Scorecandidate/getDataScore') ?>",
     "type": "POST"
   },
   "columnDefs": [{
