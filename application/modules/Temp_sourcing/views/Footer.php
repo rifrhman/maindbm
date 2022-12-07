@@ -69,6 +69,34 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="<?= base_url('assets/'); ?>dist/js/pages/dashboard.js"></script>
 
 <script>
+$(function() {
+  $("#example1").DataTable({
+    "responsive": true,
+    "lengthChange": false,
+    "autoWidth": false,
+    "buttons": ["excel", "pdf", "print"]
+  }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+  $('#example2').DataTable({
+    "paging": true,
+    "lengthChange": true,
+    "searching": true,
+    "ordering": true,
+    "info": true,
+    "autoWidth": false,
+    "responsive": true,
+  });
+  $('#head_rec').DataTable({
+    "responsive": true,
+    "paging": true,
+    "lengthChange": true,
+    "searching": true,
+    "ordering": true,
+    "info": true,
+    "autoWidth": false,
+  });
+});
+
+
 $('#custom-file-input').on('change', function() {
   let fileName = $(this).val().split('\\').pop();
   $(this).next('.custom-file-label').addClass("selected").html(fileName);
@@ -101,34 +129,8 @@ if (flashDataErr) {
   })
 }
 
-$(function() {
-  $("#example1").DataTable({
-    "responsive": true,
-    "lengthChange": false,
-    "autoWidth": false,
-    "buttons": ["excel", "pdf", "print"]
-  }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-  $('#example2').DataTable({
-    "paging": true,
-    "lengthChange": true,
-    "searching": true,
-    "ordering": true,
-    "info": true,
-    "autoWidth": false,
-    "responsive": true,
-  });
-});
-$(document).ready(function() {
-  $('#head').DataTable({
-    "paging": true,
-    "lengthChange": true,
-    "searching": true,
-    "ordering": true,
-    "info": true,
-    "autoWidth": false,
-    "responsive": true,
-  });
-});
+
+
 $(document).ready(function() {
   $('#reject').DataTable({
     "paging": true,

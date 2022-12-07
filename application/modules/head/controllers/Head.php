@@ -13,6 +13,7 @@ class Head extends CI_Controller
     if ($this->session->userdata('level_id') != 4) {
       show_404();
     }
+    $this->load->model('Head_model', 'ref');
   }
 
   public function index()
@@ -20,18 +21,17 @@ class Head extends CI_Controller
     $data['title'] = "Head Management Karyawan";
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
 
-    $this->load->model('Head_model', 'ref');
+
     $data['send'] = $this->ref->getStatusSend();
     $data['candi'] = $this->db->get('send_candidate')->row_array();
     $data['candidate'] = $this->ref->getAllBasSec();
     $data['list'] = $this->ref->basSend();
 
-
     $this->load->view('Temp_sourcing/header', $data);
     $this->load->view('Temp_sourcing/navbar', $data);
     $this->load->view('Temp_sourcing/sidebar', $data);
     $this->load->view('head_index', $data);
-    $this->load->view('Temp_sourcing/footer');
+    $this->load->view('Temp_sourcing/footer', $data);
   }
 
   public function detailcandidate($id_candidate)

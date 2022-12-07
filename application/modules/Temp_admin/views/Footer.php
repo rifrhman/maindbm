@@ -382,6 +382,9 @@ function save() {
           flashData,
           'success'
         )
+        setTimeout(function() { // wait for 5 secs(2)
+          location.reload(); // then reload the page.(3)
+        }, 3000);
       } else {
         for (var i = 0; i < data.inputerror.length; i++) {
           $('[name="' + data.inputerror[i] + '"]').parent().parent().addClass(

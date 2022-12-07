@@ -257,8 +257,7 @@ class Employee_model extends CI_Model
 
   public function quer()
   {
-    $query = "
-    SELECT * FROM candidate_basic 
+    $query = "SELECT * FROM candidate_basic 
     LEFT JOIN candidate_secondary ON candidate_secondary.basic_id = candidate_basic.id_candidate
     LEFT JOIN education ON education.basic_id = candidate_basic.id_candidate
     LEFT JOIN experience ON experience.basic_id = candidate_basic.id_candidate
@@ -269,31 +268,30 @@ class Employee_model extends CI_Model
     LEFT JOIN emergency_contact ON emergency_contact.basic_id = candidate_basic.id_candidate
     WHERE send_candidate.confirm = 'Approved' AND send_candidate.confirm_admin = 'Approved'
     AND pkwt_employee.flags_resign IS NULL AND send_candidate.is_join = 'Join' AND send_candidate.result_send = 'Lulus'
-    GROUP BY candidate_basic.fullname
-    ORDER BY pkwt_employee.id DESC;
-    ";
+    GROUP BY candidate_basic.id_candidate
+    ORDER BY pkwt_employee.id DESC;";
     return $this->db->query($query)->result_array();
   }
 
-  public function pkwt_export()
-  {
-    $query = "SELECT * FROM candidate_basic 
-    LEFT JOIN pkwt_employee ON pkwt_employee.basic_id = candidate_basic.id_candidate 
-    LEFT JOIN send_candidate ON send_candidate.basic_id = candidate_basic.id_candidate 
-    WHERE send_candidate.confirm = 'Approved' AND send_candidate.confirm_admin = 'Approved'
-    AND pkwt_employee.flags_resign IS NULL AND send_candidate.is_join = 'Join' AND send_candidate.result_send = 'Lulus'
-    ORDER BY pkwt_employee.id ASC;";
-    return $this->db->query($query)->result_array();
-    // $this->queryNew();
-  }
-  public function end_contract()
-  {
-    $que = "SELECT candidate_basic.id_candidate, pkwt_employee.start_of_contract, send_candidate.start_date, MAX(pkwt_employee.end_of_contract) AS 'END_OF_CONTRACT' FROM candidate_basic 
-    LEFT JOIN pkwt_employee ON pkwt_employee.basic_id = candidate_basic.id_candidate 
-    LEFT JOIN send_candidate ON send_candidate.basic_id = candidate_basic.id_candidate 
-    WHERE send_candidate.confirm = 'Approved' AND send_candidate.confirm_admin = 'Approved'
-    AND pkwt_employee.flags_resign IS NULL AND send_candidate.is_join = 'Join' AND send_candidate.result_send = 'Lulus'
-    ORDER BY pkwt_employee.id ASC";
-    return $this->db->query($que)->result_array();
-  }
+  // public function pkwt_export()
+  // {
+  //   $query = "SELECT * FROM candidate_basic 
+  //   LEFT JOIN pkwt_employee ON pkwt_employee.basic_id = candidate_basic.id_candidate 
+  //   LEFT JOIN send_candidate ON send_candidate.basic_id = candidate_basic.id_candidate 
+  //   WHERE send_candidate.confirm = 'Approved' AND send_candidate.confirm_admin = 'Approved'
+  //   AND pkwt_employee.flags_resign IS NULL AND send_candidate.is_join = 'Join' AND send_candidate.result_send = 'Lulus'
+  //   ORDER BY pkwt_employee.id ASC;";
+  //   return $this->db->query($query)->result_array();
+  //   // $this->queryNew();
+  // }
+  // public function end_contract()
+  // {
+  //   $que = "SELECT candidate_basic.id_candidate, pkwt_employee.start_of_contract, send_candidate.start_date, MAX(pkwt_employee.end_of_contract) AS 'END_OF_CONTRACT' FROM candidate_basic 
+  //   LEFT JOIN pkwt_employee ON pkwt_employee.basic_id = candidate_basic.id_candidate 
+  //   LEFT JOIN send_candidate ON send_candidate.basic_id = candidate_basic.id_candidate 
+  //   WHERE send_candidate.confirm = 'Approved' AND send_candidate.confirm_admin = 'Approved'
+  //   AND pkwt_employee.flags_resign IS NULL AND send_candidate.is_join = 'Join' AND send_candidate.result_send = 'Lulus'
+  //   ORDER BY pkwt_employee.id ASC";
+  //   return $this->db->query($que)->result_array();
+  // }
 }

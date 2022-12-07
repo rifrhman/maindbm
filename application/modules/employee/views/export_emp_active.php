@@ -63,16 +63,16 @@ header("Expires: 0");
       <th>Nama Emergency Contract Person</th>
       <th>HP / Telp Emergency Contract Person</th>
       <th>Hubungan Keluarga</th>
-      <?php foreach ($pkw as $pe) : ?>
+      <!-- <?php foreach ($pkw as $pe) : ?>
       <th>PKWT</th>
       <th>Tanggal Awal JOIN</th>
       <th>Tanggal Akhir JOIN</th>
       <th>Tanggal PKWT</th>
-      <?php endforeach; ?>
-      <?php foreach ($end as $e) : ?>
+      <?php endforeach; ?> -->
+      <!-- <?php foreach ($end as $e) : ?>
       <th>Tanggal Awal</th>
       <th>Tanggal Akhir</th>
-      <?php endforeach; ?>
+      <?php endforeach; ?> -->
     </tr>
   </thead>
   <tbody>
@@ -80,14 +80,14 @@ header("Expires: 0");
       <?php $no = 1;
       foreach ($actived as $i) : ?>
       <td><?= $no++ ?></td>
-      <td>'<?= $i['id_emp'] ?></td>
+      <td><?= $i['id_emp'] ?></td>
       <td><?= $i['client'] ?></td>
       <td><?= $i['cc'] ?></td>
       <td><?= $i['branch_company'] ?></td>
       <td><?= $i['status_company'] ?></td>
-      <td>'<?= $i['payroll_one'] ?></td>
-      <td>'<?= $i['payroll_two'] ?></td>
-      <td>'<?= $i['id_privy'] ?></td>
+      <td><?= $i['payroll_one'] ?></td>
+      <td><?= $i['payroll_two'] ?></td>
+      <td><?= $i['id_privy'] ?></td>
       <td><?= $i['surrogate_status'] ?></td>
       <td><?= $i['type_recruitment'] ?></td>
       <td><?= $i['fullname'] ?></td>
@@ -96,27 +96,27 @@ header("Expires: 0");
       <td><?= $i['place_of_birth'] ?></td>
       <td><?= $i['date_of_birth'] ?></td>
       <td><?= $i['marital_status'] ?></td>
-      <td>'<?= $i['salary'] ?></td>
+      <td><?= $i['salary'] ?></td>
       <td><?= $i['allowance_premium'] ?></td>
       <td><?= $i['allowance_others'] ?></td>
       <td><?= $i['placement'] ?></td>
       <td><?= $i['placement_city'] ?></td>
       <td><?= $i['placement_district'] ?></td>
       <td><?= $i['type_bank'] ?></td>
-      <td>'<?= $i['account_number'] ?></td>
+      <td><?= $i['account_number'] ?></td>
       <td><?= $i['name_of_bank'] ?></td>
-      <td>'<?= $i['bpjs_tk'] ?></td>
-      <td>'<?= $i['bpjs_ks'] ?></td>
-      <td>'<?= $i['npwp'] ?></td>
+      <td><?= $i['bpjs_tk'] ?></td>
+      <td><?= $i['bpjs_ks'] ?></td>
+      <td><?= $i['npwp'] ?></td>
       <td><?= $i['email'] ?></td>
       <td><?= $i['religion'] ?></td>
       <td><?= $i['blood_type'] ?></td>
       <td><?= $i['address_ktp'] ?></td>
       <td><?= $i['postal_code_ktp'] ?></td>
       <td><?= $i['domicile'] ?></td>
-      <td>'<?= $i['phone_number'] ?></td>
-      <td>'<?= $i['no_kk'] ?></td>
-      <td>'<?= $i['regis_num_resident'] ?></td>
+      <td><?= $i['phone_number'] ?></td>
+      <td><?= $i['no_kk'] ?></td>
+      <td><?= $i['regis_num_resident'] ?></td>
       <td><?= $i['degree'] ?></td>
       <td><?= $i['major'] ?></td>
       <td><?= $i['institute'] ?></td>
@@ -124,11 +124,11 @@ header("Expires: 0");
       <td><?= $i['year_out_edu'] ?></td>
       <td><?= $i['score'] ?></td>
       <td><?= $i['name_emergency'] ?></td>
-      <td>'<?= $i['phone_emergency'] ?></td>
+      <td><?= $i['phone_emergency'] ?></td>
       <td><?= $i['relation_emergency'] ?></td>
       <?php endforeach; ?>
-      <?php foreach ($pkw as $pe) : ?>
-      <td>'<?= $pe['pkwt_number'] ?></td>
+      <!-- <?php foreach ($pkw as $pe) : ?>
+      <td><?= $pe['pkwt_number'] ?></td>
       <td><?= $pe['start_of_contract'] ?></td>
       <td><?= $pe['end_of_contract'] ?></td>
       <td><?= $pe['date_pkwt'] ?></td>
@@ -137,7 +137,7 @@ header("Expires: 0");
 
       <td><?= $e['start_of_contract'] ?></td>
       <td><?= $e['END_OF_CONTRACT'] ?></td>
-      <?php endforeach; ?>
+      <?php endforeach; ?> -->
     </tr>
   </tbody>
 </table>
