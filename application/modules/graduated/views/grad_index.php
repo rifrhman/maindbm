@@ -127,11 +127,20 @@
                       <br>
                       <?php } ?>
                       <?php if ($s['result_send'] == 'Lulus') { ?>
+                      <?php if ($this->session->userdata('level_id') == 2) { ?>
+                      <a href="#">
+                        <span class="text-light"><?= $s['client'] ?></span>
+                        <span class="badge badge-pill badge-success"><?= $s['result_send'] ?></span>
+                      </a>
+                      <br>
+                      <?php } ?>
+                      <?php if ($this->session->userdata('level_id') == 3) { ?>
                       <a href="<?= base_url('graduated/contract_form/') . $s['id'] ?>">
                         <span class="text-light"><?= $s['client'] ?></span>
                         <span class="badge badge-pill badge-success"><?= $s['result_send'] ?></span>
                       </a>
                       <br>
+                      <?php } ?>
                       <?php } ?>
                       <?php if ($s['result_send'] == 'Tidak Lulus') { ?>
 

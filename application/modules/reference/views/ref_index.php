@@ -130,14 +130,9 @@
                       <br>
 
                       <?php } ?>
-
-
                       <?php } ?>
                       <?php endforeach; ?>
                     </td>
-
-
-
 
                     <td class="text-center">
                       <a href="<?= base_url('reference/detailreferencecandidate/') . $can['id_candidate'] ?>"
@@ -147,6 +142,11 @@
                         class="badge badge-warning  mb-2" target="_blank"><i class="fas fa-fw fa-file-pdf"></i>
                         Resume-User</a>
                       <br>
+                      <a href="<?= base_url('reference/add_psikogram_many/') . $can['id_candidate'] ?>"
+                        class="badge badge-primary mb-2">
+                        <i class="fas fa-fw fa-upload"></i>
+                        Tambah Psikogram
+                      </a> <br>
                       <a href="<?= base_url('reference/addsend_candidate_ref/') . $can['id_candidate'] ?>"
                         class="badge badge-info"><i class="fas fa-fw fa-paper-plane"></i>
                         Kirim Kandidat</a>

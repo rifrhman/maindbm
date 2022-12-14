@@ -190,4 +190,180 @@ class Reference extends CI_Controller
       redirect('reference');
     }
   }
+
+  public function add_psikogram_many($id_candidate)
+  {
+    $data['title'] = "Upload Psikogram Kandidat Baru";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    $data['basic'] = $this->db->get_where('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
+
+    $this->load->view('Temp_sourcing/header', $data);
+    $this->load->view('Temp_sourcing/navbar', $data);
+    $this->load->view('Temp_sourcing/sidebar', $data);
+    $this->load->view('home_upload_psikogram_ref', $data);
+    $this->load->view('Temp_sourcing/footer');
+  }
+
+
+
+  public function psikogram_one($id_candidate)
+  {
+    $data['title'] = "Upload Psikogram Satu";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    $data['basic'] = $this->db->get_where('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
+
+    $validation = $this->form_validation;
+
+    $validation->set_rules('fullname', 'Name', 'required');
+
+    if ($validation->run() == false) {
+      $this->load->view('Temp_sourcing/header', $data);
+      $this->load->view('Temp_sourcing/navbar', $data);
+      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('add_psikogram_one_ref', $data);
+      $this->load->view('Temp_sourcing/footer');
+    } else {
+      $fullname = $this->input->post('fullname');
+
+      $upload_psiko = $_FILES['psikogram']['name'];
+
+      if ($upload_psiko) {
+        $config['allowed_types'] = 'pdf';
+        $config['max_size']     = 0;
+        $config['upload_path'] = './assets/uploads/psikogram/';
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('psikogram')) {
+          // $old_image = $data['blog']['image'];
+          // if ($old_image != 'default.jpg') {
+          //   unlink(FCPATH . 'frontend/assets/img/blog/' . $old_image);
+          // }
+
+          $psiko = $this->upload->data('file_name');
+          $this->db->set('psikogram', $psiko);
+        } else {
+          echo $this->upload->display_errors();
+        }
+      }
+
+      $this->db->set('fullname', $fullname);
+      $this->db->where('id_candidate', $this->input->post('id_candidate'));
+      $this->db->update('candidate_basic');
+      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Horee!</strong> Upload PDF psikogram satu berhasil ditambah.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+      redirect('reference/add_psikogram_many_ref/' . $id_candidate);
+    }
+  }
+
+  public function psikogram_two($id_candidate)
+  {
+    $data['title'] = "Upload Psikogram Satu";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    $data['basic'] = $this->db->get_where('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
+
+    $validation = $this->form_validation;
+
+    $validation->set_rules('fullname', 'Name', 'required');
+
+    if ($validation->run() == false) {
+      $this->load->view('Temp_sourcing/header', $data);
+      $this->load->view('Temp_sourcing/navbar', $data);
+      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('add_psikogram_two_ref', $data);
+      $this->load->view('Temp_sourcing/footer');
+    } else {
+      $fullname = $this->input->post('fullname');
+
+      $upload_psiko = $_FILES['psikogram_two']['name'];
+
+      if ($upload_psiko) {
+        $config['allowed_types'] = 'pdf';
+        $config['max_size']     = 0;
+        $config['upload_path'] = './assets/uploads/psikogram/';
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('psikogram_two')) {
+          // $old_image = $data['blog']['image'];
+          // if ($old_image != 'default.jpg') {
+          //   unlink(FCPATH . 'frontend/assets/img/blog/' . $old_image);
+          // }
+
+          $psiko = $this->upload->data('file_name');
+          $this->db->set('psikogram_two', $psiko);
+        } else {
+          echo $this->upload->display_errors();
+        }
+      }
+
+      $this->db->set('fullname', $fullname);
+      $this->db->where('id_candidate', $this->input->post('id_candidate'));
+      $this->db->update('candidate_basic');
+      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Horee!</strong> Upload PDF psikogram dua berhasil ditambah.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+      redirect('reference/add_psikogram_many_ref/' . $id_candidate);
+    }
+  }
+  public function psikogram_three($id_candidate)
+  {
+    $data['title'] = "Upload Psikogram Satu";
+    $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+    $data['basic'] = $this->db->get_where('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
+
+    $validation = $this->form_validation;
+
+    $validation->set_rules('fullname', 'Name', 'required');
+
+    if ($validation->run() == false) {
+      $this->load->view('Temp_sourcing/header', $data);
+      $this->load->view('Temp_sourcing/navbar', $data);
+      $this->load->view('Temp_sourcing/sidebar', $data);
+      $this->load->view('add_psikogram_three_ref', $data);
+      $this->load->view('Temp_sourcing/footer');
+    } else {
+      $fullname = $this->input->post('fullname');
+
+      $upload_psiko = $_FILES['psikogram_three']['name'];
+
+      if ($upload_psiko) {
+        $config['allowed_types'] = 'pdf';
+        $config['max_size']     = 0;
+        $config['upload_path'] = './assets/uploads/psikogram/';
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('psikogram_three')) {
+          // $old_image = $data['blog']['image'];
+          // if ($old_image != 'default.jpg') {
+          //   unlink(FCPATH . 'frontend/assets/img/blog/' . $old_image);
+          // }
+
+          $psiko = $this->upload->data('file_name');
+          $this->db->set('psikogram_three', $psiko);
+        } else {
+          echo $this->upload->display_errors();
+        }
+      }
+
+      $this->db->set('fullname', $fullname);
+      $this->db->where('id_candidate', $this->input->post('id_candidate'));
+      $this->db->update('candidate_basic');
+      $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Horee!</strong> Upload PDF psikogram tiga berhasil ditambah.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+      redirect('reference/add_psikogram_many_ref/' . $id_candidate);
+    }
+  }
 }

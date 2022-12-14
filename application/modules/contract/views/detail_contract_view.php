@@ -1114,6 +1114,9 @@
                 <option value="M0">M0</option>
                 <option value="M1">M1</option>
                 <option value="M2">M2</option>
+                <option value="M3">M3</option>
+                <option value="M4">M4</option>
+                <option value="M5">M5</option>
               </select>
               <?= form_error('marital_status', '<small class="text-danger pl-2">', '</small>') ?>
             </div>
