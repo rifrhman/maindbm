@@ -161,6 +161,12 @@ class Employee_model extends CI_Model
     return $this->db->query($query)->row_array();
   }
 
+  public function getSendCandidate($id_candidate)
+  {
+    $query = "SELECT * FROM `send_candidate` WHERE `basic_id` = $id_candidate AND `confirm` IS NOT NULL AND `result_send` = 'Lulus' ORDER BY id DESC";
+    return $this->db->query($query)->row_array();
+  }
+
   public function getAll($id_candidate)
   {
     $query = "SELECT * FROM `candidate_secondary` 

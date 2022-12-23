@@ -46,8 +46,8 @@
                       <?= form_error('email', '<small class="text-danger pl-2">', '</small>') ?>
                     </div>
                     <div class="form-group col-md-3">
-                      <label for="marital_status">Marital Status</label>
-                      <select id="inputState" name="marital_status" class="form-control">
+                      <label for="marital_status">Status Perkawinan</label>
+                      <select id="marital_status" name="marital_status" class="form-control">
                         <option selected="selected" disabled="disabled">Choose...</option>
                         <option value="SG">SG</option>
                         <option value="M0">M0</option>

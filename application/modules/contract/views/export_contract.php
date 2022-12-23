@@ -1,11 +1,18 @@
 <?php
 
-header("Content-type: application/vnd-ms-excel");
+// header("Content-type: application/vnd-ms-excel");
 
-header("Content-Disposition: attachment; filename=$title.xls");
+// header("Content-Disposition: attachment; filename=$title.xls");
 
-header("Pragma: no-cache");
+// header("Pragma: no-cache");
 
+
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header("Content-Disposition: attachment;filename=$title.xls");
+header('Cache-Control: max-age=0');
+header('Cache-Control: max-age=1');
+header('Cache-Control: cache, must-revalidate');
+header('Pragma: public');
 header("Expires: 0");
 
 ?>
@@ -66,9 +73,9 @@ header("Expires: 0");
     </tr>
   </thead>
   <tbody>
+    <?php $no = 1;
+    foreach ($actived as $i) : ?>
     <tr>
-      <?php $no = 1;
-      foreach ($actived as $i) : ?>
       <td><?= $no++ ?></td>
       <td>'<?= $i['id_emp'] ?></td>
       <td><?= $i['client'] ?></td>
@@ -116,7 +123,7 @@ header("Expires: 0");
       <td><?= $i['name_emergency'] ?></td>
       <td>'<?= $i['phone_emergency'] ?></td>
       <td><?= $i['relation_emergency'] ?></td>
-      <?php endforeach; ?>
     </tr>
+    <?php endforeach; ?>
   </tbody>
 </table>

@@ -72,9 +72,9 @@ header("Expires: 0");
     </tr>
   </thead>
   <tbody>
+    <?php $no = 1;
+    foreach ($in as $i) { ?>
     <tr>
-      <?php $no = 1;
-      foreach ($in as $i) { ?>
       <td><?= $no++ ?></td>
       <td>'<?= $i['id_emp'] ?></td>
       <td><?= $i['client'] ?></td>
@@ -128,7 +128,7 @@ header("Expires: 0");
       <td><?= $i['month_period'] ?></td>
       <td><?= $i['last_salary'] ?></td>
       <td><?= $i['resign'] ?></td>
-      <?php } ?>
     </tr>
+    <?php } ?>
   </tbody>
 </table>

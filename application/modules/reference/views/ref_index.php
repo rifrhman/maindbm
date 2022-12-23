@@ -21,7 +21,7 @@
           <div class="card">
 
             <div class="card-body">
-              <table id="example" class="table table-bordered table-dark table-striped ">
+              <table id="example2" class="table table-bordered table-dark table-striped ">
                 <thead class="text-center">
                   <tr>
 

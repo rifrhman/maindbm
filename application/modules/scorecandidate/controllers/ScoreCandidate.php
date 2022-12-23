@@ -65,13 +65,13 @@ class Scorecandidate extends CI_Controller
         'regis_num_resident' => $this->input->post('regis_num_resident'),
         'email' => htmlspecialchars($this->input->post('email')),
         'marital_status' => $this->input->post('marital_status'),
-        'tall' => htmlspecialchars($this->input->post('tall')),
-        'status_test' => $this->input->post('status_test'),
-        'postal_code' => $this->input->post('postal_code'),
-        'weight' => $this->input->post('weight'),
         'religion' => $this->input->post('religion'),
+        'tall' => htmlspecialchars($this->input->post('tall')),
+        'weight' => $this->input->post('weight'),
+        'postal_code' => $this->input->post('postal_code'),
         'certificate' => $this->input->post('certificate'),
         'validity_period' => $this->input->post('validity_period'),
+        'status_test' => $this->input->post('status_test'),
         'basic_id' => $id_candidate
       ];
 
@@ -207,13 +207,9 @@ class Scorecandidate extends CI_Controller
               '<span class="badge badge-pill badge-warning">Tidak Hadir</span>' : '')));
       $row[] = '
       <a href="' . base_url('scorecandidate/score_candidate/') . $result->id_candidate . '"
-class="badge bg-primary text-light"><i class="fas fa-fw fa-pen"></i> Nilai</a>
-<a href="' . base_url('scorecandidate/update_test/') . $result->id_candidate . '"
-                        class="badge bg-warning text-light"><i class="fas fa-fw fa-calendar-alt"></i> Update
-                        Jadwal</a>
-                        <a href="' . base_url('scorecandidate/editStatus/') . $result->id_candidate . '"
-                        class="badge bg-olive text-dark"><i class="fas fa-fw fa-user-edit"></i> Edit
-                        Status</a>';
+      class="badge bg-lime"><i class="fas fa-fw fa-pen"></i> Nilai </a>
+      <a class="badge bg-gradient-danger text-light scoreclass" href="javascript:void(0)" title="Update Test" onclick="test(' . "'" . $result->id_candidate . "'" . ')"><i class="fas fa-fw fa-calendar-alt"></i>Update Test</a>
+      <a class="badge bg-gradient-light text-dark scoreclass" href="javascript:void(0)" title="Edit Status" onclick="status_test(' . "'" . $result->id_candidate . "'" . ')"><i class="fas fa-fw fa-calendar-alt"></i>Update Status</a>';
       $data[] = $row;
     }
 
@@ -225,5 +221,140 @@ class="badge bg-primary text-light"><i class="fas fa-fw fa-pen"></i> Nilai</a>
     );
 
     $this->output->set_output(json_encode($output));
+  }
+
+  public function nilai_id($basic_id)
+  {
+    $data = $this->score->get_by_basic_id($basic_id);
+    // $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu signty for datepicker compatibility
+    echo json_encode($data);
+  }
+
+  public function status_id($basic_id)
+  {
+    $data = $this->score->get_by_basic_id($basic_id);
+    // $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu signty for datepicker compatibility
+    echo json_encode($data);
+  }
+
+  public function nilai_add()
+  {
+    $this->_validate_score();
+    $data = array(
+      'id' => $this->input->post('id'),
+      'basic_id' => $this->input->post('basic_id'),
+      'regis_num_candidate' => $this->input->post('regis_num_candidate'),
+      'regis_num_resident' => $this->input->post('regis_num_resident'),
+      'email' => $this->input->post('email'),
+      'religion' => $this->input->post('religion'),
+      'tall' => $this->input->post('tall'),
+      'weight' => $this->input->post('weight'),
+      'marital_status' => $this->input->post('marital_status'),
+      'postal_code' => $this->input->post('postal_code'),
+      'status_test' => $this->input->post('status_test'),
+      'certificate' => $this->input->post('certificate'),
+      'validity_period' => $this->input->post('validity_period'),
+    );
+
+    $this->score->save(array('basic_id' => $this->input->post('basic_id')), $data);
+    echo json_encode(array("status" => TRUE));
+  }
+
+  public function test_id($id_candidate)
+  {
+    $data = $this->score->get_by_id($id_candidate);
+    // $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu signty for datepicker compatibility
+    echo json_encode($data);
+  }
+
+  public function test_edit()
+  {
+    // $this->_validate();
+    $data = array(
+      'id_candidate' => $this->input->post('id_candidate'),
+      'test_one' => $this->input->post('test_one'),
+      'test_two' => $this->input->post('test_two'),
+      'test_three' => $this->input->post('test_three'),
+    );
+
+    $this->score->update(array('id_candidate' => $this->input->post('id_candidate')), $data);
+    echo json_encode(array("status" => TRUE));
+  }
+
+  public function status_edit()
+  {
+    // $this->_validate();
+    $data = array(
+      'basic_id' => $this->input->post('basic_id'),
+      'status_test' => $this->input->post('status_test'),
+    );
+
+    $this->score->update_status_test(array('basic_id' => $this->input->post('basic_id')), $data);
+    echo json_encode(array("status" => TRUE));
+  }
+
+
+  private function _validate_score()
+  {
+    $data = array();
+    $data['error_string'] = array();
+    $data['inputerror'] = array();
+    $data['status'] = TRUE;
+
+    if ($this->input->post('regis_num_candidate') == '') {
+      $data['inputerror'][] = 'regis_num_candidate';
+      $data['error_string'][] = 'Candidate Number is Required';
+      $data['status'] = FALSE;
+    }
+
+    if ($this->input->post('regis_num_resident') == '') {
+      $data['inputerror'][] = 'regis_num_resident';
+      $data['error_string'][] = 'Resident Number is Required';
+      $data['status'] = FALSE;
+    }
+
+    if ($this->input->post('email') == '') {
+      $data['inputerror'][] = 'email';
+      $data['error_string'][] = 'Email is Required';
+      $data['status'] = FALSE;
+    }
+
+    if ($this->input->post('religion') == '') {
+      $data['inputerror'][] = 'religion';
+      $data['error_string'][] = 'Religion is Required';
+      $data['status'] = FALSE;
+    }
+
+    if ($this->input->post('tall') == '') {
+      $data['inputerror'][] = 'tall';
+      $data['error_string'][] = 'Tall is Required';
+      $data['status'] = FALSE;
+    }
+    if ($this->input->post('weight') == '') {
+      $data['inputerror'][] = 'weight';
+      $data['error_string'][] = 'Weight is Required';
+      $data['status'] = FALSE;
+    }
+
+    if ($this->input->post('marital_status') == '') {
+      $data['inputerror'][] = 'marital_status';
+      $data['error_string'][] = 'Marital Status is required';
+      $data['status'] = FALSE;
+    }
+    if ($this->input->post('postal_code') == '') {
+      $data['inputerror'][] = 'postal_code';
+      $data['error_string'][] = 'Postal Code is required';
+      $data['status'] = FALSE;
+    }
+    if ($this->input->post('status_test') == '') {
+      $data['inputerror'][] = 'status_test';
+      $data['error_string'][] = 'Status Test is required';
+      $data['status'] = FALSE;
+    }
+
+    if ($data['status'] === FALSE) {
+      echo json_encode($data);
+      exit();
+    }
   }
 }

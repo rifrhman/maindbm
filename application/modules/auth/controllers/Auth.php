@@ -40,6 +40,8 @@ class Auth extends CI_Controller
           redirect('graduated');
         } elseif ($users['level_id'] == 4) {
           redirect('head');
+        } elseif ($users['level_id'] == 5) {
+          redirect('manage');
         }
       } else {
         $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible fade show" role="alert">

@@ -134,4 +134,46 @@ class Score_model extends CI_Model
     $this->db->order_by('candidate_basic.id_candidate', 'DESC');
     return $this->db->count_all_results();
   }
+
+  public function get_by_basic_id($basic_id)
+  {
+    $this->db->select('*');
+    $this->db->from('candidate_basic');
+    // $this->db->join('candidate_secondary', 'candidate_basic.id_candidate = candidate_secondary.basic_id', 'left');
+    $this->db->join('send_candidate', 'send_candidate.basic_id = candidate_basic.id_candidate', 'left');
+    $this->db->where('candidate_basic.id_candidate', $basic_id);
+    $query = $this->db->get();
+
+    return $query->row();
+  }
+
+  var $table = 'candidate_secondary';
+  var $newtable = 'candidate_basic';
+
+  public function save($where, $data)
+  {
+    $this->db->insert($this->table, $data, $where);
+    return $this->db->insert_id();
+  }
+
+  public function get_by_id($id_candidate)
+  {
+    $this->db->from($this->newtable);
+    $this->db->where('id_candidate', $id_candidate);
+    $query = $this->db->get();
+
+    return $query->row();
+  }
+
+  public function update($where, $data)
+  {
+    $this->db->update($this->newtable, $data, $where);
+    return $this->db->affected_rows();
+  }
+
+  public function update_status_test($where, $data)
+  {
+    $this->db->update($this->table, $data, $where);
+    return $this->db->affected_rows();
+  }
 }

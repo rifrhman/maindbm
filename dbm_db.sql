@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2022 at 07:53 AM
+-- Generation Time: Dec 23, 2022 at 12:37 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -50,7 +50,8 @@ CREATE TABLE `basic_admin` (
 --
 
 INSERT INTO `basic_admin` (`id`, `basic_id`, `id_emp`, `id_privy`, `cc`, `branch_company`, `payroll_one`, `payroll_two`, `blood_type`, `address_ktp`, `postal_code_ktp`, `no_kk`, `status_company`, `surrogate_status`, `type_recruitment`) VALUES
-(11, 16220, '0201', 'P002', 'BCA', 'Semarang', '999555', '222555', 'O', 'Pakuan Regency', '124522', '321545602546461', 'M+', '-', 'MutualPlus');
+(11, 16220, '0201', 'P002', 'BCA', 'Semarang', '999555', '222555', 'O', 'Pakuan Regency', '124522', '321545602546461', 'M+', '-', 'MutualPlus'),
+(12, 16223, '12345', '-', 'BCA', 'JAKARTA', '-', '-', 'O', 'Tanah Abang', '163210', '123456789123456', 'M+', '-', 'Mutualplus');
 
 -- --------------------------------------------------------
 
@@ -85,8 +86,11 @@ CREATE TABLE `candidate_basic` (
 
 INSERT INTO `candidate_basic` (`id_candidate`, `fullname`, `place_of_birth`, `date_of_birth`, `domicile`, `phone_number`, `gender`, `last_education`, `test_one`, `test_two`, `test_three`, `image`, `psikogram`, `psikogram_two`, `psikogram_three`, `interview`, `note_recommend`, `desc_reject`) VALUES
 (16219, 'John Doe', 'Jakarta', '1996-05-06', 'Tanah Abang', '08988425978', 'L', 'S1 - Sistem Informasi', '2022-10-20', NULL, NULL, 'prof.jpg', NULL, NULL, NULL, NULL, NULL, 'kerja'),
-(16220, 'Demo Name', 'Bogor', '2000-10-02', 'Salabenda', '08988455247', 'P', 'S1 - Psikologi', '2022-12-07', NULL, NULL, 'prof_dr_ova_emilia.jpeg', NULL, NULL, NULL, NULL, 'Disarankan Bekerja Sebagai Staff Administrasi', NULL),
-(16221, 'Random', 'Jakarta', '2000-02-05', 'Tanah Abang', '0898854454', 'L', 'S1 - Sistem Informasi', '2022-12-07', NULL, NULL, 'profilesss.jpg', NULL, NULL, NULL, NULL, NULL, NULL);
+(16220, 'Demo Name', 'Bogor', '2000-10-02', 'Salabenda', '08988455247', 'P', 'S1 - Psikologi', '2022-12-07', '2022-12-30', '0000-00-00', 'prof_dr_ova_emilia.jpeg', NULL, NULL, NULL, NULL, 'Disarankan Bekerja Sebagai Staff Administrasi', NULL),
+(16221, 'Namanya random', 'Jakarta', '2000-02-05', 'Tanah Abang', '0898854454', 'L', 'S1 - Sistem Informasi', '2022-12-20', '2022-12-26', '0000-00-00', 'profilesss.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(16222, 'Ratna Sari', 'Jakarta', '2000-01-05', 'Tanah Abang', '08988425858', 'L', 'S1 - Sistem Informasi', '2022-12-20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(16223, 'Nama Kedua', 'Bogor', '2001-05-01', 'Kayumanis', '085711970030', 'P', 'S1 - Psikologi', '2022-12-23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(16226, 'Raka Fadillah', 'Bandung', '1997-10-06', 'Padalarang', '08988425978', 'L', 'D3 - Perhotelan', '2022-12-23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -116,8 +120,9 @@ CREATE TABLE `candidate_secondary` (
 
 INSERT INTO `candidate_secondary` (`id`, `regis_num_candidate`, `regis_num_resident`, `email`, `religion`, `tall`, `weight`, `marital_status`, `postal_code`, `status_test`, `certificate`, `validity_period`, `basic_id`) VALUES
 (29, 'MGR0020', '3275012235600007', 'Johndoe@gmail.com', 'Katholik', '170', '58', 'SG', 12230, 'Lulus', '-', '-', 16219),
-(30, 'MGR0002', '3201240556472125', 'Demoname@gmail.com', 'Islam', '170', '55', 'SG', 12310, 'Lulus', '-', '-', 16220),
-(31, 'MGR556655', '320112056219980005', 'Admin@mutual.com', 'Islam', '175', '65', 'SG', 12200, 'Lulus', 'Kompetensi Komputer', '3 Bulan', 16221);
+(30, 'MGR0002', '3201240556472125', 'Demoname@gmail.com', 'Islam', '170', '55', 'SG', 12310, 'Referensi', '-', '-', 16220),
+(50, 'MGR552285', '320112056219980005', 'random@mutual.com', 'Islam', '175', '65', 'SG', 13240, 'Lulus', '-', '-', 16221),
+(56, 'MGR552285', '01292938392382389', 'admin@mutual.com', 'Kristen', '175', '65', 'SG', 12200, 'Referensi', '-', '-', 16222);
 
 -- --------------------------------------------------------
 
@@ -143,7 +148,9 @@ CREATE TABLE `education` (
 
 INSERT INTO `education` (`id_education`, `degree`, `institute`, `major`, `city`, `score`, `year_in_edu`, `year_out_edu`, `basic_id`) VALUES
 (25, 'S1', 'Universitas Andalas', 'Manajemen Informatika', 'Padang', '3.45', '2017', '2021', 16219),
-(26, 'S1', 'Universitas Pakuan', 'Psikologi', 'Bogor', '3.88', '2015', '2019', 16220);
+(26, 'S1', 'Universitas Pakuan', 'Tekhnik Sipil', 'Bogor', '3.72', '2016', '2020', 16220),
+(28, 'D3', 'UNIVERSITAS IBN KHALDUN', 'TEKNIK INFORMATIKA', 'Bogor', '3.45', '2017', '2020', 16223),
+(29, 'S1', 'Universitas Indonesia', 'Tekhnik Sipil', 'Depok', '3.52', '2017', '2021', 16222);
 
 -- --------------------------------------------------------
 
@@ -164,7 +171,8 @@ CREATE TABLE `emergency_contact` (
 --
 
 INSERT INTO `emergency_contact` (`id`, `basic_id`, `name_emergency`, `phone_emergency`, `relation_emergency`) VALUES
-(13, 16220, 'Haja', '089885255266', 'Ayah');
+(13, 16220, 'Haja', '089885255266', 'Ayah'),
+(14, 16223, 'Haikal Munaroh', '0898858842', 'Ayah');
 
 -- --------------------------------------------------------
 
@@ -189,7 +197,9 @@ CREATE TABLE `experience` (
 
 INSERT INTO `experience` (`id_exp`, `company`, `position_exp`, `year_in_exp`, `month_period`, `last_salary`, `resign`, `basic_id`) VALUES
 (18, 'PT Shoope Internasional', 'IT Support', '2021-01-01', 6, 5500000, 'Training', 16219),
-(19, 'PT BRI', 'Frontliner', '2019-02-01', 12, 5500000, 'Habis Kontrak', 16220);
+(19, 'PT BRI', 'Frontliner', '2019-02-01', 12, 5500000, 'Habis Kontrak', 16220),
+(20, 'PT Shoope Internasional', 'IT Support', '2020-11-07', 6, 5500000, 'Habis Kontrak', 16222),
+(21, 'PT BRI', 'Frontliner', '2020-12-05', 5, 4800000, 'Training Habis Kontrak', 16223);
 
 -- --------------------------------------------------------
 
@@ -210,7 +220,8 @@ INSERT INTO `levels` (`id`, `level`) VALUES
 (1, 'Administrator'),
 (2, 'Sourcing'),
 (3, 'Recruitment'),
-(4, 'Head Recruitment');
+(4, 'Head Recruitment'),
+(5, 'Manage');
 
 -- --------------------------------------------------------
 
@@ -247,7 +258,10 @@ INSERT INTO `pkwt_employee` (`id`, `basic_id`, `pkwt_number`, `date_pkwt`, `star
 (72, 16219, '0000', '0001-01-01', '0001-01-01', '0001-01-01', 'reminder 07/12/2023', 'Belum Dibalas', NULL),
 (73, 16220, '00000`', '0001-01-01', '0001-01-01', '0001-01-01', '-', 'Belum Dibalas', NULL),
 (74, 16221, 'PKWT/2525', '2022-12-10', '2022-12-10', '2023-12-05', '-', NULL, NULL),
-(75, 16221, 'PKWT/20202', '0001-01-01', '0001-01-01', '0001-01-01', 'Reminder kedua', 'Selesai', NULL);
+(75, 16221, 'PKWT/20202', '0001-01-01', '0001-01-01', '0001-01-01', 'Reminder kedua', 'Selesai', NULL),
+(76, 16223, '789', '2023-02-05', '2022-12-19', '2022-12-31', '1223567890-=pokjhgfr567ujgft6y78uikmnbgy', 'Selesai', NULL),
+(77, 16223, '123', '0001-01-01', '2023-01-01', '2023-03-31', 'Reminder 19/12/2022//sudah ada perpanjangan 20/12/2022 di perpanjang 3 bulan', 'Belum Dibuat', NULL),
+(78, 16223, 'PKWT/2525', '0002-02-02', '0002-02-02', '0002-02-02', 'Reminder 01/01/2023 Belum dibalas', 'Belum Dibalas', NULL);
 
 -- --------------------------------------------------------
 
@@ -285,6 +299,13 @@ CREATE TABLE `secondary_admin` (
   `npwp` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `secondary_admin`
+--
+
+INSERT INTO `secondary_admin` (`id`, `basic_id`, `allowance_premium`, `allowance_others`, `placement_city`, `placement_district`, `type_bank`, `account_number`, `name_of_bank`, `bpjs_tk`, `bpjs_ks`, `npwp`) VALUES
+(9, 16223, '-', '-', 'Jakarta', '-', 'BCA', '3201234560', 'Nama Kedua', '12654951841585', '1556143215488', '116584968449684');
+
 -- --------------------------------------------------------
 
 --
@@ -308,6 +329,14 @@ CREATE TABLE `send_candidate` (
   `confirm_admin` varchar(128) DEFAULT NULL,
   `basic_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `send_candidate`
+--
+
+INSERT INTO `send_candidate` (`id`, `client`, `position`, `date_send`, `result_send`, `placement`, `salary`, `start_date`, `end_date`, `desc_send`, `created_by`, `confirm`, `is_join`, `confirm_admin`, `basic_id`) VALUES
+(55, 'BANK BTPN', 'Administrator', '2023-02-05', 'Lulus', 'Kalibata', '5500000', '2023-03-19', '2024-03-12', '-', 'Recruit', 'Approved', 'Join', 'Approved', 16223),
+(56, 'PT BRI', 'IT', '2023-03-15', 'Lulus', 'Foresta', '4650000', '2023-03-21', '2024-03-19', '-', 'recruit', 'Approved', NULL, NULL, 16222);
 
 -- --------------------------------------------------------
 
@@ -335,7 +364,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `level_id`) VALUES
 (6, 'irfan', '$2y$10$K8rbc01m484UtSE8QPeQle59c6yZd4b9xTZxw/Z7E6pYPBSGjor6a', 2),
 (7, 'rosandri', '$2y$10$xj/7ciZO41lLq2im0P6w1OdkGbndLpDLSOdVjeoNegGRAoD1mgUrW', 3),
 (8, 'rian', '$2y$10$wdA.tX/CHWD8arcUCfj7y.m8b3sac2Y/DPd271aWaaCCWL4UPMeuq', 3),
-(9, 'dessy', '$2y$10$qrds0K.jkFGSLBGxAL23bOeJ860UKanYUGiS0NbibWtI/uzbx4Epu', 4);
+(9, 'dessy', '$2y$10$qrds0K.jkFGSLBGxAL23bOeJ860UKanYUGiS0NbibWtI/uzbx4Epu', 4),
+(10, 'arif', '$2y$10$UDrTHLrkD6u7/la3iRZC.OF3IGAYxq3Tst9e2kUgzbIugu0YJU5lO', 5);
 
 --
 -- Indexes for dumped tables
@@ -431,49 +461,49 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `basic_admin`
 --
 ALTER TABLE `basic_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `candidate_basic`
 --
 ALTER TABLE `candidate_basic`
-  MODIFY `id_candidate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16222;
+  MODIFY `id_candidate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16228;
 
 --
 -- AUTO_INCREMENT for table `candidate_secondary`
 --
 ALTER TABLE `candidate_secondary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
-  MODIFY `id_education` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_education` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `emergency_contact`
 --
 ALTER TABLE `emergency_contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `experience`
 --
 ALTER TABLE `experience`
-  MODIFY `id_exp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_exp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `levels`
 --
 ALTER TABLE `levels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pkwt_employee`
 --
 ALTER TABLE `pkwt_employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `resign_employee`
@@ -485,19 +515,19 @@ ALTER TABLE `resign_employee`
 -- AUTO_INCREMENT for table `secondary_admin`
 --
 ALTER TABLE `secondary_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `send_candidate`
 --
 ALTER TABLE `send_candidate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

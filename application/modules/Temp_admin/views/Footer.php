@@ -118,6 +118,41 @@ $(document).ready(function() {
 
 
 
+$('#custom-file-input').on('change', function() {
+  let fileName = $(this).val().split('\\').pop();
+  $(this).next('.custom-file-label').addClass("selected").html(fileName);
+});
+
+const flashData = $('.flash-data').data('flashdata');
+if (flashData) {
+  Swal.fire(
+    'Good job!',
+    flashData,
+    'success'
+  )
+}
+
+const flashDataScore = $('.flash-data-score').data('flashdata-score');
+if (flashDataScore) {
+  Swal.fire(
+    'Good job!',
+    flashData,
+    'success'
+  )
+}
+
+const flashDataErr = $('.flash-data-err').data('flashdata-err');
+if (flashDataErr) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Data kandidat sudah terdaftar.'
+  })
+}
+
+
+
+
 
 var minDate, maxDate;
 
@@ -416,7 +451,7 @@ function edit_person(id) {
 
   //Ajax Load data from ajax
   $.ajax({
-    url: "<?php echo site_url('employee/ajax_edit/') ?>/" + id,
+    url: "<?php echo site_url('employee/ajax_edit/') ?>" + id,
     type: "GET",
     dataType: "JSON",
     success: function(data) {

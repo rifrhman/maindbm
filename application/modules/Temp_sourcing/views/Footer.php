@@ -189,6 +189,287 @@ $('#examscore').DataTable({
     "orderable": false
   }],
 });
+
+
+// Adding Nilai
+function nilai(basic_id) {
+  save_method = 'add';
+  $('#form_nilai')[0].reset(); // reset form on modals
+  $('.form-group').removeClass('has-error'); // clear error class
+  $('.help-block').empty(); // clear error string
+  // $('#modal_form').modal('show'); // show bootstrap modal
+  // $('.modal-title').text('Add PKWT'); // Set Title to Bootstrap modal title
+
+  //Ajax Load data from ajax
+  $.ajax({
+    url: "<?php echo site_url('Scorecandidate/nilai_id/') ?>" + basic_id,
+    type: "GET",
+    dataType: "JSON",
+    success: function(data) {
+      $('[name="basic_id"]').val(data.basic_id);
+      $('[name="regis_num_candidate"]').val();
+      $('[name="regis_num_resident"]').val();
+      $('[name="email"]').val();
+      $('[name="marital_status"]').val();
+      $('[name="religion"]').val();
+      $('[name="tall"]').val();
+      $('[name="weight"]').val();
+      $('[name="postal_code"]').val();
+      $('[name="certificate"]').val();
+      $('[name="validity_period"]').val();
+      $('[name="status_test"]').val();
+
+      $('#modal_nilai').modal('show'); // show bootstrap modal when complete loaded
+      $('.modal-title').text(`Tambah Nilai ${data.fullname} `); // Set title to Bootstrap modal title
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('Error get data from ajax');
+    }
+  });
+}
+
+
+function save_nilai() {
+  $('#btnSaveNilai').text('saving...'); //change button text
+  $('#btnSaveNilai').attr('disabled', true); //set button disable 
+  var url;
+
+
+  if (save_method == 'add') {
+    url = "<?php echo site_url('Scorecandidate/nilai_add') ?>";
+  }
+  // } else {
+  //   url = "<?php echo site_url('employee/ajax_update') ?>";
+  // }
+
+
+  // ajax adding data to database
+  $.ajax({
+    url: url,
+    type: "POST",
+    data: $('#form_nilai').serialize(),
+    dataType: "JSON",
+    success: function(data) {
+
+      if (data.status) //if success close modal and reload ajax table
+      {
+        $('#modal_nilai').modal('hide');
+        // reload_table();
+        Swal.fire(
+          'Good job!',
+          flashData,
+          'success'
+        )
+        setTimeout(function() { // wait for 5 secs(2)
+          location.reload(); // then reload the page.(3)
+        }, 3000);
+      } else {
+        for (var i = 0; i < data.inputerror.length; i++) {
+          $('[name="' + data.inputerror[i] + '"]').parent().parent().addClass(
+            'has-error'); //select parent twice to select div form-group class and add has-error class
+          $('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[
+            i]); //select span help-block class set text error string
+        }
+      }
+      $('#btnSaveNilai').text('save'); //change button text
+      $('#btnSaveNilai').attr('disabled', false); //set button enable 
+
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('Error adding / update data');
+      $('#btnSaveNilai').text('save'); //change button text
+      $('#btnSaveNilai').attr('disabled', false); //set button enable 
+
+    }
+  });
+}
+
+
+
+
+
+
+
+// Update Test
+function test(id_candidate) {
+  save_method = 'update';
+  $('#form_test')[0].reset(); // reset form on modals
+  $('.form-group').removeClass('has-error'); // clear error class
+  $('.help-block').empty(); // clear error string
+  // $('#modal_form').modal('show'); // show bootstrap modal
+  // $('.modal-title').text('Add PKWT'); // Set Title to Bootstrap modal title
+
+  //Ajax Load data from ajax
+  $.ajax({
+    url: "<?php echo site_url('Scorecandidate/test_id/') ?>" + id_candidate,
+    type: "GET",
+    dataType: "JSON",
+    success: function(data) {
+      $('[name="id_candidate"]').val(data.id_candidate);
+      $('[name="test_one"]').val(data.test_one);
+      $('[name="test_two"]').val(data.test_two);
+      $('[name="test_three"]').val(data.test_three);
+
+
+      $('#modal_test').modal('show'); // show bootstrap modal when complete loaded
+      $('.modal-title-test').text(`Update Test ${data.fullname} `); // Set title to Bootstrap modal title
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('Error get data from ajax');
+    }
+  });
+}
+
+
+function update_test() {
+  $('#btnUpdateTest').text('saving...'); //change button text
+  $('#btnUpdateTest').attr('disabled', true); //set button disable 
+  var url;
+
+
+  if (save_method == 'update') {
+    url = "<?php echo site_url('Scorecandidate/test_edit') ?>";
+  }
+  // } else {
+  //   url = "<?php echo site_url('employee/ajax_update') ?>";
+  // }
+
+
+  // ajax adding data to database
+  $.ajax({
+    url: url,
+    type: "POST",
+    data: $('#form_test').serialize(),
+    dataType: "JSON",
+    success: function(data) {
+
+      if (data.status) //if success close modal and reload ajax table
+      {
+        $('#modal_test').modal('hide');
+        // reload_table();
+        Swal.fire(
+          'Good job!',
+          flashData,
+          'success'
+        )
+        setTimeout(function() { // wait for 5 secs(2)
+          location.reload(); // then reload the page.(3)
+        }, 3000);
+      } else {
+        for (var i = 0; i < data.inputerror.length; i++) {
+          $('[name="' + data.inputerror[i] + '"]').parent().parent().addClass(
+            'has-error'); //select parent twice to select div form-group class and add has-error class
+          $('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[
+            i]); //select span help-block class set text error string
+        }
+      }
+      $('#btnUpdateTest').text('save'); //change button text
+      $('#btnUpdateTest').attr('disabled', false); //set button enable 
+
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('Error adding / update data');
+      $('#btnUpdateTest').text('save'); //change button text
+      $('#btnUpdateTest').attr('disabled', false); //set button enable 
+
+    }
+  });
+}
+
+
+
+// Update Status Test
+
+// Adding Nilai
+function status_test(basic_id) {
+  save_method = 'update_status';
+  $('#form_status')[0].reset(); // reset form on modals
+  $('.form-group').removeClass('has-error'); // clear error class
+  $('.help-block').empty(); // clear error string
+  // $('#modal_form').modal('show'); // show bootstrap modal
+  // $('.modal-title').text('Add PKWT'); // Set Title to Bootstrap modal title
+
+  //Ajax Load data from ajax
+  $.ajax({
+    url: "<?php echo site_url('Scorecandidate/status_id/') ?>" + basic_id,
+    type: "GET",
+    dataType: "JSON",
+    success: function(data) {
+      $('[name="basic_id"]').val(data.basic_id);
+      $('[name="status_test"]').val(data.status_test);
+
+      $('#modal_status').modal('show'); // show bootstrap modal when complete loaded
+      $('.modal-title').text(`Update Status ${data.fullname} `); // Set title to Bootstrap modal title
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('Error get data from ajax');
+    }
+  });
+}
+
+
+
+
+function update_status_test() {
+  $('#btnUpdateStatus').text('saving...'); //change button text
+  $('#btnUpdateStatus').attr('disabled', true); //set button disable 
+  var url;
+
+
+  if (save_method == 'update_status') {
+    url = "<?php echo site_url('Scorecandidate/status_edit') ?>";
+  }
+  // } else {
+  //   url = "<?php echo site_url('employee/ajax_update') ?>";
+  // }
+
+
+  // ajax adding data to database
+  $.ajax({
+    url: url,
+    type: "POST",
+    data: $('#form_status').serialize(),
+    dataType: "JSON",
+    success: function(data) {
+
+      if (data.status) //if success close modal and reload ajax table
+      {
+        $('#modal_status').modal('hide');
+        // reload_table();
+        Swal.fire(
+          'Good job!',
+          flashData,
+          'success'
+        )
+        setTimeout(function() { // wait for 5 secs(2)
+          location.reload(); // then reload the page.(3)
+        }, 3000);
+      } else {
+        for (var i = 0; i < data.inputerror.length; i++) {
+          $('[name="' + data.inputerror[i] + '"]').parent().parent().addClass(
+            'has-error'); //select parent twice to select div form-group class and add has-error class
+          $('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[
+            i]); //select span help-block class set text error string
+        }
+      }
+      $('#btnUpdateStatus').text('save'); //change button text
+      $('#btnUpdateStatus').attr('disabled', false); //set button enable 
+
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('Error adding / update data');
+      $('#btnUpdateStatus').text('save'); //change button text
+      $('#btnUpdateStatus').attr('disabled', false); //set button enable 
+
+    }
+  });
+}
 </script>
 
 
