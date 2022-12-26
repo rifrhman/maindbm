@@ -660,14 +660,14 @@ function save_out_emp() {
 
 
 
-const flashData = $('.flash-data').data('flashdata');
-if (flashData) {
-  Swal.fire(
-    'Good job!',
-    flashData,
-    'success'
-  )
-}
+// const flashData = $('.flash-data').data('flashdata');
+// if (flashData) {
+//   Swal.fire(
+//     'Good job!',
+//     flashData,
+//     'success'
+//   )
+// }
 
 
 $('.deleted-confirm').on('click', function(e) {
