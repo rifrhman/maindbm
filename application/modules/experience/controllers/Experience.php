@@ -35,6 +35,8 @@ class Experience extends CI_Controller
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
     $data['basic'] = $this->db->get_where('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
     $data['list'] = $this->db->get('experience')->result_array();
+    $this->load->model('Exp_model');
+    $data['exp'] = $this->Exp_model->detailExp($id_candidate);
     $validation = $this->form_validation;
 
     $validation->set_rules('company', 'Company', 'required|trim');

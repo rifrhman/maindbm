@@ -42,8 +42,9 @@
                     <td><?= $can['status_test'] ?></td>
                     <td>
                       <a href="<?= base_url('experience/add_exp/') . $can['id_candidate']; ?>"
-                        class="btn bg-gradient-green btn-sm"><i class="fab fa-fw fa-black-tie"></i> Tambah Data
-                        Pengalaman</a>
+                        class="btn btn-outline-secondary btn-flat btn-xs text-white"><i
+                          class="fas fa-fw fa-door-open"></i>
+                        Tambah</a>
                     </td>
                   </tr>
                   <?php endforeach; ?>

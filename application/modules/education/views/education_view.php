@@ -43,8 +43,9 @@
                     <td><?= $can['status_test'] ?></td>
                     <td>
                       <a href="<?= base_url('education/add_education/') . $can['id_candidate']; ?>"
-                        class="btn bg-gradient-info btn-sm"><i class="fas fa-fw fa-user-graduate"></i> Tambah Data
-                        Pendidikan</a>
+                        class="btn btn-outline-secondary btn-flat btn-xs text-white"><i
+                          class="fas fa-fw fa-user-graduate"></i>
+                        Tambah</a>
                     </td>
                   </tr>
                   <?php endforeach; ?>

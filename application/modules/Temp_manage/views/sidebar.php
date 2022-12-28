@@ -58,7 +58,7 @@
           </a>
         </li>
 
-        <li class="nav-header font-weight-bold mb-2 mt-3" style="border-radius: 5px;">Menu Recruitment</li>
+        <!-- <li class="nav-header font-weight-bold mb-2 mt-3" style="border-radius: 5px;">Menu Recruitment</li>
         <li class="nav-item">
           <a href="<?= base_url('contract') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'contract' ? 'active' : '' ?>">
@@ -133,7 +133,7 @@
               Level Access
             </p>
           </a>
-        </li>
+        </li> -->
 
 
       </ul>

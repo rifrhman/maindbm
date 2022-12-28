@@ -25,7 +25,7 @@
                 <thead class="text-center">
                   <tr>
                     <th>Kandidat</th>
-                    <th>Info</th>
+                    <th width="100">Info</th>
                     <th>Draft</th>
                     <th>Klien</th>
                     <th>Action</th>

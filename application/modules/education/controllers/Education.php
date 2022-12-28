@@ -35,6 +35,8 @@ class Education extends CI_Controller
     $data['users'] = $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
     $data['basic'] = $this->db->get_where('candidate_basic', ['id_candidate' => $id_candidate])->row_array();
     $data['list'] = $this->db->get('education')->result_array();
+    $this->load->model('Education_model');
+    $data['educate'] = $this->Education_model->detailEducation($id_candidate);
 
     $validation = $this->form_validation;
 

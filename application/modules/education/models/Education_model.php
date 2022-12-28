@@ -20,4 +20,14 @@ class Education_model extends CI_Model
               ORDER BY `candidate_basic`.`id_candidate` DESC";
     return $this->db->query($query)->result_array();
   }
+
+  public function detailEducation($id_candidate)
+  {
+    $query = "SELECT `candidate_basic`.`id_candidate`, `education`.* FROM `candidate_basic` 
+    LEFT JOIN `education` 
+    ON `candidate_basic`.`id_candidate` = `education`.`basic_id`
+    WHERE `candidate_basic`.`id_candidate` = $id_candidate
+    ";
+    return $this->db->query($query)->result_array();
+  }
 }

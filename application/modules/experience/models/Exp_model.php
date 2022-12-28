@@ -23,4 +23,14 @@ class Exp_model extends CI_Model
               ORDER BY `candidate_basic`.`id_candidate` DESC";
     return $this->db->query($query)->result_array();
   }
+  public function detailExp($id_candidate)
+  {
+    $query = "SELECT `candidate_basic`.`id_candidate`, `experience`.* FROM `candidate_basic` 
+    LEFT JOIN `experience` 
+    ON `candidate_basic`.`id_candidate` = `experience`.`basic_id`
+    WHERE `candidate_basic`.`id_candidate` = $id_candidate
+    ORDER BY `experience`.`id_exp` DESC
+    ";
+    return $this->db->query($query)->result_array();
+  }
 }
