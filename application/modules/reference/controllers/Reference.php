@@ -256,7 +256,7 @@ class Reference extends CI_Controller
               <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-      redirect('reference/add_psikogram_many_ref/' . $id_candidate);
+      redirect('reference/add_psikogram_many/' . $id_candidate);
     }
   }
 
@@ -310,7 +310,7 @@ class Reference extends CI_Controller
               <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-      redirect('reference/add_psikogram_many_ref/' . $id_candidate);
+      redirect('reference/add_psikogram_many/' . $id_candidate);
     }
   }
   public function psikogram_three($id_candidate)
@@ -363,7 +363,7 @@ class Reference extends CI_Controller
               <span aria-hidden="true">&times;</span>
             </button>
             </div>');
-      redirect('reference/add_psikogram_many_ref/' . $id_candidate);
+      redirect('reference/add_psikogram_many/' . $id_candidate);
     }
   }
 }

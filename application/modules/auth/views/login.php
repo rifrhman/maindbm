@@ -11,10 +11,14 @@
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/fontawesome-free/css/all.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>dist/css/login.css">
+
   <style>
   body {
     font-family: 'Poppins';
@@ -22,13 +26,37 @@
   </style>
 </head>
 
-<body class="hold-transition bg-navy login-page">
+<body class="hold-transition login-page">
 
+
+
+  <div class="wrapper">
+    <?= $this->session->flashdata('msg'); ?>
+    <div class="logo">
+      <img src="<?= base_url('assets/img/logo2.png') ?>" alt="logo" class="img-fluid">
+    </div>
+    <div class="text-center mt-4 name">
+      Login DBM
+    </div>
+    <form class="p-3 mt-3" action="<?= base_url('auth/login'); ?>" method="POST">
+      <div class="form-field d-flex align-items-center">
+        <span class="far fa-user"></span>
+        <input type="text" name="username" id="userName" placeholder="Username">
+      </div>
+      <div class="form-field d-flex align-items-center">
+        <span class="fas fa-key"></span>
+        <input type="password" name="password" id="pwd" placeholder="Password">
+      </div>
+      <button type="submit" class="btn mt-3">Login</button>
+    </form>
+  </div>
+
+  <!-- 
   <div class="login-box">
-    <!-- /.login-logo -->
+   
     <div class="card card-outline card-indigo p-2 bg-white rounded">
       <div class="card-header text-center">
-        <!-- <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a> -->
+       
         <img src="<?= base_url('assets/img/logo.png') ?>" alt="logo" class="img-fluid">
         <p class="font-weight-bold text-indigo font-italic">Candidate Database System</p>
       </div>
@@ -66,14 +94,15 @@
             Login</button>
         </form>
       </div>
-      <!-- /.card-body -->
+     
     </div>
-    <!-- /.card -->
-  </div>
-  <!-- /.login-box -->
+   
+  </div> -->
+
 
   <!-- jQuery -->
   <script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->

@@ -192,7 +192,15 @@ class Contract_model extends CI_Model
     LEFT JOIN emergency_contact ON emergency_contact.basic_id = candidate_basic.id_candidate 
     WHERE send_candidate.confirm = 'Approved' AND send_candidate.confirm_admin IS NULL 
     AND pkwt_employee.flags_resign IS NULL AND send_candidate.result_send IS NOT NULL 
-    GROUP BY education.id_education ORDER BY education.id_education DESC;
+    GROUP BY education.id_education ORDER BY education.id_education ASC;
+    ";
+    return $this->db->query($query)->result_array();
+  }
+
+  public function educ()
+  {
+    $query = "
+    SELECT * FROM `education` GROUP BY basic_id ASC LIMIT 1;
     ";
     return $this->db->query($query)->result_array();
   }

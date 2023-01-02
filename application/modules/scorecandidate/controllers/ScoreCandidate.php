@@ -206,10 +206,13 @@ class Scorecandidate extends CI_Controller
             '<span class="badge badge-pill badge-info">Referensi</span>' : ($result->status_test == 'Tidak Hadir' ?
               '<span class="badge badge-pill badge-warning">Tidak Hadir</span>' : '')));
       $row[] = '
+      <div class="btn-group">
       <a href="' . base_url('scorecandidate/score_candidate/') . $result->id_candidate . '"
-      class="badge bg-lime"><i class="fas fa-fw fa-pen"></i> Nilai </a>
-      <a class="badge bg-gradient-danger text-light scoreclass" href="javascript:void(0)" title="Update Test" onclick="test(' . "'" . $result->id_candidate . "'" . ')"><i class="fas fa-fw fa-calendar-alt"></i>Update Test</a>
-      <a class="badge bg-gradient-light text-dark scoreclass" href="javascript:void(0)" title="Edit Status" onclick="status_test(' . "'" . $result->id_candidate . "'" . ')"><i class="fas fa-fw fa-calendar-alt"></i>Update Status</a>';
+      class="btn bg-maroon font-weight-bold btn-xs">Penilaian</a>
+      <a class="btn btn-xs bg-warning font-weight-bold scoreclass" href="javascript:void(0)" title="Update Test" onclick="test(' . "'" . $result->id_candidate . "'" . ')">Update Test</a>
+      <a class="btn btn-xs bg-gradient-success font-weight-bold scoreclass" href="javascript:void(0)" title="Edit Status" onclick="status_test(' . "'" . $result->id_candidate . "'" . ')">Update Status</a>
+      </div>
+      ';
       $data[] = $row;
     }
 

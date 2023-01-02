@@ -794,6 +794,70 @@ function del_exp(id_exp) {
 
   }
 }
+
+
+// Candidate Experience END
+
+// Candidate Send
+
+
+$(document).ready(function() {
+
+  // table secondary
+  //datatables
+  table_secondary = $('#candidate_send_table').DataTable({
+
+    "processing": true, //Feature control the processing indicator.
+    "serverSide": true, //Feature control DataTables' server-side processing mode.
+    "order": [], //Initial no order.
+
+    "lengthMenu": [10, 25, 50, 100, 1000, 10000],
+    "responsive": true,
+    // Load data for the table's content from an Ajax source
+    "ajax": {
+      "url": "<?php echo site_url('manage_send/candidate_send_list') ?>",
+      "type": "POST"
+    },
+
+    //Set column definition initialisation properties.
+    "columnDefs": [{
+        "targets": [-1], //last column
+        "orderable": false, //set not orderable
+      },
+
+    ],
+    "dom": 'lBfrtip',
+    "buttons": ['excel', 'csv', 'pdf', 'print']
+
+  });
+
+  //datepicker
+  $('.datepicker').datepicker({
+    autoclose: true,
+    format: "yyyy-mm-dd",
+    todayHighlight: true,
+    orientation: "top auto",
+    todayBtn: true,
+    todayHighlight: true,
+  });
+
+
+  //set input/textarea/select event when change value, remove class error and remove text help block 
+  $("input").change(function() {
+    $(this).parent().parent().removeClass('has-error');
+    $(this).next().empty();
+  });
+  $("textarea").change(function() {
+    $(this).parent().parent().removeClass('has-error');
+    $(this).next().empty();
+  });
+  $("select").change(function() {
+    $(this).parent().parent().removeClass('has-error');
+    $(this).next().empty();
+  });
+
+
+});
 </script>
 
 

@@ -58,17 +58,17 @@
           </a>
         </li>
 
-        <!-- <li class="nav-header font-weight-bold mb-2 mt-3" style="border-radius: 5px;">Menu Recruitment</li>
+        <li class="nav-header font-weight-bold mb-2 mt-3" style="border-radius: 5px;">Menu Recruitment</li>
         <li class="nav-item">
-          <a href="<?= base_url('contract') ?>"
-            class="nav-link <?= $this->uri->segment(1) == 'contract' ? 'active' : '' ?>">
+          <a href="<?= base_url('manage_send') ?>"
+            class="nav-link <?= $this->uri->segment(1) == 'manage_send' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-fw fa-paper-plane"></i>
             <p>
               Send Candidate
             </p>
           </a>
         </li>
-        <li class="nav-header font-weight-bold mb-2 mt-3" style="border-radius: 5px;">Menu Admin</li>
+        <!-- <li class="nav-header font-weight-bold mb-2 mt-3" style="border-radius: 5px;">Menu Admin</li>
         <li class="nav-item">
           <a href="<?= base_url('signin') ?>"
             class="nav-link <?= $this->uri->segment(1) == 'signin' ? 'active' : '' ?>">

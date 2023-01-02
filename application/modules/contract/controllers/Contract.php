@@ -522,6 +522,8 @@ class="btn bg-gradient-blue btn-sm text-light"><i class="fas fa-fw fa-info"></i>
   {
     $data['title'] = "Karyawan Join " . date('d-F-Y');
     $data['actived'] = $this->con->quer();
+    $data['ed'] = $this->con->educ();
+
 
     $this->load->view('export_contract', $data);
   }

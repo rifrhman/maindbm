@@ -157,34 +157,37 @@
 
 
                     <td class="text-center">
-                      <a href="<?= base_url('graduated/detailgraduatecandidate/') . $can['id_candidate'] ?>"
-                        class="badge badge-danger  mb-2"><i class="fas fa-fw fa-info"></i> Detail</a>
-                      <br>
-                      <a href="<?= base_url('pdfgen/resumesingle/') . $can['id_candidate'] ?>"
-                        class="badge badge-warning  mb-2" target="_blank"><i class="fas fa-fw fa-file-pdf"></i>
-                        Resume-User</a>
-                      <?php if ($users['level_id'] != 3) : ?>
+                      <div class="btn-group-vertical">
+                        <a href="<?= base_url('graduated/detailgraduatecandidate/') . $can['id_candidate'] ?>"
+                          class="btn btn-danger btn-xs  mb-2"><i class="fas fa-fw fa-info"></i> Detail</a>
+                        <br>
+                        <a href="<?= base_url('pdfgen/resumesingle/') . $can['id_candidate'] ?>"
+                          class="btn btn-warning btn-xs  mb-2" target="_blank"><i class="fas fa-fw fa-file-pdf"></i>
+                          Resume-User</a>
+                        <?php if ($users['level_id'] != 3) : ?>
 
-                      <?php else : ?>
-                      <br>
-                      <a href="<?= base_url('graduated/addsend_candidate/') . $can['id_candidate'] ?>"
-                        class="badge badge-info mb-2"><i class="fas fa-fw fa-paper-plane"></i>
-                        Kirim Kandidat</a>
-                      <?php endif; ?>
-                      <br>
-                      <a href="<?= base_url('graduated/add_psikogram_many/') . $can['id_candidate'] ?>"
-                        class="badge badge-primary mb-2">
-                        <i class="fas fa-fw fa-upload"></i>
-                        Tambah Psikogram
-                      </a> <br>
-                      <?php if ($this->session->userdata('level_id') != 3) : ?>
-                      <?php else : ?>
-                      <a href="<?= base_url('graduated/reject_data/') . $can['id_candidate'] ?>"
-                        class="badge bg-maroon mb-2">
-                        <i class="fas fa-fw fa-times"></i>
-                        Reject
-                      </a>
-                      <?php endif ?>
+                        <?php else : ?>
+                        <br>
+                        <a href="<?= base_url('graduated/addsend_candidate/') . $can['id_candidate'] ?>"
+                          class="btn btn-info btn-xs mb-2"><i class="fas fa-fw fa-paper-plane"></i>
+                          Kirim Kandidat</a>
+                        <?php endif; ?>
+                        <br>
+                        <a href="<?= base_url('graduated/add_psikogram_many/') . $can['id_candidate'] ?>"
+                          class="btn btn-primary btn-xs mb-2">
+                          <i class="fas fa-fw fa-upload"></i>
+                          Tambah Psikogram
+                        </a> <br>
+                        <?php if ($this->session->userdata('level_id') != 3) : ?>
+                        <?php else : ?>
+                        <a href="<?= base_url('graduated/reject_data/') . $can['id_candidate'] ?>"
+                          class="btn bg-maroon btn-xs mb-2">
+                          <i class="fas fa-fw fa-times"></i>
+                          Reject
+                        </a>
+                        <?php endif ?>
+
+                      </div>
 
                     </td>
                   </tr>

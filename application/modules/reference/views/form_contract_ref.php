@@ -23,7 +23,7 @@
             </div>
             <!-- /.card-header -->
 
-            <form action="<?= base_url('graduated/contract_form/') . $status['id']; ?>" method="POST">
+            <form action="<?= base_url('reference/contract_ref/') . $status['id']; ?>" method="POST">
               <input type="hidden" name="id" id="id" value="<?= $status['id'] ?>">
               <div class="card-body">
                 <div class="row">
